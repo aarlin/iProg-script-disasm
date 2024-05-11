@@ -1,0 +1,2947 @@
+Menu
+    Read,Read,0,F3
+    -
+    Write,Write,1,F2
+    Write changes,Write_changes,2,F4
+    -
+    Erase,Erase,4,
+    -
+    Verify,Verify,3,F5
+EndMenu
+
+
+Editor
+{
+    (Caption="93C46";size=128;mode=16;bytes=16)
+}
+
+Window(caption=""; width=630; height=270; align=h)
+{
+    List(caption="VCC="; name=list_126B; left=40; top=10; width=80; value=0; items="5.0V","4.3V","3.8V","3.4V","3.1V","2.9V","2.8V","2.6V")
+    List(caption="Pinout"; name=list_126C; left=40; top=35; width=80; value=0; items="Normal","Rotated")
+    List(caption="WP="; name=list_126D; left=40; top=60; width=80; value=0; items="0","1")
+    Group(caption="Pin tester"; left=125; top=5; width=150; height=77)
+    {
+        Checkbox(caption="Enabled"; name=checkbox_126E; left=10; top=15; value=1)
+        Checkbox(caption="Don't check pin 6"; name=checkbox_126F; left=10; top=33; value=1)
+        Checkbox(caption="Don't check pin 7"; name=checkbox_1270; left=10; top=51; value=1)
+    }
+    Group(caption=" HONDA HR-V  DASH  (93C46)"; left=10; top=90; width=350; height=170)
+    {
+        List(caption="    "; name=list_1271; left=5; top=110; width=140; value=0; items="SCRIPT","CALCULATOR")
+        Button(caption="%bold=1%fcolor=$FF0000%size=13%fname=Tahoma%OLD KM"; left=5; top=20; width=140; height=25; proc=button_0E39)
+        Digit(caption="NEW KM"; name=digit_1272; left=55; top=50; width=90; value=0)
+        Button(caption="%bold=1%fcolor=$0000ff%size=13%fname=Tahoma%WRITE NEW KM"; left=5; top=75; width=140; height=25; proc=button_0E52)
+        Label(caption="%bold=1%fcolor=$FF0000%size=8%fname=Tahoma%< u-vovchika >"; name=label_0000; left=255; top=150; width=0; value=0)
+        Group(caption=" "; left=260; top=5; width=80; height=80)
+        {
+            Picture(caption="HONDA.png"; name=picture_0001; left=5; top=10; width=0; height=0)
+        }
+    }
+    Group(caption="PICTURE"; left=365; top=90; width=270; height=170)
+    {
+        Picture(caption="HRV93C46.png"; name=picture_0001; left=5; top=13; width=0; height=0)
+    }
+}
+
+
+$HOST
+
+emem buf0=0, sel0=2;
+
+string str0;
+
+prc_0000:
+pc []   000000 [02BB] 5A05            PUSHR   5                  ; proc prc_0000() {
+ c []   000002 [02BD] 5F50            ENTER   0, 5               ; var R0, R1, R2, R3;
+
+ c []   000004 [02BF] 06041272        LDMD    R4, digit_1272     ; R4 = digit_1272;
+ c []   000008 [02C3] 0C041367        STMD    d_1367, R4         ; d_1367 = R4;
+ c []   00000C [02C7] 010401          LDB     R4, 1
+ c []   00000F [02CA] 0C041363        STMD    d_1363, R4         ; d_1363 = R4;
+ c []   000013 [02CE] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000017 [02D2] 004E            MOV     R14, R4
+ c []   000019 [02D4] 010F64          LDB     R15, 100
+ c []   00001C [02D7] 52FE002B        CMPJGE  R14, R15, loc_002B ; if (R14 < R15) {
+ c []   000020 [02DB] 06041363        LDMD    R4, d_1363         ; R4 = d_1363;
+ c []   000024 [02DF] 1F0401          SUBB    R4, 1
+ c []   000027 [02E2] 0C041363        STMD    d_1363, R4         ; d_1363 = R4;
+loc_002B:
+ c []   00002B [02E6] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00002F [02EA] 004E            MOV     R14, R4
+ c []   000031 [02EC] 030F000F41DC    LDD     R15, 999900
+ c []   000037 [02F2] 53FE0046        CMPJLE  R14, R15, loc_0046 ; if (R14 > R15) {
+ c []   00003B [02F6] 06041363        LDMD    R4, d_1363         ; R4 = d_1363;
+ c []   00003F [02FA] 1F0401          SUBB    R4, 1
+ c []   000042 [02FD] 0C041363        STMD    d_1363, R4         ; d_1363 = R4;
+loc_0046:
+ c []   000046 [0301] 010460          LDB     R4, 96
+ c []   000049 [0304] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00004D [0308] 010461          LDB     R4, 97
+ c []   000050 [030B] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000054 [030F] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000058 [0313] 3B0410          DIVB    R4, 16
+ c []   00005B [0316] 0C041367        STMD    d_1367, R4         ; d_1367 = R4;
+ c []   00005F [031A] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000063 [031E] 2E04FFFF        XORW    R4, 65535
+ c []   000067 [0322] 0C041373        STMD    d_1373, R4         ; d_1373 = R4;
+loc_006B:
+ c []   00006B [0326] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   00006F [032A] 004E            MOV     R14, R4
+ c []   000071 [032C] 020F0100        LDW     R15, 256
+ c []   000075 [0330] 50FE01E4        CMPJE   R14, R15, loc_01E4 ; if (R14 != R15) {
+ c []   000079 [0334] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00007D [0338] 010E60          LDB     R14, 96
+ c []   000080 [033B] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000083 [033E] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000087 [0342] 4B0408          RR      R4, 8
+ c []   00008A [0345] 010E61          LDB     R14, 97
+ c []   00008D [0348] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000090 [034B] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000094 [034F] 110402          ADDB    R4, 2
+ c []   000097 [0352] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00009B [0356] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   00009F [035A] 110402          ADDB    R4, 2
+ c []   0000A2 [035D] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0000A6 [0361] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0000AA [0365] 010E62          LDB     R14, 98
+ c []   0000AD [0368] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0000B0 [036B] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0000B4 [036F] 4B0408          RR      R4, 8
+ c []   0000B7 [0372] 010E63          LDB     R14, 99
+ c []   0000BA [0375] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0000BD [0378] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0000C1 [037C] 110402          ADDB    R4, 2
+ c []   0000C4 [037F] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0000C8 [0383] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0000CC [0387] 110402          ADDB    R4, 2
+ c []   0000CF [038A] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0000D3 [038E] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   0000D7 [0392] 010E64          LDB     R14, 100
+ c []   0000DA [0395] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0000DD [0398] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   0000E1 [039C] 4B0408          RR      R4, 8
+ c []   0000E4 [039F] 010E65          LDB     R14, 101
+ c []   0000E7 [03A2] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0000EA [03A5] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0000EE [03A9] 110402          ADDB    R4, 2
+ c []   0000F1 [03AC] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0000F5 [03B0] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0000F9 [03B4] 110402          ADDB    R4, 2
+ c []   0000FC [03B7] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000100 [03BB] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   000104 [03BF] 010E66          LDB     R14, 102
+ c []   000107 [03C2] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   00010A [03C5] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   00010E [03C9] 4B0408          RR      R4, 8
+ c []   000111 [03CC] 010E67          LDB     R14, 103
+ c []   000114 [03CF] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000117 [03D2] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   00011B [03D6] 110402          ADDB    R4, 2
+ c []   00011E [03D9] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   000122 [03DD] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000126 [03E1] 110402          ADDB    R4, 2
+ c []   000129 [03E4] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   00012D [03E8] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000131 [03EC] 010E68          LDB     R14, 104
+ c []   000134 [03EF] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000137 [03F2] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00013B [03F6] 4B0408          RR      R4, 8
+ c []   00013E [03F9] 010E69          LDB     R14, 105
+ c []   000141 [03FC] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000144 [03FF] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000148 [0403] 110402          ADDB    R4, 2
+ c []   00014B [0406] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00014F [040A] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000153 [040E] 110402          ADDB    R4, 2
+ c []   000156 [0411] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   00015A [0415] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   00015E [0419] 010E6A          LDB     R14, 106
+ c []   000161 [041C] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000164 [041F] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   000168 [0423] 4B0408          RR      R4, 8
+ c []   00016B [0426] 010E6B          LDB     R14, 107
+ c []   00016E [0429] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000171 [042C] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000175 [0430] 110402          ADDB    R4, 2
+ c []   000178 [0433] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00017C [0437] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000180 [043B] 110402          ADDB    R4, 2
+ c []   000183 [043E] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000187 [0442] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00018B [0446] 010E6C          LDB     R14, 108
+ c []   00018E [0449] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000191 [044C] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000195 [0450] 4B0408          RR      R4, 8
+ c []   000198 [0453] 010E6D          LDB     R14, 109
+ c []   00019B [0456] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   00019E [0459] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0001A2 [045D] 110402          ADDB    R4, 2
+ c []   0001A5 [0460] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0001A9 [0464] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0001AD [0468] 110402          ADDB    R4, 2
+ c []   0001B0 [046B] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0001B4 [046F] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0001B8 [0473] 010E6E          LDB     R14, 110
+ c []   0001BB [0476] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0001BE [0479] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0001C2 [047D] 4B0408          RR      R4, 8
+ c []   0001C5 [0480] 010E6F          LDB     R14, 111
+ c []   0001C8 [0483] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0001CB [0486] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0001CF [048A] 110402          ADDB    R4, 2
+ c []   0001D2 [048D] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0001D6 [0491] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0001DA [0495] 110402          ADDB    R4, 2
+ c []   0001DD [0498] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0001E1 [049C] 56006B          JMP     loc_006B
+loc_01E4:
+ c []   0001E4 [049F] 010470          LDB     R4, 112
+ c []   0001E7 [04A2] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0001EB [04A6] 010471          LDB     R4, 113
+ c []   0001EE [04A9] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0001F2 [04AD] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   0001F6 [04B1] 2E04FFFF        XORW    R4, 65535
+ c []   0001FA [04B5] 0C041373        STMD    d_1373, R4         ; d_1373 = R4;
+loc_01FE:
+ c []   0001FE [04B9] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000202 [04BD] 004E            MOV     R14, R4
+ c []   000204 [04BF] 020F0100        LDW     R15, 256
+ c []   000208 [04C3] 50FE0377        CMPJE   R14, R15, loc_0377 ; if (R14 != R15) {
+ c []   00020C [04C7] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000210 [04CB] 010E70          LDB     R14, 112
+ c []   000213 [04CE] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000216 [04D1] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00021A [04D5] 4B0408          RR      R4, 8
+ c []   00021D [04D8] 010E71          LDB     R14, 113
+ c []   000220 [04DB] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000223 [04DE] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000227 [04E2] 110402          ADDB    R4, 2
+ c []   00022A [04E5] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00022E [04E9] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000232 [04ED] 110402          ADDB    R4, 2
+ c []   000235 [04F0] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000239 [04F4] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   00023D [04F8] 010E72          LDB     R14, 114
+ c []   000240 [04FB] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000243 [04FE] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   000247 [0502] 4B0408          RR      R4, 8
+ c []   00024A [0505] 010E73          LDB     R14, 115
+ c []   00024D [0508] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000250 [050B] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000254 [050F] 110402          ADDB    R4, 2
+ c []   000257 [0512] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00025B [0516] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   00025F [051A] 110402          ADDB    R4, 2
+ c []   000262 [051D] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000266 [0521] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00026A [0525] 010E74          LDB     R14, 116
+ c []   00026D [0528] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000270 [052B] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000274 [052F] 4B0408          RR      R4, 8
+ c []   000277 [0532] 010E75          LDB     R14, 117
+ c []   00027A [0535] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   00027D [0538] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000281 [053C] 110402          ADDB    R4, 2
+ c []   000284 [053F] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   000288 [0543] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   00028C [0547] 110402          ADDB    R4, 2
+ c []   00028F [054A] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000293 [054E] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   000297 [0552] 010E76          LDB     R14, 118
+ c []   00029A [0555] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   00029D [0558] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0002A1 [055C] 4B0408          RR      R4, 8
+ c []   0002A4 [055F] 010E77          LDB     R14, 119
+ c []   0002A7 [0562] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0002AA [0565] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0002AE [0569] 110402          ADDB    R4, 2
+ c []   0002B1 [056C] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0002B5 [0570] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0002B9 [0574] 110402          ADDB    R4, 2
+ c []   0002BC [0577] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0002C0 [057B] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   0002C4 [057F] 010E78          LDB     R14, 120
+ c []   0002C7 [0582] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0002CA [0585] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   0002CE [0589] 4B0408          RR      R4, 8
+ c []   0002D1 [058C] 010E79          LDB     R14, 121
+ c []   0002D4 [058F] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0002D7 [0592] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   0002DB [0596] 110402          ADDB    R4, 2
+ c []   0002DE [0599] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   0002E2 [059D] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   0002E6 [05A1] 110402          ADDB    R4, 2
+ c []   0002E9 [05A4] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   0002ED [05A8] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0002F1 [05AC] 010E7A          LDB     R14, 122
+ c []   0002F4 [05AF] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   0002F7 [05B2] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   0002FB [05B6] 4B0408          RR      R4, 8
+ c []   0002FE [05B9] 010E7B          LDB     R14, 123
+ c []   000301 [05BC] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000304 [05BF] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000308 [05C3] 110402          ADDB    R4, 2
+ c []   00030B [05C6] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00030F [05CA] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000313 [05CE] 110402          ADDB    R4, 2
+ c []   000316 [05D1] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   00031A [05D5] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   00031E [05D9] 010E7C          LDB     R14, 124
+ c []   000321 [05DC] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000324 [05DF] 06041367        LDMD    R4, d_1367         ; R4 = d_1367;
+ c []   000328 [05E3] 4B0408          RR      R4, 8
+ c []   00032B [05E6] 010E7D          LDB     R14, 125
+ c []   00032E [05E9] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000331 [05EC] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000335 [05F0] 110402          ADDB    R4, 2
+ c []   000338 [05F3] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   00033C [05F7] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   000340 [05FB] 110402          ADDB    R4, 2
+ c []   000343 [05FE] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000347 [0602] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   00034B [0606] 010E7E          LDB     R14, 126
+ c []   00034E [0609] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   000351 [060C] 06041373        LDMD    R4, d_1373         ; R4 = d_1373;
+ c []   000355 [0610] 4B0408          RR      R4, 8
+ c []   000358 [0613] 010E7F          LDB     R14, 127
+ c []   00035B [0616] 4C004E          STEM    0, R14, R4         ; buf0[R14] = R4;
+
+ c []   00035E [0619] 0604136B        LDMD    R4, d_136B         ; R4 = d_136B;
+ c []   000362 [061D] 110402          ADDB    R4, 2
+ c []   000365 [0620] 0C04136B        STMD    d_136B, R4         ; d_136B = R4;
+ c []   000369 [0624] 0604136F        LDMD    R4, d_136F         ; R4 = d_136F;
+ c []   00036D [0628] 110402          ADDB    R4, 2
+ c []   000370 [062B] 0C04136F        STMD    d_136F, R4         ; d_136F = R4;
+ c []   000374 [062F] 5601FE          JMP     loc_01FE
+loc_0377:
+ c []   000377 [0632] 010F02          LDB     R15, 2             ; 
+ c []   00037A [0635] 010E60          LDB     R14, 96            ; 
+ c []   00037D [0638] 4C02FE          STEM    2, R14, R15        ; sel0[96] = 2;
+
+ c []   000380 [063B] 010F02          LDB     R15, 2             ; 
+ c []   000383 [063E] 010E61          LDB     R14, 97            ; 
+ c []   000386 [0641] 4C02FE          STEM    2, R14, R15        ; sel0[97] = 2;
+
+ c []   000389 [0644] 010F02          LDB     R15, 2             ; 
+ c []   00038C [0647] 010E62          LDB     R14, 98            ; 
+ c []   00038F [064A] 4C02FE          STEM    2, R14, R15        ; sel0[98] = 2;
+
+ c []   000392 [064D] 010F02          LDB     R15, 2             ; 
+ c []   000395 [0650] 010E63          LDB     R14, 99            ; 
+ c []   000398 [0653] 4C02FE          STEM    2, R14, R15        ; sel0[99] = 2;
+
+ c []   00039B [0656] 010F02          LDB     R15, 2             ; 
+ c []   00039E [0659] 010E64          LDB     R14, 100           ; 
+ c []   0003A1 [065C] 4C02FE          STEM    2, R14, R15        ; sel0[100] = 2;
+
+ c []   0003A4 [065F] 010F02          LDB     R15, 2             ; 
+ c []   0003A7 [0662] 010E65          LDB     R14, 101           ; 
+ c []   0003AA [0665] 4C02FE          STEM    2, R14, R15        ; sel0[101] = 2;
+
+ c []   0003AD [0668] 010F02          LDB     R15, 2             ; 
+ c []   0003B0 [066B] 010E66          LDB     R14, 102           ; 
+ c []   0003B3 [066E] 4C02FE          STEM    2, R14, R15        ; sel0[102] = 2;
+
+ c []   0003B6 [0671] 010F02          LDB     R15, 2             ; 
+ c []   0003B9 [0674] 010E67          LDB     R14, 103           ; 
+ c []   0003BC [0677] 4C02FE          STEM    2, R14, R15        ; sel0[103] = 2;
+
+ c []   0003BF [067A] 010F02          LDB     R15, 2             ; 
+ c []   0003C2 [067D] 010E68          LDB     R14, 104           ; 
+ c []   0003C5 [0680] 4C02FE          STEM    2, R14, R15        ; sel0[104] = 2;
+
+ c []   0003C8 [0683] 010F02          LDB     R15, 2             ; 
+ c []   0003CB [0686] 010E69          LDB     R14, 105           ; 
+ c []   0003CE [0689] 4C02FE          STEM    2, R14, R15        ; sel0[105] = 2;
+
+ c []   0003D1 [068C] 010F02          LDB     R15, 2             ; 
+ c []   0003D4 [068F] 010E6A          LDB     R14, 106           ; 
+ c []   0003D7 [0692] 4C02FE          STEM    2, R14, R15        ; sel0[106] = 2;
+
+ c []   0003DA [0695] 010F02          LDB     R15, 2             ; 
+ c []   0003DD [0698] 010E6B          LDB     R14, 107           ; 
+ c []   0003E0 [069B] 4C02FE          STEM    2, R14, R15        ; sel0[107] = 2;
+
+ c []   0003E3 [069E] 010F02          LDB     R15, 2             ; 
+ c []   0003E6 [06A1] 010E6C          LDB     R14, 108           ; 
+ c []   0003E9 [06A4] 4C02FE          STEM    2, R14, R15        ; sel0[108] = 2;
+
+ c []   0003EC [06A7] 010F02          LDB     R15, 2             ; 
+ c []   0003EF [06AA] 010E6D          LDB     R14, 109           ; 
+ c []   0003F2 [06AD] 4C02FE          STEM    2, R14, R15        ; sel0[109] = 2;
+
+ c []   0003F5 [06B0] 010F02          LDB     R15, 2             ; 
+ c []   0003F8 [06B3] 010E6E          LDB     R14, 110           ; 
+ c []   0003FB [06B6] 4C02FE          STEM    2, R14, R15        ; sel0[110] = 2;
+
+ c []   0003FE [06B9] 010F02          LDB     R15, 2             ; 
+ c []   000401 [06BC] 010E6F          LDB     R14, 111           ; 
+ c []   000404 [06BF] 4C02FE          STEM    2, R14, R15        ; sel0[111] = 2;
+
+ c []   000407 [06C2] 010F02          LDB     R15, 2             ; 
+ c []   00040A [06C5] 010E70          LDB     R14, 112           ; 
+ c []   00040D [06C8] 4C02FE          STEM    2, R14, R15        ; sel0[112] = 2;
+
+ c []   000410 [06CB] 010F02          LDB     R15, 2             ; 
+ c []   000413 [06CE] 010E71          LDB     R14, 113           ; 
+ c []   000416 [06D1] 4C02FE          STEM    2, R14, R15        ; sel0[113] = 2;
+
+ c []   000419 [06D4] 010F02          LDB     R15, 2             ; 
+ c []   00041C [06D7] 010E72          LDB     R14, 114           ; 
+ c []   00041F [06DA] 4C02FE          STEM    2, R14, R15        ; sel0[114] = 2;
+
+ c []   000422 [06DD] 010F02          LDB     R15, 2             ; 
+ c []   000425 [06E0] 010E73          LDB     R14, 115           ; 
+ c []   000428 [06E3] 4C02FE          STEM    2, R14, R15        ; sel0[115] = 2;
+
+ c []   00042B [06E6] 010F02          LDB     R15, 2             ; 
+ c []   00042E [06E9] 010E74          LDB     R14, 116           ; 
+ c []   000431 [06EC] 4C02FE          STEM    2, R14, R15        ; sel0[116] = 2;
+
+ c []   000434 [06EF] 010F02          LDB     R15, 2             ; 
+ c []   000437 [06F2] 010E75          LDB     R14, 117           ; 
+ c []   00043A [06F5] 4C02FE          STEM    2, R14, R15        ; sel0[117] = 2;
+
+ c []   00043D [06F8] 010F02          LDB     R15, 2             ; 
+ c []   000440 [06FB] 010E76          LDB     R14, 118           ; 
+ c []   000443 [06FE] 4C02FE          STEM    2, R14, R15        ; sel0[118] = 2;
+
+ c []   000446 [0701] 010F02          LDB     R15, 2             ; 
+ c []   000449 [0704] 010E77          LDB     R14, 119           ; 
+ c []   00044C [0707] 4C02FE          STEM    2, R14, R15        ; sel0[119] = 2;
+
+ c []   00044F [070A] 010F02          LDB     R15, 2             ; 
+ c []   000452 [070D] 010E78          LDB     R14, 120           ; 
+ c []   000455 [0710] 4C02FE          STEM    2, R14, R15        ; sel0[120] = 2;
+
+ c []   000458 [0713] 010F02          LDB     R15, 2             ; 
+ c []   00045B [0716] 010E79          LDB     R14, 121           ; 
+ c []   00045E [0719] 4C02FE          STEM    2, R14, R15        ; sel0[121] = 2;
+
+ c []   000461 [071C] 010F02          LDB     R15, 2             ; 
+ c []   000464 [071F] 010E7A          LDB     R14, 122           ; 
+ c []   000467 [0722] 4C02FE          STEM    2, R14, R15        ; sel0[122] = 2;
+
+ c []   00046A [0725] 010F02          LDB     R15, 2             ; 
+ c []   00046D [0728] 010E7B          LDB     R14, 123           ; 
+ c []   000470 [072B] 4C02FE          STEM    2, R14, R15        ; sel0[123] = 2;
+
+ c []   000473 [072E] 010F02          LDB     R15, 2             ; 
+ c []   000476 [0731] 010E7C          LDB     R14, 124           ; 
+ c []   000479 [0734] 4C02FE          STEM    2, R14, R15        ; sel0[124] = 2;
+
+ c []   00047C [0737] 010F02          LDB     R15, 2             ; 
+ c []   00047F [073A] 010E7D          LDB     R14, 125           ; 
+ c []   000482 [073D] 4C02FE          STEM    2, R14, R15        ; sel0[125] = 2;
+
+ c []   000485 [0740] 010F02          LDB     R15, 2             ; 
+ c []   000488 [0743] 010E7E          LDB     R14, 126           ; 
+ c []   00048B [0746] 4C02FE          STEM    2, R14, R15        ; sel0[126] = 2;
+
+ c []   00048E [0749] 010F02          LDB     R15, 2             ; 
+ c []   000491 [074C] 010E7F          LDB     R14, 127           ; 
+ c []   000494 [074F] 4C02FE          STEM    2, R14, R15        ; sel0[127] = 2;
+
+ c []   000497 [0752] 06041272        LDMD    R4, digit_1272     ; R4 = digit_1272;
+ c []   00049B [0756] 0C041272        STMD    digit_1272, R4     ; digit_1272 = R4;
+ c []   00049F [075A] 5C00            SYS     0                  ; // TMP = ""
+ c []   0004A1 [075C] 020F1254        LDW     R15, __1254        ; 
+ c []   0004A5 [0760] 5C01            SYS     1                  ; // TMP += "\n Новый пробег записан"
+ c []   0004A7 [0762] 5C0C            SYS     12                 ; print("\n Новый пробег записан");  // print(TMP)
+
+ c []   0004A9 [0764] 5B05            POPR    5
+ c []   0004AB [0766] 5800            RET     0
+
+
+prc_04AD:
+pc []   0004AD [0768] 5A05            PUSHR   5                  ; proc prc_04AD() {
+ c []   0004AF [076A] 5F50            ENTER   0, 5               ; var R0, R1, R2, R3;
+
+ c []   0004B1 [076C] 5C00            SYS     0                  ; // TMP = ""
+ c []   0004B3 [076E] 020F1252        LDW     R15, __1252        ; 
+ c []   0004B7 [0772] 5C01            SYS     1                  ; // TMP += "\n"
+ c []   0004B9 [0774] 020F124F        LDW     R15, __124F        ; 
+ c []   0004BD [0778] 5C01            SYS     1                  ; // TMP += "  "
+ c []   0004BF [077A] 5C0C            SYS     12                 ; print("\n" + "  ");  // print(TMP)
+
+ c []   0004C1 [077C] 5C00            SYS     0                  ; // TMP = ""
+ c []   0004C3 [077E] 020F124D        LDW     R15, __124D        ; 
+ c []   0004C7 [0782] 5C01            SYS     1                  ; // TMP += "\n"
+ c []   0004C9 [0784] 020F1216        LDW     R15, --------_1216 ; 
+ c []   0004CD [0788] 5C01            SYS     1                  ; // TMP += "------------------------------------------------------"
+ c []   0004CF [078A] 5C0C            SYS     12                 ; print("\n" + "------------------------------------------------------");  // print(TMP)
+
+ c []   0004D1 [078C] 5C00            SYS     0                  ; // TMP = ""
+ c []   0004D3 [078E] 020F11FE        LDW     R15, hondahr-_11FE ; 
+ c []   0004D7 [0792] 5C01            SYS     1                  ; // TMP += " HONDA HR-V  DASH 93C46"
+ c []   0004D9 [0794] 010F00          LDB     R15, 0             ; 
+ c []   0004DC [0797] 5C02            SYS     2                  ; str0 = " HONDA HR-V  DASH 93C46";  // str0 = TMP
+
+ c []   0004DE [0799] 5C00            SYS     0                  ; // TMP = ""
+ c []   0004E0 [079B] 020F11FC        LDW     R15, __11FC        ; 
+ c []   0004E4 [079F] 5C01            SYS     1                  ; // TMP += "\n"
+ c []   0004E6 [07A1] 010F00          LDB     R15, 0             ; 
+ c []   0004E9 [07A4] 5C0D            SYS     13                 ; // TMP += str0
+ c []   0004EB [07A6] 5C0C            SYS     12                 ; print("\n" + str0);  // print(TMP)
+
+ c []   0004ED [07A8] 010100          LDB     R1, 0
+ c []   0004F0 [07AB] 010362          LDB     R3, 98
+ c []   0004F3 [07AE] 4D0033          LDEM    0, R3, R3          ; R3 = buf0[R3];
+
+ c []   0004F6 [07B1] 010463          LDB     R4, 99
+ c []   0004F9 [07B4] 4D0044          LDEM    0, R4, R4          ; R4 = buf0[R4];
+
+ c []   0004FC [07B7] 490408          RL      R4, 8
+ c []   0004FF [07BA] 2543            OR      R3, R4
+ c []   000501 [07BC] 2E03FFFF        XORW    R3, 65535
+ c []   000505 [07C0] 490305          RL      R3, 5
+ c []   000508 [07C3] 0C031367        STMD    d_1367, R3         ; d_1367 = R3;
+ c []   00050C [07C7] 06031367        LDMD    R3, d_1367         ; R3 = d_1367;
+ c []   000510 [07CB] 3B0302          DIVB    R3, 2
+ c []   000513 [07CE] 0C031367        STMD    d_1367, R3         ; d_1367 = R3;
+ c []   000517 [07D2] 06031367        LDMD    R3, d_1367         ; R3 = d_1367;
+ c []   00051B [07D6] 0C031272        STMD    digit_1272, R3     ; digit_1272 = R3;
+ c []   00051F [07DA] 5C00            SYS     0                  ; // TMP = ""
+ c []   000521 [07DC] 020F11EF        LDW     R15, _distanc_11EF ; 
+ c []   000525 [07E0] 5C01            SYS     1                  ; // TMP += "\n Distance: "
+ c []   000527 [07E2] 060F1367        LDMD    R15, d_1367        ; 
+ c []   00052B [07E6] 5C03            SYS     3                  ; // TMP += #i.d_1367
+ c []   00052D [07E8] 020F11EB        LDW     R15, __11EB        ; 
+ c []   000531 [07EC] 5C01            SYS     1                  ; // TMP += " км"
+ c []   000533 [07EE] 5C0C            SYS     12                 ; print("\n Distance: " + #i.d_1367 + " км");  // print(TMP)
+
+ c []   000535 [07F0] 5C00            SYS     0                  ; // TMP = ""
+ c []   000537 [07F2] 020F11BB        LDW     R15, read93c4_11BB ; 
+ c []   00053B [07F6] 5C01            SYS     1                  ; // TMP += "Read 93C46 16-Bit  HONDA HR-V  DASH   DASH   ( "
+ c []   00053D [07F8] 060F1367        LDMD    R15, d_1367        ; 
+ c []   000541 [07FC] 5C03            SYS     3                  ; // TMP += #i.d_1367
+ c []   000543 [07FE] 020F1189        LDW     R15, kmread93_1189 ; 
+ c []   000547 [0802] 5C01            SYS     1                  ; // TMP += " KM )|Read 93C46 16-Bit  HONDA HR-V  DASH   DASH "
+ c []   000549 [0804] 5C1A            SYS     26                 ; backup("Read 93C46 16-Bit  HONDA HR-V  DASH   DASH   ( " + #i.d_1367 + " KM )|Read 93C46 16-Bit  HONDA HR-V  DASH   DASH ");  // backup(TMP)
+
+ c []   00054B [0806] 5C00            SYS     0                  ; // TMP = ""
+ c []   00054D [0808] 020F117E        LDW     R15, distance_117E ; 
+ c []   000551 [080C] 5C01            SYS     1                  ; // TMP += "Distance: "
+ c []   000553 [080E] 060F1367        LDMD    R15, d_1367        ; 
+ c []   000557 [0812] 5C03            SYS     3                  ; // TMP += #i.d_1367
+ c []   000559 [0814] 020F117A        LDW     R15, __117A        ; 
+ c []   00055D [0818] 5C01            SYS     1                  ; // TMP += " км"
+ c []   00055F [081A] 280F00020000    ORD     R15, 131072        ; // (2 << 16)
+ c []   000565 [0820] 5C09            SYS     9                  ; R15 = mbox("Distance: " + #i.d_1367 + " км", 2);  // R15 = mbox(TMP, 2)
+
+ c []   000567 [0822] 5B05            POPR    5
+ c []   000569 [0824] 5800            RET     0
+
+
+prc_056B:
+pc []   00056B [0826] 5A03            PUSHR   3                  ; proc prc_056B() {
+ c []   00056D [0828] 5F30            ENTER   0, 3               ; var R0, R1;
+
+ c []   00056F [082A] 0402126C        LDMB    R2, list_126C      ; R2 = list_126C;
+ c []   000573 [082E] 650200057E      CPIJE   R2, 0, loc_057E    ; if (R2 != 0) {
+ c []   000578 [0833] 010107          LDB     R1, 7
+ c []   00057B [0836] 560581          JMP     loc_0581
+loc_057E:
+ c []   00057E [0839] 010105          LDB     R1, 5
+loc_0581:
+ c []   000581 [083C] 5C00            SYS     0                  ; // TMP = ""
+ c []   000583 [083E] 020F116B        LDW     R15, _pintest_116B ; 
+ c []   000587 [0842] 5C01            SYS     1                  ; // TMP += "\nPin tester..."
+ c []   000589 [0844] 5C0C            SYS     12                 ; print("\nPin tester...");  // print(TMP)
+
+loc_058B:
+ c []   00058B [0846] 5901            PUSH    R1
+ c []   00058D [0848] 010F00          LDB     R15, 0             ; 
+ c []   000590 [084B] 270F0100        ORW     R15, 256           ; 
+ c []   000594 [084F] 5C11            SYS     17                 ; 
+ c []   000596 [0851] 00F2            MOV     R2, R15            ; R2 = device.prc_id0(<1 args>);
+
+ c []   000598 [0853] 1802FF          ANDB    R2, 255
+ c []   00059B [0856] 0020            MOV     R0, R2
+ c []   00059D [0858] 6500FF05DD      CPIJE   R0, 255, loc_05DD  ; if (R0 != 255) {
+ c []   0005A2 [085D] 0402126C        LDMB    R2, list_126C      ; R2 = list_126C;
+ c []   0005A6 [0861] 640205C5        JNZ     R2, loc_05C5       ; if (R2 = 0) {
+ c []   0005AA [0865] 0402126F        LDMB    R2, checkbox_126F  ; R2 = checkbox_126F;
+ c []   0005AE [0869] 65020005B6      CPIJE   R2, 0, loc_05B6    ; if (R2 != 0) {
+ c []   0005B3 [086E] 1800DF          ANDB    R0, 223
+loc_05B6:
+ c []   0005B6 [0871] 04021270        LDMB    R2, checkbox_1270  ; R2 = checkbox_1270;
+ c []   0005BA [0875] 65020005C2      CPIJE   R2, 0, loc_05C2    ; if (R2 != 0) {
+ c []   0005BF [087A] 1800BF          ANDB    R0, 191
+loc_05C2:
+ c []   0005C2 [087D] 5605DD          JMP     loc_05DD
+loc_05C5:
+ c []   0005C5 [0880] 0402126F        LDMB    R2, checkbox_126F  ; R2 = checkbox_126F;
+ c []   0005C9 [0884] 65020005D1      CPIJE   R2, 0, loc_05D1    ; if (R2 != 0) {
+ c []   0005CE [0889] 1800FE          ANDB    R0, 254
+loc_05D1:
+ c []   0005D1 [088C] 04021270        LDMB    R2, checkbox_1270  ; R2 = checkbox_1270;
+ c []   0005D5 [0890] 65020005DD      CPIJE   R2, 0, loc_05DD    ; if (R2 != 0) {
+ c []   0005DA [0895] 18007F          ANDB    R0, 127
+loc_05DD:
+ c []   0005DD [0898] 640005EE        JNZ     R0, loc_05EE       ; if (R0 = 0) {
+ c []   0005E1 [089C] 5C00            SYS     0                  ; // TMP = ""
+ c []   0005E3 [089E] 020F1167        LDW     R15, ok_1167       ; 
+ c []   0005E7 [08A2] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   0005E9 [08A4] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   0005EB [08A6] 5605FF          JMP     loc_05FF
+loc_05EE:
+ c []   0005EE [08A9] 4F0200          OUT     2, R0              ; PIN_TEST_WINDOW = R0;
+
+ c []   0005F1 [08AC] 4E0003          IN      R0, 3              ; R0 = PIN_TEST_RESULT;
+ c []   0005F4 [08AF] 65000105FC      CPIJE   R0, 1, loc_05FC    ; if (R0 != 1) {
+ c []   0005F9 [08B4] 5605FF          JMP     loc_05FF
+loc_05FC:
+ c []   0005FC [08B7] 56058B          JMP     loc_058B
+loc_05FF:
+ c []   0005FF [08BA] 000F            MOV     R15, R0            ; return(R0);
+ c []   000601 [08BC] 5B03            POPR    3
+ c []   000603 [08BE] 5800            RET     0
+
+
+prc_0605:
+pc []   000605 [08C0] 5A03            PUSHR   3                  ; proc prc_0605() {
+ c []   000607 [08C2] 5F30            ENTER   0, 3               ; var R0, R1;
+
+ c []   000609 [08C4] 5C0A            SYS     10                 ; ShowWindow;
+
+ c []   00060B [08C6] 0402126B        LDMB    R2, list_126B      ; R2 = list_126B;
+ c []   00060F [08CA] 5902            PUSH    R2
+ c []   000611 [08CC] 010F01          LDB     R15, 1             ; 
+ c []   000614 [08CF] 270F0100        ORW     R15, 256           ; 
+ c []   000618 [08D3] 5C11            SYS     17                 ; 
+ c []   00061A [08D5] 00F2            MOV     R2, R15            ; R2 = device.prc_id1(<1 args>);
+
+ c []   00061C [08D7] 0020            MOV     R0, R2
+ c []   00061E [08D9] 0402126E        LDMB    R2, checkbox_126E  ; R2 = checkbox_126E;
+ c []   000622 [08DD] 650200063F      CPIJE   R2, 0, loc_063F    ; if (R2 != 0) {
+ c []   000627 [08E2] 57056B          CALL    prc_056B           ; 
+ c []   00062A [08E5] 00F2            MOV     R2, R15            ; R2 = prc_056B();
+
+ c []   00062C [08E7] 002E            MOV     R14, R2
+ c []   00062E [08E9] 010F00          LDB     R15, 0
+ c []   000631 [08EC] 50FE063F        CMPJE   R14, R15, loc_063F ; if (R14 != R15) {
+ c []   000635 [08F0] 010F02          LDB     R15, 2             ; 
+ c []   000638 [08F3] 5C12            SYS     18                 ; device.prc_id2();
+
+ c []   00063A [08F5] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   00063C [08F7] 5606E9          JMP     end_prc_0605       ; return;
+loc_063F:
+ c []   00063F [08FA] 0402126C        LDMB    R2, list_126C      ; R2 = list_126C;
+ c []   000643 [08FE] 6502000662      CPIJE   R2, 0, loc_0662    ; if (R2 != 0) {
+ c []   000648 [0903] 010202          LDB     R2, 2
+ c []   00064B [0906] 5902            PUSH    R2
+ c []   00064D [0908] 010207          LDB     R2, 7
+ c []   000650 [090B] 5902            PUSH    R2
+ c []   000652 [090D] 010F03          LDB     R15, 3             ; 
+ c []   000655 [0910] 270F0200        ORW     R15, 512           ; 
+ c []   000659 [0914] 5C11            SYS     17                 ; 
+ c []   00065B [0916] 00F2            MOV     R2, R15            ; R2 = device.prc_id3(<2 args>);
+
+ c []   00065D [0918] 0020            MOV     R0, R2
+ c []   00065F [091A] 560679          JMP     loc_0679
+loc_0662:
+ c []   000662 [091D] 010208          LDB     R2, 8
+ c []   000665 [0920] 5902            PUSH    R2
+ c []   000667 [0922] 010205          LDB     R2, 5
+ c []   00066A [0925] 5902            PUSH    R2
+ c []   00066C [0927] 010F03          LDB     R15, 3             ; 
+ c []   00066F [092A] 270F0200        ORW     R15, 512           ; 
+ c []   000673 [092E] 5C11            SYS     17                 ; 
+ c []   000675 [0930] 00F2            MOV     R2, R15            ; R2 = device.prc_id3(<2 args>);
+
+ c []   000677 [0932] 0020            MOV     R0, R2
+loc_0679:
+ c []   000679 [0934] 0002            MOV     R2, R0
+ c []   00067B [0936] 4B0210          RR      R2, 16
+ c []   00067E [0939] 0021            MOV     R1, R2
+ c []   000680 [093B] 020F01C2        LDW     R15, 450
+ c []   000684 [093F] 52F106AD        CMPJGE  R1, R15, loc_06AD  ; if (R1 < R15) {
+ c []   000688 [0943] 010F02          LDB     R15, 2             ; 
+ c []   00068B [0946] 5C12            SYS     18                 ; device.prc_id2();
+
+ c []   00068D [0948] 5C00            SYS     0                  ; // TMP = ""
+ c []   00068F [094A] 020F1156        LDW     R15, _powerov_1156 ; 
+ c []   000693 [094E] 5C01            SYS     1                  ; // TMP += "\nPower overload!"
+ c []   000695 [0950] 5C0C            SYS     12                 ; print("\nPower overload!");  // print(TMP)
+
+ c []   000697 [0952] 5C00            SYS     0                  ; // TMP = ""
+ c []   000699 [0954] 020F1146        LDW     R15, powerove_1146 ; 
+ c []   00069D [0958] 5C01            SYS     1                  ; // TMP += "Power overload!"
+ c []   00069F [095A] 280F00000000    ORD     R15, 0             ; // (0 << 16)
+ c []   0006A5 [0960] 5C09            SYS     9                  ; R15 = mbox("Power overload!", 0);  // R15 = mbox(TMP, 0)
+
+ c []   0006A7 [0962] 010FFF          LDB     R15, 255           ; 
+ c []   0006AA [0965] 5606E9          JMP     end_prc_0605       ; return(255);
+loc_06AD:
+ c []   0006AD [0968] 0602127F        LDMD    R2, Flags          ; R2 = Flags;
+ c []   0006B1 [096C] 180201          ANDB    R2, 1
+ c []   0006B4 [096F] 002F            MOV     R15, R2            ; 
+ c []   0006B6 [0971] 020E069F        LDW     R14, 1695          ; 
+ c []   0006BA [0975] 280E00010000    ORD     R14, 65536         ; // 65536:1695 is byte:device.b_069F
+ c []   0006C0 [097B] 5C10            SYS     16                 ; (byte)device.b_069F = R2;
+
+ c []   0006C2 [097D] 0402126C        LDMB    R2, list_126C      ; R2 = list_126C;
+ c []   0006C6 [0981] 002F            MOV     R15, R2            ; 
+ c []   0006C8 [0983] 020E06A0        LDW     R14, 1696          ; 
+ c []   0006CC [0987] 280E00010000    ORD     R14, 65536         ; // 65536:1696 is byte:device.b_06A0
+ c []   0006D2 [098D] 5C10            SYS     16                 ; (byte)device.b_06A0 = R2;
+
+ c []   0006D4 [098F] 0402126D        LDMB    R2, list_126D      ; R2 = list_126D;
+ c []   0006D8 [0993] 002F            MOV     R15, R2            ; 
+ c []   0006DA [0995] 020E069E        LDW     R14, 1694          ; 
+ c []   0006DE [0999] 280E00010000    ORD     R14, 65536         ; // 65536:1694 is byte:device.b_069E
+ c []   0006E4 [099F] 5C10            SYS     16                 ; (byte)device.b_069E = R2;
+
+ c []   0006E6 [09A1] 010F00          LDB     R15, 0             ; return(0);
+end_prc_0605:
+ c []   0006E9 [09A4] 5B03            POPR    3
+ c []   0006EB [09A6] 5800            RET     0
+
+
+Verify:
+pc []   0006ED [09A8] 5A07            PUSHR   7                  ; proc Verify() {
+ c []   0006EF [09AA] 5F70            ENTER   0, 7               ; var R0, R1, R2, R3, R4, R5;
+
+ c []   0006F1 [09AC] 570605          CALL    prc_0605           ; 
+ c []   0006F4 [09AF] 00F6            MOV     R6, R15            ; R6 = prc_0605();
+
+ c []   0006F6 [09B1] 006E            MOV     R14, R6
+ c []   0006F8 [09B3] 010F00          LDB     R15, 0
+ c []   0006FB [09B6] 50FE0704        CMPJE   R14, R15, loc_0704 ; if (R14 != R15) {
+ c []   0006FF [09BA] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000701 [09BC] 5608FF          JMP     end_Verify         ; return;
+loc_0704:
+ c []   000704 [09BF] 5C00            SYS     0                  ; // TMP = ""
+ c []   000706 [09C1] 020F1136        LDW     R15, _verific_1136 ; 
+ c []   00070A [09C5] 5C01            SYS     1                  ; // TMP += "\nVerification, "
+ c []   00070C [09C7] 5C0C            SYS     12                 ; print("\nVerification, ");  // print(TMP)
+
+ c []   00070E [09C9] 0606127F        LDMD    R6, Flags          ; R6 = Flags;
+ c []   000712 [09CD] 180601          ANDB    R6, 1
+ c []   000715 [09D0] 006E            MOV     R14, R6
+ c []   000717 [09D2] 010F00          LDB     R15, 0
+ c []   00071A [09D5] 50FE080D        CMPJE   R14, R15, loc_080D ; if (R14 != R15) {
+ c []   00071E [09D9] 5C00            SYS     0                  ; // TMP = ""
+ c []   000720 [09DB] 020F1127        LDW     R15, _16-bitm_1127 ; 
+ c []   000724 [09DF] 5C01            SYS     1                  ; // TMP += "16-bit mode..."
+ c []   000726 [09E1] 5C0C            SYS     12                 ; print("16-bit mode...");  // print(TMP)
+
+ c []   000728 [09E3] 010200          LDB     R2, 0
+ c []   00072B [09E6] 010500          LDB     R5, 0
+ c []   00072E [09E9] 010000          LDB     R0, 0              ; _init_
+loc_0731:
+ c []   000731 [09EC] 010F80          LDB     R15, 128           ; _cond_
+ c []   000734 [09EF] 52F007C1        CMPJGE  R0, R15, loc_07C1  ; for (R0 = 0; R0 < 128; _incr_) {
+ c []   000738 [09F3] 0006            MOV     R6, R0
+ c []   00073A [09F5] 3B0602          DIVB    R6, 2
+ c []   00073D [09F8] 5906            PUSH    R6
+ c []   00073F [09FA] 010640          LDB     R6, 64
+ c []   000742 [09FD] 5906            PUSH    R6
+ c []   000744 [09FF] 010F04          LDB     R15, 4             ; 
+ c []   000747 [0A02] 270F0200        ORW     R15, 512           ; 
+ c []   00074B [0A06] 5C11            SYS     17                 ; 
+ c []   00074D [0A08] 00F6            MOV     R6, R15            ; R6 = device.prc_id4(<2 args>);
+
+ c []   00074F [0A0A] 0061            MOV     R1, R6
+ c []   000751 [0A0C] 650140076F      CPIJE   R1, 64, loc_076F   ; if (R1 != 64) {
+ c []   000756 [0A11] 1001            ADD     R1, R0
+ c []   000758 [0A13] 5C00            SYS     0                  ; // TMP = ""
+ c []   00075A [0A15] 020F110F        LDW     R15, readinge_110F ; 
+ c []   00075E [0A19] 5C01            SYS     1                  ; // TMP += "Reading error. Address "
+ c []   000760 [0A1B] 001F            MOV     R15, R1            ; 
+ c []   000762 [0A1D] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000764 [0A1F] 5C0C            SYS     12                 ; print("Reading error. Address " + #i.R1);  // print(TMP)
+
+ c []   000766 [0A21] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   00076C [0A27] 5607C1          JMP     loc_07C1           ;   break;
+loc_076F:
+ c []   00076F [0A2A] 020F1293        LDW     R15, b_1293        ; /* b_1293 is byte array */
+ c []   000773 [0A2E] 020E06A1        LDW     R14, 1697          ; /* device.b_06A1 */
+ c []   000777 [0A32] 280E00400000    ORD     R14, 4194304       ; /* (64 << 16) */
+ c []   00077D [0A38] 5C14            SYS     20                 ; memcopy(b_1293 = device.b_06A1, 64);
+
+ c []   00077F [0A3A] 010100          LDB     R1, 0              ; _init_
+loc_0782:
+ c []   000782 [0A3D] 010F40          LDB     R15, 64            ; _cond_
+ c []   000785 [0A40] 52F107B3        CMPJGE  R1, R15, loc_07B3  ; for (R1 = 0; R1 < 64; _incr_) {
+ c []   000789 [0A44] 4D0026          LDEM    0, R6, R2          ; R6 = buf0[R2];
+
+ c []   00078C [0A47] 006E            MOV     R14, R6
+ c []   00078E [0A49] 6D161293        ARDB    R6, b_1293 + R1    ; R6 = b_1293[R1];
+
+ c []   000792 [0A4D] 006F            MOV     R15, R6
+ c []   000794 [0A4F] 50FE07A4        CMPJE   R14, R15, loc_07A4 ; if (R14 != R15) {
+ c []   000798 [0A53] 010F01          LDB     R15, 1
+ c []   00079B [0A56] 4C02F2          STEM    2, R2, R15         ; sel0[R2] = R15;
+
+ c []   00079E [0A59] 110501          ADDB    R5, 1
+ c []   0007A1 [0A5C] 5607AA          JMP     loc_07AA
+loc_07A4:
+ c []   0007A4 [0A5F] 010F00          LDB     R15, 0
+ c []   0007A7 [0A62] 4C02F2          STEM    2, R2, R15         ; sel0[R2] = R15;
+
+loc_07AA:
+ c []   0007AA [0A65] 110201          ADDB    R2, 1
+ c []   0007AD [0A68] 110101          ADDB    R1, 1              ; _incr_
+ c []   0007B0 [0A6B] 560782          JMP     loc_0782           ; }  // for
+loc_07B3:
+ c []   0007B3 [0A6E] 0006            MOV     R6, R0
+ c []   0007B5 [0A70] 110640          ADDB    R6, 64
+ c []   0007B8 [0A73] 4F0106          OUT     1, R6              ; PBPOS = R6;
+
+ c []   0007BB [0A76] 110040          ADDB    R0, 64             ; _incr_
+ c []   0007BE [0A79] 560731          JMP     loc_0731           ; }  // for
+loc_07C1:
+ c []   0007C1 [0A7C] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   0007C7 [0A82] 51F107DC        CMPJNE  R1, R15, loc_07DC  ; if (R1 = R15) {
+ c []   0007CB [0A86] 5C00            SYS     0                  ; // TMP = ""
+ c []   0007CD [0A88] 020F10FF        LDW     R15, erroradd_10FF ; 
+ c []   0007D1 [0A8C] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   0007D3 [0A8E] 000F            MOV     R15, R0            ; 
+ c []   0007D5 [0A90] 5C03            SYS     3                  ; // TMP += #i.R0
+ c []   0007D7 [0A92] 5C0C            SYS     12                 ; print("Error. Address " + #i.R0);  // print(TMP)
+
+ c []   0007D9 [0A94] 5608FA          JMP     loc_08FA
+loc_07DC:
+ c []   0007DC [0A97] 640507F2        JNZ     R5, loc_07F2       ; if (R5 = 0) {
+ c []   0007E0 [0A9B] 5C00            SYS     0                  ; // TMP = ""
+ c []   0007E2 [0A9D] 020F10FB        LDW     R15, ok_10FB       ; 
+ c []   0007E6 [0AA1] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   0007E8 [0AA3] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   0007EA [0AA5] 5704AD          CALL    prc_04AD           ; prc_04AD();
+
+ c []   0007ED [0AA8] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   0007EF [0AAA] 56080A          JMP     loc_080A
+loc_07F2:
+ c []   0007F2 [0AAD] 5C00            SYS     0                  ; // TMP = ""
+ c []   0007F4 [0AAF] 020F10F5        LDW     R15, done_10F5     ; 
+ c []   0007F8 [0AB3] 5C01            SYS     1                  ; // TMP += "Done."
+ c []   0007FA [0AB5] 5C0C            SYS     12                 ; print("Done.");  // print(TMP)
+
+ c []   0007FC [0AB7] 5C00            SYS     0                  ; // TMP = ""
+ c []   0007FE [0AB9] 020F10DD        LDW     R15, _numbero_10DD ; 
+ c []   000802 [0ABD] 5C01            SYS     1                  ; // TMP += "\nNumber of mismatches: "
+ c []   000804 [0ABF] 005F            MOV     R15, R5            ; 
+ c []   000806 [0AC1] 5C03            SYS     3                  ; // TMP += #i.R5
+ c []   000808 [0AC3] 5C0C            SYS     12                 ; print("\nNumber of mismatches: " + #i.R5);  // print(TMP)
+
+loc_080A:
+ c []   00080A [0AC5] 5608FA          JMP     loc_08FA
+loc_080D:
+ c []   00080D [0AC8] 5C00            SYS     0                  ; // TMP = ""
+ c []   00080F [0ACA] 020F10CE        LDW     R15, _8-bitmo_10CE ; 
+ c []   000813 [0ACE] 5C01            SYS     1                  ; // TMP += "8-bit mode... "
+ c []   000815 [0AD0] 5C0C            SYS     12                 ; print("8-bit mode... ");  // print(TMP)
+
+ c []   000817 [0AD2] 010600          LDB     R6, 0
+ c []   00081A [0AD5] 4F0106          OUT     1, R6              ; PBPOS = R6;
+
+ c []   00081D [0AD8] 01067F          LDB     R6, 127
+ c []   000820 [0ADB] 4F0006          OUT     0, R6              ; PBMAX = R6;
+
+ c []   000823 [0ADE] 010500          LDB     R5, 0
+ c []   000826 [0AE1] 010000          LDB     R0, 0              ; _init_
+loc_0829:
+ c []   000829 [0AE4] 010F80          LDB     R15, 128           ; _cond_
+ c []   00082C [0AE7] 52F008B4        CMPJGE  R0, R15, loc_08B4  ; for (R0 = 0; R0 < 128; _incr_) {
+ c []   000830 [0AEB] 5900            PUSH    R0
+ c []   000832 [0AED] 010640          LDB     R6, 64
+ c []   000835 [0AF0] 5906            PUSH    R6
+ c []   000837 [0AF2] 010F04          LDB     R15, 4             ; 
+ c []   00083A [0AF5] 270F0200        ORW     R15, 512           ; 
+ c []   00083E [0AF9] 5C11            SYS     17                 ; 
+ c []   000840 [0AFB] 00F6            MOV     R6, R15            ; R6 = device.prc_id4(<2 args>);
+
+ c []   000842 [0AFD] 0061            MOV     R1, R6
+ c []   000844 [0AFF] 6501400862      CPIJE   R1, 64, loc_0862   ; if (R1 != 64) {
+ c []   000849 [0B04] 1001            ADD     R1, R0
+ c []   00084B [0B06] 5C00            SYS     0                  ; // TMP = ""
+ c []   00084D [0B08] 020F10B6        LDW     R15, readinge_10B6 ; 
+ c []   000851 [0B0C] 5C01            SYS     1                  ; // TMP += "Reading error. Address "
+ c []   000853 [0B0E] 001F            MOV     R15, R1            ; 
+ c []   000855 [0B10] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000857 [0B12] 5C0C            SYS     12                 ; print("Reading error. Address " + #i.R1);  // print(TMP)
+
+ c []   000859 [0B14] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   00085F [0B1A] 5608B4          JMP     loc_08B4           ;   break;
+loc_0862:
+ c []   000862 [0B1D] 020F1293        LDW     R15, b_1293        ; /* b_1293 is byte array */
+ c []   000866 [0B21] 020E06A1        LDW     R14, 1697          ; /* device.b_06A1 */
+ c []   00086A [0B25] 280E00400000    ORD     R14, 4194304       ; /* (64 << 16) */
+ c []   000870 [0B2B] 5C14            SYS     20                 ; memcopy(b_1293 = device.b_06A1, 64);
+
+ c []   000872 [0B2D] 010100          LDB     R1, 0              ; _init_
+loc_0875:
+ c []   000875 [0B30] 010F40          LDB     R15, 64            ; _cond_
+ c []   000878 [0B33] 52F108A6        CMPJGE  R1, R15, loc_08A6  ; for (R1 = 0; R1 < 64; _incr_) {
+ c []   00087C [0B37] 4D0026          LDEM    0, R6, R2          ; R6 = buf0[R2];
+
+ c []   00087F [0B3A] 006E            MOV     R14, R6
+ c []   000881 [0B3C] 6D161293        ARDB    R6, b_1293 + R1    ; R6 = b_1293[R1];
+
+ c []   000885 [0B40] 006F            MOV     R15, R6
+ c []   000887 [0B42] 50FE0897        CMPJE   R14, R15, loc_0897 ; if (R14 != R15) {
+ c []   00088B [0B46] 010F01          LDB     R15, 1
+ c []   00088E [0B49] 4C02F2          STEM    2, R2, R15         ; sel0[R2] = R15;
+
+ c []   000891 [0B4C] 110501          ADDB    R5, 1
+ c []   000894 [0B4F] 56089D          JMP     loc_089D
+loc_0897:
+ c []   000897 [0B52] 010F00          LDB     R15, 0
+ c []   00089A [0B55] 4C02F2          STEM    2, R2, R15         ; sel0[R2] = R15;
+
+loc_089D:
+ c []   00089D [0B58] 110201          ADDB    R2, 1
+ c []   0008A0 [0B5B] 110101          ADDB    R1, 1              ; _incr_
+ c []   0008A3 [0B5E] 560875          JMP     loc_0875           ; }  // for
+loc_08A6:
+ c []   0008A6 [0B61] 0006            MOV     R6, R0
+ c []   0008A8 [0B63] 110640          ADDB    R6, 64
+ c []   0008AB [0B66] 4F0106          OUT     1, R6              ; PBPOS = R6;
+
+ c []   0008AE [0B69] 110040          ADDB    R0, 64             ; _incr_
+ c []   0008B1 [0B6C] 560829          JMP     loc_0829           ; }  // for
+loc_08B4:
+ c []   0008B4 [0B6F] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   0008BA [0B75] 51F108CF        CMPJNE  R1, R15, loc_08CF  ; if (R1 = R15) {
+ c []   0008BE [0B79] 5C00            SYS     0                  ; // TMP = ""
+ c []   0008C0 [0B7B] 020F10A6        LDW     R15, erroradd_10A6 ; 
+ c []   0008C4 [0B7F] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   0008C6 [0B81] 000F            MOV     R15, R0            ; 
+ c []   0008C8 [0B83] 5C03            SYS     3                  ; // TMP += #i.R0
+ c []   0008CA [0B85] 5C0C            SYS     12                 ; print("Error. Address " + #i.R0);  // print(TMP)
+
+ c []   0008CC [0B87] 5608FA          JMP     loc_08FA
+loc_08CF:
+ c []   0008CF [0B8A] 640508E2        JNZ     R5, loc_08E2       ; if (R5 = 0) {
+ c []   0008D3 [0B8E] 5C00            SYS     0                  ; // TMP = ""
+ c []   0008D5 [0B90] 020F10A2        LDW     R15, ok_10A2       ; 
+ c []   0008D9 [0B94] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   0008DB [0B96] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   0008DD [0B98] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   0008DF [0B9A] 5608FA          JMP     loc_08FA
+loc_08E2:
+ c []   0008E2 [0B9D] 5C00            SYS     0                  ; // TMP = ""
+ c []   0008E4 [0B9F] 020F109C        LDW     R15, done_109C     ; 
+ c []   0008E8 [0BA3] 5C01            SYS     1                  ; // TMP += "Done."
+ c []   0008EA [0BA5] 5C0C            SYS     12                 ; print("Done.");  // print(TMP)
+
+ c []   0008EC [0BA7] 5C00            SYS     0                  ; // TMP = ""
+ c []   0008EE [0BA9] 020F1085        LDW     R15, numberof_1085 ; 
+ c []   0008F2 [0BAD] 5C01            SYS     1                  ; // TMP += "Number of mismatches: "
+ c []   0008F4 [0BAF] 005F            MOV     R15, R5            ; 
+ c []   0008F6 [0BB1] 5C03            SYS     3                  ; // TMP += #i.R5
+ c []   0008F8 [0BB3] 5C0C            SYS     12                 ; print("Number of mismatches: " + #i.R5);  // print(TMP)
+
+loc_08FA:
+ c []   0008FA [0BB5] 010F02          LDB     R15, 2             ; 
+ c []   0008FD [0BB8] 5C12            SYS     18                 ; device.prc_id2();
+
+end_Verify:
+ c []   0008FF [0BBA] 5B07            POPR    7
+ c []   000901 [0BBC] 5800            RET     0
+
+
+Read:
+pc []   000903 [0BBE] 5A04            PUSHR   4                  ; proc Read() {
+ c []   000905 [0BC0] 5F40            ENTER   0, 4               ; var R0, R1, R2;
+
+ c []   000907 [0BC2] 570605          CALL    prc_0605           ; 
+ c []   00090A [0BC5] 00F3            MOV     R3, R15            ; R3 = prc_0605();
+
+ c []   00090C [0BC7] 003E            MOV     R14, R3
+ c []   00090E [0BC9] 010F00          LDB     R15, 0
+ c []   000911 [0BCC] 50FE091A        CMPJE   R14, R15, loc_091A ; if (R14 != R15) {
+ c []   000915 [0BD0] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000917 [0BD2] 560A5F          JMP     end_Read           ; return;
+loc_091A:
+ c []   00091A [0BD5] 0603127F        LDMD    R3, Flags          ; R3 = Flags;
+ c []   00091E [0BD9] 0030            MOV     R0, R3
+ c []   000920 [0BDB] 5C00            SYS     0                  ; // TMP = ""
+ c []   000922 [0BDD] 020F107A        LDW     R15, _reading_107A ; 
+ c []   000926 [0BE1] 5C01            SYS     1                  ; // TMP += "\nReading, "
+ c []   000928 [0BE3] 5C0C            SYS     12                 ; print("\nReading, ");  // print(TMP)
+
+ c []   00092A [0BE5] 0603127F        LDMD    R3, Flags          ; R3 = Flags;
+ c []   00092E [0BE9] 180301          ANDB    R3, 1
+ c []   000931 [0BEC] 003E            MOV     R14, R3
+ c []   000933 [0BEE] 010F00          LDB     R15, 0
+ c []   000936 [0BF1] 50FE09CC        CMPJE   R14, R15, loc_09CC ; if (R14 != R15) {
+ c []   00093A [0BF5] 5C00            SYS     0                  ; // TMP = ""
+ c []   00093C [0BF7] 020F106A        LDW     R15, _16-bitm_106A ; 
+ c []   000940 [0BFB] 5C01            SYS     1                  ; // TMP += "16-bit mode... "
+ c []   000942 [0BFD] 5C0C            SYS     12                 ; print("16-bit mode... ");  // print(TMP)
+
+ c []   000944 [0BFF] 010300          LDB     R3, 0
+ c []   000947 [0C02] 4F0103          OUT     1, R3              ; PBPOS = R3;
+
+ c []   00094A [0C05] 01037F          LDB     R3, 127
+ c []   00094D [0C08] 4F0003          OUT     0, R3              ; PBMAX = R3;
+
+ c []   000950 [0C0B] 010200          LDB     R2, 0
+ c []   000953 [0C0E] 010000          LDB     R0, 0              ; _init_
+loc_0956:
+ c []   000956 [0C11] 010F80          LDB     R15, 128           ; _cond_
+ c []   000959 [0C14] 52F009B0        CMPJGE  R0, R15, loc_09B0  ; for (R0 = 0; R0 < 128; _incr_) {
+ c []   00095D [0C18] 0003            MOV     R3, R0
+ c []   00095F [0C1A] 3B0302          DIVB    R3, 2
+ c []   000962 [0C1D] 5903            PUSH    R3
+ c []   000964 [0C1F] 010340          LDB     R3, 64
+ c []   000967 [0C22] 5903            PUSH    R3
+ c []   000969 [0C24] 010F04          LDB     R15, 4             ; 
+ c []   00096C [0C27] 270F0200        ORW     R15, 512           ; 
+ c []   000970 [0C2B] 5C11            SYS     17                 ; 
+ c []   000972 [0C2D] 00F3            MOV     R3, R15            ; R3 = device.prc_id4(<2 args>);
+
+ c []   000974 [0C2F] 0031            MOV     R1, R3
+ c []   000976 [0C31] 6501400994      CPIJE   R1, 64, loc_0994   ; if (R1 != 64) {
+ c []   00097B [0C36] 1001            ADD     R1, R0
+ c []   00097D [0C38] 5C00            SYS     0                  ; // TMP = ""
+ c []   00097F [0C3A] 020F105A        LDW     R15, erroradd_105A ; 
+ c []   000983 [0C3E] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000985 [0C40] 001F            MOV     R15, R1            ; 
+ c []   000987 [0C42] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000989 [0C44] 5C0C            SYS     12                 ; print("Error. Address " + #i.R1);  // print(TMP)
+
+ c []   00098B [0C46] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   000991 [0C4C] 5609B0          JMP     loc_09B0           ;   break;
+loc_0994:
+ c []   000994 [0C4F] 000F            MOV     R15, R0            ; // emem index: R0
+ c []   000996 [0C51] 020E06A1        LDW     R14, 1697          ; // device.array variable offset
+ c []   00099A [0C55] 280E00400000    ORD     R14, 4194304       ; // length: 64 << 16
+ c []   0009A0 [0C5B] 5C15            SYS     21                 ; memcopy(buf0[R0] = device.b_06A1, 64);
+
+ c []   0009A2 [0C5D] 0003            MOV     R3, R0
+ c []   0009A4 [0C5F] 110340          ADDB    R3, 64
+ c []   0009A7 [0C62] 4F0103          OUT     1, R3              ; PBPOS = R3;
+
+ c []   0009AA [0C65] 110040          ADDB    R0, 64             ; _incr_
+ c []   0009AD [0C68] 560956          JMP     loc_0956           ; }  // for
+loc_09B0:
+ c []   0009B0 [0C6B] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   0009B6 [0C71] 50F109C9        CMPJE   R1, R15, loc_09C9  ; if (R1 != R15) {
+ c []   0009BA [0C75] 5C00            SYS     0                  ; // TMP = ""
+ c []   0009BC [0C77] 020F1056        LDW     R15, ok_1056       ; 
+ c []   0009C0 [0C7B] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   0009C2 [0C7D] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   0009C4 [0C7F] 5706ED          CALL    Verify             ; Verify();
+
+ c []   0009C7 [0C82] 5C0B            SYS     11                 ; CloseWindow;
+
+loc_09C9:
+ c []   0009C9 [0C84] 560A5A          JMP     loc_0A5A
+loc_09CC:
+ c []   0009CC [0C87] 5C00            SYS     0                  ; // TMP = ""
+ c []   0009CE [0C89] 020F1047        LDW     R15, _8-bitmo_1047 ; 
+ c []   0009D2 [0C8D] 5C01            SYS     1                  ; // TMP += "8-bit mode... "
+ c []   0009D4 [0C8F] 5C0C            SYS     12                 ; print("8-bit mode... ");  // print(TMP)
+
+ c []   0009D6 [0C91] 010300          LDB     R3, 0
+ c []   0009D9 [0C94] 4F0103          OUT     1, R3              ; PBPOS = R3;
+
+ c []   0009DC [0C97] 01037F          LDB     R3, 127
+ c []   0009DF [0C9A] 4F0003          OUT     0, R3              ; PBMAX = R3;
+
+ c []   0009E2 [0C9D] 010000          LDB     R0, 0              ; _init_
+loc_09E5:
+ c []   0009E5 [0CA0] 010F80          LDB     R15, 128           ; _cond_
+ c []   0009E8 [0CA3] 52F00A3A        CMPJGE  R0, R15, loc_0A3A  ; for (R0 = 0; R0 < 128; _incr_) {
+ c []   0009EC [0CA7] 5900            PUSH    R0
+ c []   0009EE [0CA9] 010340          LDB     R3, 64
+ c []   0009F1 [0CAC] 5903            PUSH    R3
+ c []   0009F3 [0CAE] 010F04          LDB     R15, 4             ; 
+ c []   0009F6 [0CB1] 270F0200        ORW     R15, 512           ; 
+ c []   0009FA [0CB5] 5C11            SYS     17                 ; 
+ c []   0009FC [0CB7] 00F3            MOV     R3, R15            ; R3 = device.prc_id4(<2 args>);
+
+ c []   0009FE [0CB9] 0031            MOV     R1, R3
+ c []   000A00 [0CBB] 6501400A1E      CPIJE   R1, 64, loc_0A1E   ; if (R1 != 64) {
+ c []   000A05 [0CC0] 1001            ADD     R1, R0
+ c []   000A07 [0CC2] 5C00            SYS     0                  ; // TMP = ""
+ c []   000A09 [0CC4] 020F1037        LDW     R15, erroradd_1037 ; 
+ c []   000A0D [0CC8] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000A0F [0CCA] 001F            MOV     R15, R1            ; 
+ c []   000A11 [0CCC] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000A13 [0CCE] 5C0C            SYS     12                 ; print("Error. Address " + #i.R1);  // print(TMP)
+
+ c []   000A15 [0CD0] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   000A1B [0CD6] 560A3A          JMP     loc_0A3A           ;   break;
+loc_0A1E:
+ c []   000A1E [0CD9] 000F            MOV     R15, R0            ; // emem index: R0
+ c []   000A20 [0CDB] 020E06A1        LDW     R14, 1697          ; // device.array variable offset
+ c []   000A24 [0CDF] 280E00400000    ORD     R14, 4194304       ; // length: 64 << 16
+ c []   000A2A [0CE5] 5C15            SYS     21                 ; memcopy(buf0[R0] = device.b_06A1, 64);
+
+ c []   000A2C [0CE7] 0003            MOV     R3, R0
+ c []   000A2E [0CE9] 110340          ADDB    R3, 64
+ c []   000A31 [0CEC] 4F0103          OUT     1, R3              ; PBPOS = R3;
+
+ c []   000A34 [0CEF] 110040          ADDB    R0, 64             ; _incr_
+ c []   000A37 [0CF2] 5609E5          JMP     loc_09E5           ; }  // for
+loc_0A3A:
+ c []   000A3A [0CF5] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000A40 [0CFB] 50F10A5A        CMPJE   R1, R15, loc_0A5A  ; if (R1 != R15) {
+ c []   000A44 [0CFF] 5C00            SYS     0                  ; // TMP = ""
+ c []   000A46 [0D01] 020F1033        LDW     R15, ok_1033       ; 
+ c []   000A4A [0D05] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   000A4C [0D07] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   000A4E [0D09] 5C00            SYS     0                  ; // TMP = ""
+ c []   000A50 [0D0B] 020F100B        LDW     R15, _93c46re_100B ; 
+ c []   000A54 [0D0F] 5C01            SYS     1                  ; // TMP += "93C46 reading 8 bit|93C46 reading 8 bit"
+ c []   000A56 [0D11] 5C1A            SYS     26                 ; backup("93C46 reading 8 bit|93C46 reading 8 bit");  // backup(TMP)
+
+ c []   000A58 [0D13] 5C0B            SYS     11                 ; CloseWindow;
+
+loc_0A5A:
+ c []   000A5A [0D15] 010F02          LDB     R15, 2             ; 
+ c []   000A5D [0D18] 5C12            SYS     18                 ; device.prc_id2();
+
+end_Read:
+ c []   000A5F [0D1A] 5B04            POPR    4
+ c []   000A61 [0D1C] 5800            RET     0
+
+
+Write:
+pc []   000A63 [0D1E] 5A07            PUSHR   7                  ; proc Write() {
+ c []   000A65 [0D20] 5F70            ENTER   0, 7               ; var R0, R1, R2, R3, R4, R5;
+
+ c []   000A67 [0D22] 0604127F        LDMD    R4, Flags          ; R4 = Flags;
+ c []   000A6B [0D26] 180402          ANDB    R4, 2
+ c []   000A6E [0D29] 004E            MOV     R14, R4
+ c []   000A70 [0D2B] 010F00          LDB     R15, 0
+ c []   000A73 [0D2E] 50FE0A9A        CMPJE   R14, R15, loc_0A9A ; if (R14 != R15) {
+ c []   000A77 [0D32] 5C00            SYS     0                  ; // TMP = ""
+ c []   000A79 [0D34] 020F0FEF        LDW     R15, doyoucon_0FEF ; 
+ c []   000A7D [0D38] 5C01            SYS     1                  ; // TMP += "Do you confirm programming?"
+ c []   000A7F [0D3A] 280F00010000    ORD     R15, 65536         ; // (1 << 16)
+ c []   000A85 [0D40] 5C09            SYS     9                  ; R15 = mbox("Do you confirm programming?", 1);  // R15 = mbox(TMP, 1)
+
+ c []   000A87 [0D42] 00F1            MOV     R1, R15
+ c []   000A89 [0D44] 64010A9A        JNZ     R1, loc_0A9A       ; if (R1 = 0) {
+ c []   000A8D [0D48] 5C00            SYS     0                  ; // TMP = ""
+ c []   000A8F [0D4A] 020F0FD4        LDW     R15, _writing_0FD4 ; 
+ c []   000A93 [0D4E] 5C01            SYS     1                  ; // TMP += "\nWriting canceled by user."
+ c []   000A95 [0D50] 5C0C            SYS     12                 ; print("\nWriting canceled by user.");  // print(TMP)
+
+ c []   000A97 [0D52] 560BF8          JMP     end_Write          ; return;
+loc_0A9A:
+ c []   000A9A [0D55] 570605          CALL    prc_0605           ; 
+ c []   000A9D [0D58] 00F4            MOV     R4, R15            ; R4 = prc_0605();
+
+ c []   000A9F [0D5A] 004E            MOV     R14, R4
+ c []   000AA1 [0D5C] 010F00          LDB     R15, 0
+ c []   000AA4 [0D5F] 50FE0AAD        CMPJE   R14, R15, loc_0AAD ; if (R14 != R15) {
+ c []   000AA8 [0D63] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000AAA [0D65] 560BF8          JMP     end_Write          ; return;
+loc_0AAD:
+ c []   000AAD [0D68] 5C00            SYS     0                  ; // TMP = ""
+ c []   000AAF [0D6A] 020F0FC9        LDW     R15, _writing_0FC9 ; 
+ c []   000AB3 [0D6E] 5C01            SYS     1                  ; // TMP += "\nWriting, "
+ c []   000AB5 [0D70] 5C0C            SYS     12                 ; print("\nWriting, ");  // print(TMP)
+
+ c []   000AB7 [0D72] 0604127F        LDMD    R4, Flags          ; R4 = Flags;
+ c []   000ABB [0D76] 180401          ANDB    R4, 1
+ c []   000ABE [0D79] 004E            MOV     R14, R4
+ c []   000AC0 [0D7B] 010F00          LDB     R15, 0
+ c []   000AC3 [0D7E] 50FE0B5F        CMPJE   R14, R15, loc_0B5F ; if (R14 != R15) {
+ c []   000AC7 [0D82] 5C00            SYS     0                  ; // TMP = ""
+ c []   000AC9 [0D84] 020F0FB9        LDW     R15, _16-bitm_0FB9 ; 
+ c []   000ACD [0D88] 5C01            SYS     1                  ; // TMP += "16-bit mode... "
+ c []   000ACF [0D8A] 5C0C            SYS     12                 ; print("16-bit mode... ");  // print(TMP)
+
+ c []   000AD1 [0D8C] 010400          LDB     R4, 0
+ c []   000AD4 [0D8F] 4F0104          OUT     1, R4              ; PBPOS = R4;
+
+ c []   000AD7 [0D92] 01043F          LDB     R4, 63
+ c []   000ADA [0D95] 4F0004          OUT     0, R4              ; PBMAX = R4;
+
+ c []   000ADD [0D98] 010200          LDB     R2, 0
+ c []   000AE0 [0D9B] 010000          LDB     R0, 0              ; _init_
+loc_0AE3:
+ c []   000AE3 [0D9E] 010F40          LDB     R15, 64            ; _cond_
+ c []   000AE6 [0DA1] 52F00B35        CMPJGE  R0, R15, loc_0B35  ; for (R0 = 0; R0 < 64; _incr_) {
+ c []   000AEA [0DA5] 4D0024          LDEM    0, R4, R2          ; R4 = buf0[R2];
+
+ c []   000AED [0DA8] 0025            MOV     R5, R2
+ c []   000AEF [0DAA] 110501          ADDB    R5, 1
+ c []   000AF2 [0DAD] 4D0056          LDEM    0, R6, R5          ; R6 = buf0[R5];
+
+ c []   000AF5 [0DB0] 490608          RL      R6, 8
+ c []   000AF8 [0DB3] 2564            OR      R4, R6
+ c []   000AFA [0DB5] 0043            MOV     R3, R4
+ c []   000AFC [0DB7] 5900            PUSH    R0
+ c []   000AFE [0DB9] 5903            PUSH    R3
+ c []   000B00 [0DBB] 010F05          LDB     R15, 5             ; 
+ c []   000B03 [0DBE] 270F0200        ORW     R15, 512           ; 
+ c []   000B07 [0DC2] 5C11            SYS     17                 ; 
+ c []   000B09 [0DC4] 00F4            MOV     R4, R15            ; R4 = device.prc_id5(<2 args>);
+
+ c []   000B0B [0DC6] 0041            MOV     R1, R4
+ c []   000B0D [0DC8] 5900            PUSH    R0
+ c []   000B0F [0DCA] 010F06          LDB     R15, 6             ; 
+ c []   000B12 [0DCD] 270F0100        ORW     R15, 256           ; 
+ c []   000B16 [0DD1] 5C11            SYS     17                 ; 
+ c []   000B18 [0DD3] 00F4            MOV     R4, R15            ; R4 = device.prc_id6(<1 args>);
+
+ c []   000B1A [0DD5] 0041            MOV     R1, R4
+ c []   000B1C [0DD7] 50310B29        CMPJE   R1, R3, loc_0B29   ; if (R1 != R3) {
+ c []   000B20 [0DDB] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   000B26 [0DE1] 560B35          JMP     loc_0B35           ;   break;
+loc_0B29:
+ c []   000B29 [0DE4] 110202          ADDB    R2, 2
+ c []   000B2C [0DE7] 4F0100          OUT     1, R0              ; PBPOS = R0;
+
+ c []   000B2F [0DEA] 110001          ADDB    R0, 1              ; _incr_
+ c []   000B32 [0DED] 560AE3          JMP     loc_0AE3           ; }  // for
+loc_0B35:
+ c []   000B35 [0DF0] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000B3B [0DF6] 51F10B50        CMPJNE  R1, R15, loc_0B50  ; if (R1 = R15) {
+ c []   000B3F [0DFA] 5C00            SYS     0                  ; // TMP = ""
+ c []   000B41 [0DFC] 020F0FA9        LDW     R15, erroradd_0FA9 ; 
+ c []   000B45 [0E00] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000B47 [0E02] 000F            MOV     R15, R0            ; 
+ c []   000B49 [0E04] 5C03            SYS     3                  ; // TMP += #i.R0
+ c []   000B4B [0E06] 5C0C            SYS     12                 ; print("Error. Address " + #i.R0);  // print(TMP)
+
+ c []   000B4D [0E08] 560BF3          JMP     loc_0BF3
+loc_0B50:
+ c []   000B50 [0E0B] 5C00            SYS     0                  ; // TMP = ""
+ c []   000B52 [0E0D] 020F0FA5        LDW     R15, ok_0FA5       ; 
+ c []   000B56 [0E11] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   000B58 [0E13] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   000B5A [0E15] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000B5C [0E17] 560BF3          JMP     loc_0BF3
+loc_0B5F:
+ c []   000B5F [0E1A] 5C00            SYS     0                  ; // TMP = ""
+ c []   000B61 [0E1C] 020F0F96        LDW     R15, _8-bitmo_0F96 ; 
+ c []   000B65 [0E20] 5C01            SYS     1                  ; // TMP += "8-bit mode... "
+ c []   000B67 [0E22] 5C0C            SYS     12                 ; print("8-bit mode... ");  // print(TMP)
+
+ c []   000B69 [0E24] 010400          LDB     R4, 0
+ c []   000B6C [0E27] 4F0104          OUT     1, R4              ; PBPOS = R4;
+
+ c []   000B6F [0E2A] 01047F          LDB     R4, 127
+ c []   000B72 [0E2D] 4F0004          OUT     0, R4              ; PBMAX = R4;
+
+ c []   000B75 [0E30] 010000          LDB     R0, 0              ; _init_
+loc_0B78:
+ c []   000B78 [0E33] 010F80          LDB     R15, 128           ; _cond_
+ c []   000B7B [0E36] 52F00BCC        CMPJGE  R0, R15, loc_0BCC  ; for (R0 = 0; R0 < 128; _incr_) {
+ c []   000B7F [0E3A] 4D0004          LDEM    0, R4, R0          ; R4 = buf0[R0];
+
+ c []   000B82 [0E3D] 0043            MOV     R3, R4
+ c []   000B84 [0E3F] 5900            PUSH    R0
+ c []   000B86 [0E41] 5903            PUSH    R3
+ c []   000B88 [0E43] 010F07          LDB     R15, 7             ; 
+ c []   000B8B [0E46] 270F0200        ORW     R15, 512           ; 
+ c []   000B8F [0E4A] 5C11            SYS     17                 ; 
+ c []   000B91 [0E4C] 00F4            MOV     R4, R15            ; R4 = device.prc_id7(<2 args>);
+
+ c []   000B93 [0E4E] 0041            MOV     R1, R4
+ c []   000B95 [0E50] 5900            PUSH    R0
+ c []   000B97 [0E52] 010F08          LDB     R15, 8             ; 
+ c []   000B9A [0E55] 270F0100        ORW     R15, 256           ; 
+ c []   000B9E [0E59] 5C11            SYS     17                 ; 
+ c []   000BA0 [0E5B] 00F4            MOV     R4, R15            ; R4 = device.prc_id8(<1 args>);
+
+ c []   000BA2 [0E5D] 0041            MOV     R1, R4
+ c []   000BA4 [0E5F] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000BAA [0E65] 51F10BB1        CMPJNE  R1, R15, loc_0BB1  ; if (R1 = R15) {
+ c []   000BAE [0E69] 560BCC          JMP     loc_0BCC           ;   break;
+loc_0BB1:
+ c []   000BB1 [0E6C] 4D0004          LDEM    0, R4, R0          ; R4 = buf0[R0];
+
+ c []   000BB4 [0E6F] 004F            MOV     R15, R4
+ c []   000BB6 [0E71] 50F10BC3        CMPJE   R1, R15, loc_0BC3  ; if (R1 != R15) {
+ c []   000BBA [0E75] 0301FFFFFFFF    LDD     R1, 4294967295
+ c []   000BC0 [0E7B] 560BCC          JMP     loc_0BCC           ;   break;
+loc_0BC3:
+ c []   000BC3 [0E7E] 4F0100          OUT     1, R0              ; PBPOS = R0;
+
+ c []   000BC6 [0E81] 110001          ADDB    R0, 1              ; _incr_
+ c []   000BC9 [0E84] 560B78          JMP     loc_0B78           ; }  // for
+loc_0BCC:
+ c []   000BCC [0E87] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000BD2 [0E8D] 51F10BE7        CMPJNE  R1, R15, loc_0BE7  ; if (R1 = R15) {
+ c []   000BD6 [0E91] 5C00            SYS     0                  ; // TMP = ""
+ c []   000BD8 [0E93] 020F0F86        LDW     R15, erroradd_0F86 ; 
+ c []   000BDC [0E97] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000BDE [0E99] 000F            MOV     R15, R0            ; 
+ c []   000BE0 [0E9B] 5C03            SYS     3                  ; // TMP += #i.R0
+ c []   000BE2 [0E9D] 5C0C            SYS     12                 ; print("Error. Address " + #i.R0);  // print(TMP)
+
+ c []   000BE4 [0E9F] 560BF3          JMP     loc_0BF3
+loc_0BE7:
+ c []   000BE7 [0EA2] 5C00            SYS     0                  ; // TMP = ""
+ c []   000BE9 [0EA4] 020F0F82        LDW     R15, ok_0F82       ; 
+ c []   000BED [0EA8] 5C01            SYS     1                  ; // TMP += " OK"
+ c []   000BEF [0EAA] 5C0C            SYS     12                 ; print(" OK");  // print(TMP)
+
+ c []   000BF1 [0EAC] 5C0B            SYS     11                 ; CloseWindow;
+
+loc_0BF3:
+ c []   000BF3 [0EAE] 010F02          LDB     R15, 2             ; 
+ c []   000BF6 [0EB1] 5C12            SYS     18                 ; device.prc_id2();
+
+end_Write:
+ c []   000BF8 [0EB3] 5B07            POPR    7
+ c []   000BFA [0EB5] 5800            RET     0
+
+
+Write_changes:
+pc []   000BFC [0EB7] 5A08            PUSHR   8                  ; proc Write_changes() {
+ c []   000BFE [0EB9] 5F80            ENTER   0, 8               ; var R0, R1, R2, R3, R4, R5, R6;
+
+ c []   000C00 [0EBB] 0605127F        LDMD    R5, Flags          ; R5 = Flags;
+ c []   000C04 [0EBF] 180502          ANDB    R5, 2
+ c []   000C07 [0EC2] 005E            MOV     R14, R5
+ c []   000C09 [0EC4] 010F00          LDB     R15, 0
+ c []   000C0C [0EC7] 50FE0C33        CMPJE   R14, R15, loc_0C33 ; if (R14 != R15) {
+ c []   000C10 [0ECB] 5C00            SYS     0                  ; // TMP = ""
+ c []   000C12 [0ECD] 020F0F66        LDW     R15, doyoucon_0F66 ; 
+ c []   000C16 [0ED1] 5C01            SYS     1                  ; // TMP += "Do you confirm programming?"
+ c []   000C18 [0ED3] 280F00010000    ORD     R15, 65536         ; // (1 << 16)
+ c []   000C1E [0ED9] 5C09            SYS     9                  ; R15 = mbox("Do you confirm programming?", 1);  // R15 = mbox(TMP, 1)
+
+ c []   000C20 [0EDB] 00F0            MOV     R0, R15
+ c []   000C22 [0EDD] 64000C33        JNZ     R0, loc_0C33       ; if (R0 = 0) {
+ c []   000C26 [0EE1] 5C00            SYS     0                  ; // TMP = ""
+ c []   000C28 [0EE3] 020F0F4B        LDW     R15, _writing_0F4B ; 
+ c []   000C2C [0EE7] 5C01            SYS     1                  ; // TMP += "\nWriting canceled by user."
+ c []   000C2E [0EE9] 5C0C            SYS     12                 ; print("\nWriting canceled by user.");  // print(TMP)
+
+ c []   000C30 [0EEB] 560DD3          JMP     end_Write_changes  ; return;
+loc_0C33:
+ c []   000C33 [0EEE] 570000          CALL    prc_0000           ; prc_0000();
+
+ c []   000C36 [0EF1] 570605          CALL    prc_0605           ; 
+ c []   000C39 [0EF4] 00F5            MOV     R5, R15            ; R5 = prc_0605();
+
+ c []   000C3B [0EF6] 005E            MOV     R14, R5
+ c []   000C3D [0EF8] 010F00          LDB     R15, 0
+ c []   000C40 [0EFB] 50FE0C49        CMPJE   R14, R15, loc_0C49 ; if (R14 != R15) {
+ c []   000C44 [0EFF] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000C46 [0F01] 560DD3          JMP     end_Write_changes  ; return;
+loc_0C49:
+ c []   000C49 [0F04] 010400          LDB     R4, 0
+ c []   000C4C [0F07] 5C00            SYS     0                  ; // TMP = ""
+ c []   000C4E [0F09] 020F0F40        LDW     R15, _writing_0F40 ; 
+ c []   000C52 [0F0D] 5C01            SYS     1                  ; // TMP += "\nWriting, "
+ c []   000C54 [0F0F] 5C0C            SYS     12                 ; print("\nWriting, ");  // print(TMP)
+
+ c []   000C56 [0F11] 0605127F        LDMD    R5, Flags          ; R5 = Flags;
+ c []   000C5A [0F15] 180501          ANDB    R5, 1
+ c []   000C5D [0F18] 005E            MOV     R14, R5
+ c []   000C5F [0F1A] 010F00          LDB     R15, 0
+ c []   000C62 [0F1D] 50FE0D21        CMPJE   R14, R15, loc_0D21 ; if (R14 != R15) {
+ c []   000C66 [0F21] 5C00            SYS     0                  ; // TMP = ""
+ c []   000C68 [0F23] 020F0F30        LDW     R15, _16-bitm_0F30 ; 
+ c []   000C6C [0F27] 5C01            SYS     1                  ; // TMP += "16-bit mode... "
+ c []   000C6E [0F29] 5C0C            SYS     12                 ; print("16-bit mode... ");  // print(TMP)
+
+ c []   000C70 [0F2B] 010500          LDB     R5, 0
+ c []   000C73 [0F2E] 4F0105          OUT     1, R5              ; PBPOS = R5;
+
+ c []   000C76 [0F31] 01053F          LDB     R5, 63
+ c []   000C79 [0F34] 4F0005          OUT     0, R5              ; PBMAX = R5;
+
+ c []   000C7C [0F37] 010200          LDB     R2, 0
+ c []   000C7F [0F3A] 010100          LDB     R1, 0              ; _init_
+loc_0C82:
+ c []   000C82 [0F3D] 010F40          LDB     R15, 64            ; _cond_
+ c []   000C85 [0F40] 52F10CEA        CMPJGE  R1, R15, loc_0CEA  ; for (R1 = 0; R1 < 64; _incr_) {
+ c []   000C89 [0F44] 4D0225          LDEM    2, R5, R2          ; R5 = sel0[R2];
+
+ c []   000C8C [0F47] 0026            MOV     R6, R2
+ c []   000C8E [0F49] 110601          ADDB    R6, 1
+ c []   000C91 [0F4C] 4D0267          LDEM    2, R7, R6          ; R7 = sel0[R6];
+
+ c []   000C94 [0F4F] 1075            ADD     R5, R7
+ c []   000C96 [0F51] 0053            MOV     R3, R5
+ c []   000C98 [0F53] 63030CDE        JZ      R3, loc_0CDE       ; if (R3) {
+ c []   000C9C [0F57] 4D0025          LDEM    0, R5, R2          ; R5 = buf0[R2];
+
+ c []   000C9F [0F5A] 0026            MOV     R6, R2
+ c []   000CA1 [0F5C] 110601          ADDB    R6, 1
+ c []   000CA4 [0F5F] 4D0067          LDEM    0, R7, R6          ; R7 = buf0[R6];
+
+ c []   000CA7 [0F62] 490708          RL      R7, 8
+ c []   000CAA [0F65] 2575            OR      R5, R7
+ c []   000CAC [0F67] 0053            MOV     R3, R5
+ c []   000CAE [0F69] 5901            PUSH    R1
+ c []   000CB0 [0F6B] 5903            PUSH    R3
+ c []   000CB2 [0F6D] 010F05          LDB     R15, 5             ; 
+ c []   000CB5 [0F70] 270F0200        ORW     R15, 512           ; 
+ c []   000CB9 [0F74] 5C11            SYS     17                 ; 
+ c []   000CBB [0F76] 00F5            MOV     R5, R15            ; R5 = device.prc_id5(<2 args>);
+
+ c []   000CBD [0F78] 0050            MOV     R0, R5
+ c []   000CBF [0F7A] 5901            PUSH    R1
+ c []   000CC1 [0F7C] 010F06          LDB     R15, 6             ; 
+ c []   000CC4 [0F7F] 270F0100        ORW     R15, 256           ; 
+ c []   000CC8 [0F83] 5C11            SYS     17                 ; 
+ c []   000CCA [0F85] 00F5            MOV     R5, R15            ; R5 = device.prc_id6(<1 args>);
+
+ c []   000CCC [0F87] 0050            MOV     R0, R5
+ c []   000CCE [0F89] 50300CDB        CMPJE   R0, R3, loc_0CDB   ; if (R0 != R3) {
+ c []   000CD2 [0F8D] 0300FFFFFFFF    LDD     R0, 4294967295
+ c []   000CD8 [0F93] 560CEA          JMP     loc_0CEA           ;   break;
+loc_0CDB:
+ c []   000CDB [0F96] 110401          ADDB    R4, 1
+loc_0CDE:
+ c []   000CDE [0F99] 110202          ADDB    R2, 2
+ c []   000CE1 [0F9C] 4F0101          OUT     1, R1              ; PBPOS = R1;
+
+ c []   000CE4 [0F9F] 110101          ADDB    R1, 1              ; _incr_
+ c []   000CE7 [0FA2] 560C82          JMP     loc_0C82           ; }  // for
+loc_0CEA:
+ c []   000CEA [0FA5] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000CF0 [0FAB] 51F00D05        CMPJNE  R0, R15, loc_0D05  ; if (R0 = R15) {
+ c []   000CF4 [0FAF] 5C00            SYS     0                  ; // TMP = ""
+ c []   000CF6 [0FB1] 020F0F20        LDW     R15, erroradd_0F20 ; 
+ c []   000CFA [0FB5] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000CFC [0FB7] 001F            MOV     R15, R1            ; 
+ c []   000CFE [0FB9] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000D00 [0FBB] 5C0C            SYS     12                 ; print("Error. Address " + #i.R1);  // print(TMP)
+
+ c []   000D02 [0FBD] 560DCE          JMP     loc_0DCE
+loc_0D05:
+ c []   000D05 [0FC0] 5C00            SYS     0                  ; // TMP = ""
+ c []   000D07 [0FC2] 020F0F1A        LDW     R15, ok_0F1A       ; 
+ c []   000D0B [0FC6] 5C01            SYS     1                  ; // TMP += " OK. "
+ c []   000D0D [0FC8] 004F            MOV     R15, R4            ; 
+ c []   000D0F [0FCA] 5C03            SYS     3                  ; // TMP += #i.R4
+ c []   000D11 [0FCC] 020F0F0B        LDW     R15, wordswri_0F0B ; 
+ c []   000D15 [0FD0] 5C01            SYS     1                  ; // TMP += " words writed."
+ c []   000D17 [0FD2] 5C0C            SYS     12                 ; print(" OK. " + #i.R4 + " words writed.");  // print(TMP)
+
+ c []   000D19 [0FD4] 5706ED          CALL    Verify             ; Verify();
+
+ c []   000D1C [0FD7] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000D1E [0FD9] 560DCE          JMP     loc_0DCE
+loc_0D21:
+ c []   000D21 [0FDC] 5C00            SYS     0                  ; // TMP = ""
+ c []   000D23 [0FDE] 020F0EFC        LDW     R15, _8-bitmo_0EFC ; 
+ c []   000D27 [0FE2] 5C01            SYS     1                  ; // TMP += "8-bit mode... "
+ c []   000D29 [0FE4] 5C0C            SYS     12                 ; print("8-bit mode... ");  // print(TMP)
+
+ c []   000D2B [0FE6] 010500          LDB     R5, 0
+ c []   000D2E [0FE9] 4F0105          OUT     1, R5              ; PBPOS = R5;
+
+ c []   000D31 [0FEC] 01057F          LDB     R5, 127
+ c []   000D34 [0FEF] 4F0005          OUT     0, R5              ; PBMAX = R5;
+
+ c []   000D37 [0FF2] 010100          LDB     R1, 0              ; _init_
+loc_0D3A:
+ c []   000D3A [0FF5] 010F80          LDB     R15, 128           ; _cond_
+ c []   000D3D [0FF8] 52F10D9D        CMPJGE  R1, R15, loc_0D9D  ; for (R1 = 0; R1 < 128; _incr_) {
+ c []   000D41 [0FFC] 4D0215          LDEM    2, R5, R1          ; R5 = sel0[R1];
+
+ c []   000D44 [0FFF] 005E            MOV     R14, R5
+ c []   000D46 [1001] 010F00          LDB     R15, 0
+ c []   000D49 [1004] 50FE0D94        CMPJE   R14, R15, loc_0D94 ; if (R14 != R15) {
+ c []   000D4D [1008] 4D0015          LDEM    0, R5, R1          ; R5 = buf0[R1];
+
+ c []   000D50 [100B] 0053            MOV     R3, R5
+ c []   000D52 [100D] 5901            PUSH    R1
+ c []   000D54 [100F] 5903            PUSH    R3
+ c []   000D56 [1011] 010F07          LDB     R15, 7             ; 
+ c []   000D59 [1014] 270F0200        ORW     R15, 512           ; 
+ c []   000D5D [1018] 5C11            SYS     17                 ; 
+ c []   000D5F [101A] 00F5            MOV     R5, R15            ; R5 = device.prc_id7(<2 args>);
+
+ c []   000D61 [101C] 0050            MOV     R0, R5
+ c []   000D63 [101E] 5901            PUSH    R1
+ c []   000D65 [1020] 010F08          LDB     R15, 8             ; 
+ c []   000D68 [1023] 270F0100        ORW     R15, 256           ; 
+ c []   000D6C [1027] 5C11            SYS     17                 ; 
+ c []   000D6E [1029] 00F5            MOV     R5, R15            ; R5 = device.prc_id8(<1 args>);
+
+ c []   000D70 [102B] 0050            MOV     R0, R5
+ c []   000D72 [102D] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000D78 [1033] 51F00D7F        CMPJNE  R0, R15, loc_0D7F  ; if (R0 = R15) {
+ c []   000D7C [1037] 560D9D          JMP     loc_0D9D           ;   break;
+loc_0D7F:
+ c []   000D7F [103A] 4D0015          LDEM    0, R5, R1          ; R5 = buf0[R1];
+
+ c []   000D82 [103D] 005F            MOV     R15, R5
+ c []   000D84 [103F] 50F00D91        CMPJE   R0, R15, loc_0D91  ; if (R0 != R15) {
+ c []   000D88 [1043] 0300FFFFFFFF    LDD     R0, 4294967295
+ c []   000D8E [1049] 560D9D          JMP     loc_0D9D           ;   break;
+loc_0D91:
+ c []   000D91 [104C] 110401          ADDB    R4, 1
+loc_0D94:
+ c []   000D94 [104F] 4F0101          OUT     1, R1              ; PBPOS = R1;
+
+ c []   000D97 [1052] 110101          ADDB    R1, 1              ; _incr_
+ c []   000D9A [1055] 560D3A          JMP     loc_0D3A           ; }  // for
+loc_0D9D:
+ c []   000D9D [1058] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   000DA3 [105E] 51F00DB8        CMPJNE  R0, R15, loc_0DB8  ; if (R0 = R15) {
+ c []   000DA7 [1062] 5C00            SYS     0                  ; // TMP = ""
+ c []   000DA9 [1064] 020F0EEC        LDW     R15, erroradd_0EEC ; 
+ c []   000DAD [1068] 5C01            SYS     1                  ; // TMP += "Error. Address "
+ c []   000DAF [106A] 001F            MOV     R15, R1            ; 
+ c []   000DB1 [106C] 5C03            SYS     3                  ; // TMP += #i.R1
+ c []   000DB3 [106E] 5C0C            SYS     12                 ; print("Error. Address " + #i.R1);  // print(TMP)
+
+ c []   000DB5 [1070] 560DCE          JMP     loc_0DCE
+loc_0DB8:
+ c []   000DB8 [1073] 5C00            SYS     0                  ; // TMP = ""
+ c []   000DBA [1075] 020F0EE6        LDW     R15, ok_0EE6       ; 
+ c []   000DBE [1079] 5C01            SYS     1                  ; // TMP += " OK. "
+ c []   000DC0 [107B] 004F            MOV     R15, R4            ; 
+ c []   000DC2 [107D] 5C03            SYS     3                  ; // TMP += #i.R4
+ c []   000DC4 [107F] 020F0ED7        LDW     R15, byteswri_0ED7 ; 
+ c []   000DC8 [1083] 5C01            SYS     1                  ; // TMP += " bytes writed."
+ c []   000DCA [1085] 5C0C            SYS     12                 ; print(" OK. " + #i.R4 + " bytes writed.");  // print(TMP)
+
+ c []   000DCC [1087] 5C0B            SYS     11                 ; CloseWindow;
+
+loc_0DCE:
+ c []   000DCE [1089] 010F02          LDB     R15, 2             ; 
+ c []   000DD1 [108C] 5C12            SYS     18                 ; device.prc_id2();
+
+end_Write_changes:
+ c []   000DD3 [108E] 5B08            POPR    8
+ c []   000DD5 [1090] 5800            RET     0
+
+
+Erase:
+pc []   000DD7 [1092] 5A02            PUSHR   2                  ; proc Erase() {
+ c []   000DD9 [1094] 5F20            ENTER   0, 2               ; var R0;
+
+ c []   000DDB [1096] 5C00            SYS     0                  ; // TMP = ""
+ c []   000DDD [1098] 020F0E90        LDW     R15, warninga_0E90 ; 
+ c []   000DE1 [109C] 5C01            SYS     1                  ; // TMP += "Warning: all data in device will be lost.\n\rDo you confirm programming?"
+ c []   000DE3 [109E] 280F00010000    ORD     R15, 65536         ; // (1 << 16)
+ c []   000DE9 [10A4] 5C09            SYS     9                  ; R15 = mbox("Warning: all data in device will be lost.\n\rDo you confirm programming?", 1);  // R15 = mbox(TMP, 1)
+
+ c []   000DEB [10A6] 00F0            MOV     R0, R15
+ c []   000DED [10A8] 64000DFE        JNZ     R0, loc_0DFE       ; if (R0 = 0) {
+ c []   000DF1 [10AC] 5C00            SYS     0                  ; // TMP = ""
+ c []   000DF3 [10AE] 020F0E7E        LDW     R15, _cancele_0E7E ; 
+ c []   000DF7 [10B2] 5C01            SYS     1                  ; // TMP += "\nCanceled by user"
+ c []   000DF9 [10B4] 5C0C            SYS     12                 ; print("\nCanceled by user");  // print(TMP)
+
+ c []   000DFB [10B6] 560E35          JMP     end_Erase          ; return;
+loc_0DFE:
+ c []   000DFE [10B9] 570605          CALL    prc_0605           ; 
+ c []   000E01 [10BC] 00F1            MOV     R1, R15            ; R1 = prc_0605();
+
+ c []   000E03 [10BE] 001E            MOV     R14, R1
+ c []   000E05 [10C0] 010F00          LDB     R15, 0
+ c []   000E08 [10C3] 50FE0E11        CMPJE   R14, R15, loc_0E11 ; if (R14 != R15) {
+ c []   000E0C [10C7] 5C0B            SYS     11                 ; CloseWindow;
+
+ c []   000E0E [10C9] 560E35          JMP     end_Erase          ; return;
+loc_0E11:
+ c []   000E11 [10CC] 5C00            SYS     0                  ; // TMP = ""
+ c []   000E13 [10CE] 020F0E71        LDW     R15, _erasing_0E71 ; 
+ c []   000E17 [10D2] 5C01            SYS     1                  ; // TMP += "\nErasing... "
+ c []   000E19 [10D4] 5C0C            SYS     12                 ; print("\nErasing... ");  // print(TMP)
+
+ c []   000E1B [10D6] 010F09          LDB     R15, 9             ; 
+ c []   000E1E [10D9] 5C11            SYS     17                 ; 
+ c []   000E20 [10DB] 00F1            MOV     R1, R15            ; R1 = device.prc_id9();
+
+ c []   000E22 [10DD] 0010            MOV     R0, R1
+ c []   000E24 [10DF] 010F02          LDB     R15, 2             ; 
+ c []   000E27 [10E2] 5C12            SYS     18                 ; device.prc_id2();
+
+ c []   000E29 [10E4] 5C00            SYS     0                  ; // TMP = ""
+ c []   000E2B [10E6] 020F0E6B        LDW     R15, done_0E6B     ; 
+ c []   000E2F [10EA] 5C01            SYS     1                  ; // TMP += "Done."
+ c []   000E31 [10EC] 5C0C            SYS     12                 ; print("Done.");  // print(TMP)
+
+ c []   000E33 [10EE] 5C0B            SYS     11                 ; CloseWindow;
+
+end_Erase:
+ c []   000E35 [10F0] 5B02            POPR    2
+ c []   000E37 [10F2] 5800            RET     0
+
+
+button_0E39:
+pc []   000E39 [10F4] 5A01            PUSHR   1                  ; proc button_0E39() {
+ c []   000E3B [10F6] 5F10            ENTER   0, 1               ; 
+
+ c []   000E3D [10F8] 04001271        LDMB    R0, list_1271      ; R0 = list_1271;
+ c []   000E41 [10FC] 64000E4B        JNZ     R0, loc_0E4B       ; if (R0 = 0) {
+ c []   000E45 [1100] 570903          CALL    Read               ; Read();
+
+ c []   000E48 [1103] 560E4E          JMP     end_button_0E39    ; return;
+loc_0E4B:
+ c []   000E4B [1106] 5704AD          CALL    prc_04AD           ; prc_04AD();
+
+end_button_0E39:
+ c []   000E4E [1109] 5B01            POPR    1
+ c []   000E50 [110B] 5800            RET     0
+
+
+button_0E52:
+pc []   000E52 [110D] 5A01            PUSHR   1                  ; proc button_0E52() {
+ c []   000E54 [110F] 5F10            ENTER   0, 1               ; 
+
+ c []   000E56 [1111] 04001271        LDMB    R0, list_1271      ; R0 = list_1271;
+ c []   000E5A [1115] 64000E64        JNZ     R0, loc_0E64       ; if (R0 = 0) {
+ c []   000E5E [1119] 570BFC          CALL    Write_changes      ; Write_changes();
+
+ c []   000E61 [111C] 560E67          JMP     end_button_0E52    ; return;
+loc_0E64:
+ c []   000E64 [111F] 570000          CALL    prc_0000           ; prc_0000();
+
+end_button_0E52:
+ c []   000E67 [1122] 5B01            POPR    1
+ c []   000E69 [1124] 5800            RET     0
+
+
+done_0E6B:
+ c []   000E6B [1126] 446F6E652E00    .DB     "Done."
+_erasing_0E71:
+ c []   000E71 [112C] 0A4572617369... .DB     "\nErasing... "
+_cancele_0E7E:
+ c []   000E7E [1139] 0A43616E6365... .DB     "\nCanceled by user"
+warninga_0E90:
+ c []   000E90 [114B] 5761726E696E... .DB     "Warning: all data in device will be lost.\n\rDo you confirm programming?"
+byteswri_0ED7:
+ c []   000ED7 [1192] 206279746573... .DB     " bytes writed."
+ok_0EE6:
+ c []   000EE6 [11A1] 204F4B2E2000    .DB     " OK. "
+erroradd_0EEC:
+ c []   000EEC [11A7] 4572726F722E... .DB     "Error. Address "
+_8-bitmo_0EFC:
+ c []   000EFC [11B7] 382D62697420... .DB     "8-bit mode... "
+wordswri_0F0B:
+ c []   000F0B [11C6] 20776F726473... .DB     " words writed."
+ok_0F1A:
+ c []   000F1A [11D5] 204F4B2E2000    .DB     " OK. "
+erroradd_0F20:
+ c []   000F20 [11DB] 4572726F722E... .DB     "Error. Address "
+_16-bitm_0F30:
+ c []   000F30 [11EB] 31362D626974... .DB     "16-bit mode... "
+_writing_0F40:
+ c []   000F40 [11FB] 0A5772697469... .DB     "\nWriting, "
+_writing_0F4B:
+ c []   000F4B [1206] 0A5772697469... .DB     "\nWriting canceled by user."
+doyoucon_0F66:
+ c []   000F66 [1221] 446F20796F75... .DB     "Do you confirm programming?"
+ok_0F82:
+ c []   000F82 [123D] 204F4B00        .DB     " OK"
+erroradd_0F86:
+ c []   000F86 [1241] 4572726F722E... .DB     "Error. Address "
+_8-bitmo_0F96:
+ c []   000F96 [1251] 382D62697420... .DB     "8-bit mode... "
+ok_0FA5:
+ c []   000FA5 [1260] 204F4B00        .DB     " OK"
+erroradd_0FA9:
+ c []   000FA9 [1264] 4572726F722E... .DB     "Error. Address "
+_16-bitm_0FB9:
+ c []   000FB9 [1274] 31362D626974... .DB     "16-bit mode... "
+_writing_0FC9:
+ c []   000FC9 [1284] 0A5772697469... .DB     "\nWriting, "
+_writing_0FD4:
+ c []   000FD4 [128F] 0A5772697469... .DB     "\nWriting canceled by user."
+doyoucon_0FEF:
+ c []   000FEF [12AA] 446F20796F75... .DB     "Do you confirm programming?"
+_93c46re_100B:
+ c []   00100B [12C6] 393343343620... .DB     "93C46 reading 8 bit|93C46 reading 8 bit"
+ok_1033:
+ c []   001033 [12EE] 204F4B00        .DB     " OK"
+erroradd_1037:
+ c []   001037 [12F2] 4572726F722E... .DB     "Error. Address "
+_8-bitmo_1047:
+ c []   001047 [1302] 382D62697420... .DB     "8-bit mode... "
+ok_1056:
+ c []   001056 [1311] 204F4B00        .DB     " OK"
+erroradd_105A:
+ c []   00105A [1315] 4572726F722E... .DB     "Error. Address "
+_16-bitm_106A:
+ c []   00106A [1325] 31362D626974... .DB     "16-bit mode... "
+_reading_107A:
+ c []   00107A [1335] 0A5265616469... .DB     "\nReading, "
+numberof_1085:
+ c []   001085 [1340] 4E756D626572... .DB     "Number of mismatches: "
+done_109C:
+ c []   00109C [1357] 446F6E652E00    .DB     "Done."
+ok_10A2:
+ c []   0010A2 [135D] 204F4B00        .DB     " OK"
+erroradd_10A6:
+ c []   0010A6 [1361] 4572726F722E... .DB     "Error. Address "
+readinge_10B6:
+ c []   0010B6 [1371] 52656164696E... .DB     "Reading error. Address "
+_8-bitmo_10CE:
+ c []   0010CE [1389] 382D62697420... .DB     "8-bit mode... "
+_numbero_10DD:
+ c []   0010DD [1398] 0A4E756D6265... .DB     "\nNumber of mismatches: "
+done_10F5:
+ c []   0010F5 [13B0] 446F6E652E00    .DB     "Done."
+ok_10FB:
+ c []   0010FB [13B6] 204F4B00        .DB     " OK"
+erroradd_10FF:
+ c []   0010FF [13BA] 4572726F722E... .DB     "Error. Address "
+readinge_110F:
+ c []   00110F [13CA] 52656164696E... .DB     "Reading error. Address "
+_16-bitm_1127:
+ c []   001127 [13E2] 31362D626974... .DB     "16-bit mode..."
+_verific_1136:
+ c []   001136 [13F1] 0A5665726966... .DB     "\nVerification, "
+powerove_1146:
+ c []   001146 [1401] 506F77657220... .DB     "Power overload!"
+_powerov_1156:
+ c []   001156 [1411] 0A506F776572... .DB     "\nPower overload!"
+ok_1167:
+ c []   001167 [1422] 204F4B00        .DB     " OK"
+_pintest_116B:
+ c []   00116B [1426] 0A50696E2074... .DB     "\nPin tester..."
+__117A:
+ c []   00117A [1435] 20EAEC00        .DB     " км"
+distance_117E:
+ c []   00117E [1439] 44697374616E... .DB     "Distance: "
+kmread93_1189:
+ c []   001189 [1444] 204B4D20297C... .DB     " KM )|Read 93C46 16-Bit  HONDA HR-V  DASH   DASH "
+read93c4_11BB:
+ c []   0011BB [1476] 526561642039... .DB     "Read 93C46 16-Bit  HONDA HR-V  DASH   DASH   ( "
+__11EB:
+ c []   0011EB [14A6] 20EAEC00        .DB     " км"
+_distanc_11EF:
+ c []   0011EF [14AA] 0A2044697374... .DB     "\n Distance: "
+__11FC:
+ c []   0011FC [14B7] 0A00            .DB     "\n"
+hondahr-_11FE:
+ c []   0011FE [14B9] 20484F4E4441... .DB     " HONDA HR-V  DASH 93C46"
+--------_1216:
+ c []   001216 [14D1] 2D2D2D2D2D2D... .DB     "------------------------------------------------------"
+__124D:
+ c []   00124D [1508] 0A00            .DB     "\n"
+__124F:
+ c []   00124F [150A] 202000          .DB     "  "
+__1252:
+ c []   001252 [150D] 0A00            .DB     "\n"
+__1254:
+ c []   001254 [150F] 0A20CDEEE2FB... .DB     "\n Новый пробег записан"
+list_126B:
+  u[]   00126B [1526] 00              
+list_126C:
+  u[]   00126C [1527] 00              
+list_126D:
+  u[]   00126D [1528] 00              
+checkbox_126E:
+  u[]   00126E [1529] 00              
+checkbox_126F:
+  u[]   00126F [152A] 00              
+checkbox_1270:
+  u[]   001270 [152B] 00              
+list_1271:
+  u[]   001271 [152C] 00              
+digit_1272:
+  u[]   001272 [152D] 00              
+  u[]   001273 [152E] 00              
+  u[]   001274 [152F] 00              
+  u[]   001275 [1530] 00              
+Tab:
+  u[]   001276 [1531] 00              
+Buf1Size:
+  u[]   001277 [1532] 00              
+  u[]   001278 [1533] 00              
+  u[]   001279 [1534] 00              
+  u[]   00127A [1535] 00              
+Buf2Size:
+  u[]   00127B [1536] 00              
+  u[]   00127C [1537] 00              
+  u[]   00127D [1538] 00              
+  u[]   00127E [1539] 00              
+Flags:
+  u[]   00127F [153A] 00              
+  u[]   001280 [153B] 00              
+  u[]   001281 [153C] 00              
+  u[]   001282 [153D] 00              
+SelBegin:
+  u[]   001283 [153E] 00              
+  u[]   001284 [153F] 00              
+  u[]   001285 [1540] 00              
+  u[]   001286 [1541] 00              
+SelEnd:
+  u[]   001287 [1542] 00              
+  u[]   001288 [1543] 00              
+  u[]   001289 [1544] 00              
+  u[]   00128A [1545] 00              
+Res1:
+  u[]   00128B [1546] 00              
+  u[]   00128C [1547] 00              
+  u[]   00128D [1548] 00              
+  u[]   00128E [1549] 00              
+Res2:
+  u[]   00128F [154A] 00              
+  u[]   001290 [154B] 00              
+  u[]   001291 [154C] 00              
+  u[]   001292 [154D] 00              
+b_1293:
+  u[]   001293 [154E] 00                                         ; b_1293[64]
+  u[]   001294 [154F] 00              
+  u[]   001295 [1550] 00              
+  u[]   001296 [1551] 00              
+  u[]   001297 [1552] 00              
+  u[]   001298 [1553] 00              
+  u[]   001299 [1554] 00              
+  u[]   00129A [1555] 00              
+  u[]   00129B [1556] 00              
+  u[]   00129C [1557] 00              
+  u[]   00129D [1558] 00              
+  u[]   00129E [1559] 00              
+  u[]   00129F [155A] 00              
+  u[]   0012A0 [155B] 00              
+  u[]   0012A1 [155C] 00              
+  u[]   0012A2 [155D] 00              
+  u[]   0012A3 [155E] 00              
+  u[]   0012A4 [155F] 00              
+  u[]   0012A5 [1560] 00              
+  u[]   0012A6 [1561] 00              
+  u[]   0012A7 [1562] 00              
+  u[]   0012A8 [1563] 00              
+  u[]   0012A9 [1564] 00              
+  u[]   0012AA [1565] 00              
+  u[]   0012AB [1566] 00              
+  u[]   0012AC [1567] 00              
+  u[]   0012AD [1568] 00              
+  u[]   0012AE [1569] 00              
+  u[]   0012AF [156A] 00              
+  u[]   0012B0 [156B] 00              
+  u[]   0012B1 [156C] 00              
+  u[]   0012B2 [156D] 00              
+  u[]   0012B3 [156E] 00              
+  u[]   0012B4 [156F] 00              
+  u[]   0012B5 [1570] 00              
+  u[]   0012B6 [1571] 00              
+  u[]   0012B7 [1572] 00              
+  u[]   0012B8 [1573] 00              
+  u[]   0012B9 [1574] 00              
+  u[]   0012BA [1575] 00              
+  u[]   0012BB [1576] 00              
+  u[]   0012BC [1577] 00              
+  u[]   0012BD [1578] 00              
+  u[]   0012BE [1579] 00              
+  u[]   0012BF [157A] 00              
+  u[]   0012C0 [157B] 00              
+  u[]   0012C1 [157C] 00              
+  u[]   0012C2 [157D] 00              
+  u[]   0012C3 [157E] 00              
+  u[]   0012C4 [157F] 00              
+  u[]   0012C5 [1580] 00              
+  u[]   0012C6 [1581] 00              
+  u[]   0012C7 [1582] 00              
+  u[]   0012C8 [1583] 00              
+  u[]   0012C9 [1584] 00              
+  u[]   0012CA [1585] 00              
+  u[]   0012CB [1586] 00              
+  u[]   0012CC [1587] 00              
+  u[]   0012CD [1588] 00              
+  u[]   0012CE [1589] 00              
+  u[]   0012CF [158A] 00              
+  u[]   0012D0 [158B] 00              
+  u[]   0012D1 [158C] 00              
+  u[]   0012D2 [158D] 00              
+  u[]   0012D3 [158E] 00              
+  u[]   0012D4 [158F] 00              
+  u[]   0012D5 [1590] 00              
+  u[]   0012D6 [1591] 00              
+  u[]   0012D7 [1592] 00              
+  u[]   0012D8 [1593] 00              
+  u[]   0012D9 [1594] 00              
+  u[]   0012DA [1595] 00              
+  u[]   0012DB [1596] 00              
+  u[]   0012DC [1597] 00              
+  u[]   0012DD [1598] 00              
+  u[]   0012DE [1599] 00              
+  u[]   0012DF [159A] 00              
+  u[]   0012E0 [159B] 00              
+  u[]   0012E1 [159C] 00              
+  u[]   0012E2 [159D] 00              
+  u[]   0012E3 [159E] 00              
+  u[]   0012E4 [159F] 00              
+  u[]   0012E5 [15A0] 00              
+  u[]   0012E6 [15A1] 00              
+  u[]   0012E7 [15A2] 00              
+  u[]   0012E8 [15A3] 00              
+  u[]   0012E9 [15A4] 00              
+  u[]   0012EA [15A5] 00              
+  u[]   0012EB [15A6] 00              
+  u[]   0012EC [15A7] 00              
+  u[]   0012ED [15A8] 00              
+  u[]   0012EE [15A9] 00              
+  u[]   0012EF [15AA] 00              
+  u[]   0012F0 [15AB] 00              
+  u[]   0012F1 [15AC] 00              
+  u[]   0012F2 [15AD] 00              
+  u[]   0012F3 [15AE] 00              
+  u[]   0012F4 [15AF] 00              
+  u[]   0012F5 [15B0] 00              
+  u[]   0012F6 [15B1] 00              
+  u[]   0012F7 [15B2] 00              
+  u[]   0012F8 [15B3] 00              
+  u[]   0012F9 [15B4] 00              
+  u[]   0012FA [15B5] 00              
+  u[]   0012FB [15B6] 00              
+  u[]   0012FC [15B7] 00              
+  u[]   0012FD [15B8] 00              
+  u[]   0012FE [15B9] 00              
+  u[]   0012FF [15BA] 00              
+  u[]   001300 [15BB] 00              
+  u[]   001301 [15BC] 00              
+  u[]   001302 [15BD] 00              
+  u[]   001303 [15BE] 00              
+  u[]   001304 [15BF] 00              
+  u[]   001305 [15C0] 00              
+  u[]   001306 [15C1] 00              
+  u[]   001307 [15C2] 00              
+  u[]   001308 [15C3] 00              
+  u[]   001309 [15C4] 00              
+  u[]   00130A [15C5] 00              
+  u[]   00130B [15C6] 00              
+  u[]   00130C [15C7] 00              
+  u[]   00130D [15C8] 00              
+  u[]   00130E [15C9] 00              
+  u[]   00130F [15CA] 00              
+  u[]   001310 [15CB] 00              
+  u[]   001311 [15CC] 00              
+  u[]   001312 [15CD] 00              
+  u[]   001313 [15CE] 00              
+  u[]   001314 [15CF] 00              
+  u[]   001315 [15D0] 00              
+  u[]   001316 [15D1] 00              
+  u[]   001317 [15D2] 00              
+  u[]   001318 [15D3] 00              
+  u[]   001319 [15D4] 00              
+  u[]   00131A [15D5] 00              
+  u[]   00131B [15D6] 00              
+  u[]   00131C [15D7] 00              
+  u[]   00131D [15D8] 00              
+  u[]   00131E [15D9] 00              
+  u[]   00131F [15DA] 00              
+  u[]   001320 [15DB] 00              
+  u[]   001321 [15DC] 00              
+  u[]   001322 [15DD] 00              
+  u[]   001323 [15DE] 00              
+  u[]   001324 [15DF] 00              
+  u[]   001325 [15E0] 00              
+  u[]   001326 [15E1] 00              
+  u[]   001327 [15E2] 00              
+  u[]   001328 [15E3] 00              
+  u[]   001329 [15E4] 00              
+  u[]   00132A [15E5] 00              
+  u[]   00132B [15E6] 00              
+  u[]   00132C [15E7] 00              
+  u[]   00132D [15E8] 00              
+  u[]   00132E [15E9] 00              
+  u[]   00132F [15EA] 00              
+  u[]   001330 [15EB] 00              
+  u[]   001331 [15EC] 00              
+  u[]   001332 [15ED] 00              
+  u[]   001333 [15EE] 00              
+  u[]   001334 [15EF] 00              
+  u[]   001335 [15F0] 00              
+  u[]   001336 [15F1] 00              
+  u[]   001337 [15F2] 00              
+  u[]   001338 [15F3] 00              
+  u[]   001339 [15F4] 00              
+  u[]   00133A [15F5] 00              
+  u[]   00133B [15F6] 00              
+  u[]   00133C [15F7] 00              
+  u[]   00133D [15F8] 00              
+  u[]   00133E [15F9] 00              
+  u[]   00133F [15FA] 00              
+  u[]   001340 [15FB] 00              
+  u[]   001341 [15FC] 00              
+  u[]   001342 [15FD] 00              
+  u[]   001343 [15FE] 00              
+  u[]   001344 [15FF] 00              
+  u[]   001345 [1600] 00              
+  u[]   001346 [1601] 00              
+  u[]   001347 [1602] 00              
+  u[]   001348 [1603] 00              
+  u[]   001349 [1604] 00              
+  u[]   00134A [1605] 00              
+  u[]   00134B [1606] 00              
+  u[]   00134C [1607] 00              
+  u[]   00134D [1608] 00              
+  u[]   00134E [1609] 00              
+  u[]   00134F [160A] 00              
+  u[]   001350 [160B] 00              
+  u[]   001351 [160C] 00              
+  u[]   001352 [160D] 00              
+  u[]   001353 [160E] 00              
+  u[]   001354 [160F] 00              
+  u[]   001355 [1610] 00              
+  u[]   001356 [1611] 00              
+  u[]   001357 [1612] 00              
+  u[]   001358 [1613] 00              
+  u[]   001359 [1614] 00              
+  u[]   00135A [1615] 00              
+  u[]   00135B [1616] 00              
+  u[]   00135C [1617] 00              
+  u[]   00135D [1618] 00              
+  u[]   00135E [1619] 00              
+  u[]   00135F [161A] 00              
+  u[]   001360 [161B] 00              
+  u[]   001361 [161C] 00              
+  u[]   001362 [161D] 00              
+d_1363:
+  u[]   001363 [161E] 00              
+  u[]   001364 [161F] 00              
+  u[]   001365 [1620] 00              
+  u[]   001366 [1621] 00              
+d_1367:
+  u[]   001367 [1622] 00              
+  u[]   001368 [1623] 00              
+  u[]   001369 [1624] 00              
+  u[]   00136A [1625] 00              
+d_136B:
+  u[]   00136B [1626] 00              
+  u[]   00136C [1627] 00              
+  u[]   00136D [1628] 00              
+  u[]   00136E [1629] 00              
+d_136F:
+  u[]   00136F [162A] 00              
+  u[]   001370 [162B] 00              
+  u[]   001371 [162C] 00              
+  u[]   001372 [162D] 00              
+d_1373:
+  u[]   001373 [162E] 00              
+  u[]   001374 [162F] 00              
+  u[]   001375 [1630] 00              
+  u[]   001376 [1631] 00              
+  u[]   001377 [1632] 00              
+  u[]   001378 [1633] 00              
+  u[]   001379 [1634] 00              
+  u[]   00137A [1635] 00              
+  u[]   00137B [1636] 00              
+  u[]   00137C [1637] 00              
+  u[]   00137D [1638] 00              
+  u[]   00137E [1639] 00              
+  u[]   00137F [163A] 00              
+  u[]   001380 [163B] 00              
+  u[]   001381 [163C] 00              
+  u[]   001382 [163D] 00              
+  u[]   001383 [163E] 00              
+  u[]   001384 [163F] 00              
+  u[]   001385 [1640] 00              
+  u[]   001386 [1641] 00              
+  u[]   001387 [1642] 00              
+  u[]   001388 [1643] 00              
+  u[]   001389 [1644] 00              
+  u[]   00138A [1645] 00              
+  u[]   00138B [1646] 00              
+
+
+$DEVICE
+
+prc_0000:
+pc []   000000 [1687] 5A02            PUSHR   2                  ; proc prc_0000() {
+ c []   000002 [1689] 5F20            ENTER   0, 2               ; var R0;
+
+ c []   000004 [168B] 0401069F        LDMB    R1, b_069F         ; R1 = b_069F;
+ c []   000008 [168F] 650100004C      CPIJE   R1, 0, loc_004C    ; if (R1 != 0) {
+ c []   00000D [1694] 040106A0        LDMB    R1, b_06A0         ; R1 = b_06A0;
+ c []   000011 [1698] 6501000031      CPIJE   R1, 0, loc_0031    ; if (R1 != 0) {
+ c []   000016 [169D] 010032          LDB     R0, 50
+ c []   000019 [16A0] 0401069E        LDMB    R1, b_069E         ; R1 = b_069E;
+ c []   00001D [16A4] 6501000025      CPIJE   R1, 0, loc_0025    ; if (R1 != 0) {
+ c []   000022 [16A9] 110001          ADDB    R0, 1
+loc_0025:
+ c []   000025 [16AC] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000028 [16AF] 5D0480          ORPI    4, 128             ; PORTE |= 0x80;
+ c []   00002B [16B2] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   00002E [16B5] 560088          JMP     end_prc_0000       ; return;
+loc_0031:
+ c []   000031 [16B8] 01008C          LDB     R0, 140
+ c []   000034 [16BB] 0401069E        LDMB    R1, b_069E         ; R1 = b_069E;
+ c []   000038 [16BF] 6501000040      CPIJE   R1, 0, loc_0040    ; if (R1 != 0) {
+ c []   00003D [16C4] 110040          ADDB    R0, 64
+loc_0040:
+ c []   000040 [16C7] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000043 [16CA] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   000046 [16CD] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+ c []   000049 [16D0] 560088          JMP     end_prc_0000       ; return;
+loc_004C:
+ c []   00004C [16D3] 040106A0        LDMB    R1, b_06A0         ; R1 = b_06A0;
+ c []   000050 [16D7] 6501000070      CPIJE   R1, 0, loc_0070    ; if (R1 != 0) {
+ c []   000055 [16DC] 010032          LDB     R0, 50
+ c []   000058 [16DF] 0401069E        LDMB    R1, b_069E         ; R1 = b_069E;
+ c []   00005C [16E3] 6501000064      CPIJE   R1, 0, loc_0064    ; if (R1 != 0) {
+ c []   000061 [16E8] 110001          ADDB    R0, 1
+loc_0064:
+ c []   000064 [16EB] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000067 [16EE] 5E047F          ANDPI   4, 127             ; PORTE &= 0x80 ^ 255;
+ c []   00006A [16F1] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   00006D [16F4] 560088          JMP     end_prc_0000       ; return;
+loc_0070:
+ c []   000070 [16F7] 01008C          LDB     R0, 140
+ c []   000073 [16FA] 0401069E        LDMB    R1, b_069E         ; R1 = b_069E;
+ c []   000077 [16FE] 650100007F      CPIJE   R1, 0, loc_007F    ; if (R1 != 0) {
+ c []   00007C [1703] 110040          ADDB    R0, 64
+loc_007F:
+ c []   00007F [1706] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000082 [1709] 5E04DF          ANDPI   4, 223             ; PORTE &= 0x20 ^ 255;
+ c []   000085 [170C] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+end_prc_0000:
+ c []   000088 [170F] 5B02            POPR    2
+ c []   00008A [1711] 5800            RET     0
+
+
+prc_008C:
+pc []   00008C [1713] 5A03            PUSHR   3                  ; proc prc_008C(R0) {
+ c []   00008E [1715] 5F31            ENTER   1, 3               ; var R1;
+
+ c []   000090 [1717] 010100          LDB     R1, 0              ; _init_
+loc_0093:
+ c []   000093 [171A] 010F10          LDB     R15, 16            ; _cond_
+ c []   000096 [171D] 52F100D7        CMPJGE  R1, R15, end_prc_008C ; for (R1 = 0; R1 < 16; _incr_) {
+ c []   00009A [1721] 040206A0        LDMB    R2, b_06A0         ; R2 = b_06A0;
+ c []   00009E [1725] 65020000BA      CPIJE   R2, 0, loc_00BA    ; if (R2 != 0) {
+ c []   0000A3 [172A] 61000F00AE      JBRC    R0, 15, loc_00AE   ; if (R0 & 0x8000) {
+ c []   0000A8 [172F] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   0000AB [1732] 5600B1          JMP     loc_00B1
+loc_00AE:
+ c []   0000AE [1735] 5E04EF          ANDPI   4, 239             ; PORTE &= 0x10 ^ 255;
+loc_00B1:
+ c []   0000B1 [1738] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   0000B4 [173B] 5E04F7          ANDPI   4, 247             ; PORTE &= 0x8 ^ 255;
+ c []   0000B7 [173E] 5600CE          JMP     loc_00CE
+loc_00BA:
+ c []   0000BA [1741] 61000F00C5      JBRC    R0, 15, loc_00C5   ; if (R0 & 0x8000) {
+ c []   0000BF [1746] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   0000C2 [1749] 5600C8          JMP     loc_00C8
+loc_00C5:
+ c []   0000C5 [174C] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+loc_00C8:
+ c []   0000C8 [174F] 5D0402          ORPI    4, 2               ; PORTE |= 0x2;
+ c []   0000CB [1752] 5E04FD          ANDPI   4, 253             ; PORTE &= 0x2 ^ 255;
+loc_00CE:
+ c []   0000CE [1755] 490001          RL      R0, 1
+ c []   0000D1 [1758] 110101          ADDB    R1, 1              ; _incr_
+ c []   0000D4 [175B] 560093          JMP     loc_0093           ; }  // for
+end_prc_008C:
+ c []   0000D7 [175E] 5B03            POPR    3
+ c []   0000D9 [1760] 5801            RET     1
+
+
+prc_00DB:
+pc []   0000DB [1762] 5A03            PUSHR   3                  ; proc prc_00DB(R0) {
+ c []   0000DD [1764] 5F31            ENTER   1, 3               ; var R1;
+
+ c []   0000DF [1766] 010100          LDB     R1, 0              ; _init_
+loc_00E2:
+ c []   0000E2 [1769] 010F08          LDB     R15, 8             ; _cond_
+ c []   0000E5 [176C] 52F10126        CMPJGE  R1, R15, end_prc_00DB ; for (R1 = 0; R1 < 8; _incr_) {
+ c []   0000E9 [1770] 040206A0        LDMB    R2, b_06A0         ; R2 = b_06A0;
+ c []   0000ED [1774] 6502000109      CPIJE   R2, 0, loc_0109    ; if (R2 != 0) {
+ c []   0000F2 [1779] 61000700FD      JBRC    R0, 7, loc_00FD    ; if (R0 & 0x80) {
+ c []   0000F7 [177E] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   0000FA [1781] 560100          JMP     loc_0100
+loc_00FD:
+ c []   0000FD [1784] 5E04EF          ANDPI   4, 239             ; PORTE &= 0x10 ^ 255;
+loc_0100:
+ c []   000100 [1787] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   000103 [178A] 5E04F7          ANDPI   4, 247             ; PORTE &= 0x8 ^ 255;
+ c []   000106 [178D] 56011D          JMP     loc_011D
+loc_0109:
+ c []   000109 [1790] 6100070114      JBRC    R0, 7, loc_0114    ; if (R0 & 0x80) {
+ c []   00010E [1795] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   000111 [1798] 560117          JMP     loc_0117
+loc_0114:
+ c []   000114 [179B] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+loc_0117:
+ c []   000117 [179E] 5D0402          ORPI    4, 2               ; PORTE |= 0x2;
+ c []   00011A [17A1] 5E04FD          ANDPI   4, 253             ; PORTE &= 0x2 ^ 255;
+loc_011D:
+ c []   00011D [17A4] 490001          RL      R0, 1
+ c []   000120 [17A7] 110101          ADDB    R1, 1              ; _incr_
+ c []   000123 [17AA] 5600E2          JMP     loc_00E2           ; }  // for
+end_prc_00DB:
+ c []   000126 [17AD] 5B03            POPR    3
+ c []   000128 [17AF] 5801            RET     1
+
+
+prc_012A:
+pc []   00012A [17B1] 5A03            PUSHR   3                  ; proc prc_012A() {
+ c []   00012C [17B3] 5F30            ENTER   0, 3               ; var R0, R1;
+
+ c []   00012E [17B5] 010100          LDB     R1, 0
+ c []   000131 [17B8] 010000          LDB     R0, 0              ; _init_
+loc_0134:
+ c []   000134 [17BB] 010F10          LDB     R15, 16            ; _cond_
+ c []   000137 [17BE] 52F00172        CMPJGE  R0, R15, loc_0172  ; for (R0 = 0; R0 < 16; _incr_) {
+ c []   00013B [17C2] 490101          RL      R1, 1
+ c []   00013E [17C5] 040206A0        LDMB    R2, b_06A0         ; R2 = b_06A0;
+ c []   000142 [17C9] 650200015B      CPIJE   R2, 0, loc_015B    ; if (R2 != 0) {
+ c []   000147 [17CE] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   00014A [17D1] 4E0204          IN      R2, 4              ; R2 = PORTE;
+ c []   00014D [17D4] 6102050155      JBRC    R2, 5, loc_0155    ; if (R2 & 0x20) {
+ c []   000152 [17D9] 260101          ORB     R1, 1
+loc_0155:
+ c []   000155 [17DC] 5E04F7          ANDPI   4, 247             ; PORTE &= 0x8 ^ 255;
+ c []   000158 [17DF] 56016C          JMP     loc_016C
+loc_015B:
+ c []   00015B [17E2] 5D0402          ORPI    4, 2               ; PORTE |= 0x2;
+ c []   00015E [17E5] 4E0204          IN      R2, 4              ; R2 = PORTE;
+ c []   000161 [17E8] 6102030169      JBRC    R2, 3, loc_0169    ; if (R2 & 0x08) {
+ c []   000166 [17ED] 260101          ORB     R1, 1
+loc_0169:
+ c []   000169 [17F0] 5E04FD          ANDPI   4, 253             ; PORTE &= 0x2 ^ 255;
+loc_016C:
+ c []   00016C [17F3] 110001          ADDB    R0, 1              ; _incr_
+ c []   00016F [17F6] 560134          JMP     loc_0134           ; }  // for
+loc_0172:
+ c []   000172 [17F9] 001F            MOV     R15, R1            ; return(R1);
+ c []   000174 [17FB] 5B03            POPR    3
+ c []   000176 [17FD] 5800            RET     0
+
+
+prc_0178:
+pc []   000178 [17FF] 5A03            PUSHR   3                  ; proc prc_0178() {
+ c []   00017A [1801] 5F30            ENTER   0, 3               ; var R0, R1;
+
+ c []   00017C [1803] 010100          LDB     R1, 0
+ c []   00017F [1806] 010000          LDB     R0, 0              ; _init_
+loc_0182:
+ c []   000182 [1809] 010F08          LDB     R15, 8             ; _cond_
+ c []   000185 [180C] 52F001C0        CMPJGE  R0, R15, loc_01C0  ; for (R0 = 0; R0 < 8; _incr_) {
+ c []   000189 [1810] 490101          RL      R1, 1
+ c []   00018C [1813] 040206A0        LDMB    R2, b_06A0         ; R2 = b_06A0;
+ c []   000190 [1817] 65020001A9      CPIJE   R2, 0, loc_01A9    ; if (R2 != 0) {
+ c []   000195 [181C] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   000198 [181F] 4E0204          IN      R2, 4              ; R2 = PORTE;
+ c []   00019B [1822] 61020501A3      JBRC    R2, 5, loc_01A3    ; if (R2 & 0x20) {
+ c []   0001A0 [1827] 260101          ORB     R1, 1
+loc_01A3:
+ c []   0001A3 [182A] 5E04F7          ANDPI   4, 247             ; PORTE &= 0x8 ^ 255;
+ c []   0001A6 [182D] 5601BA          JMP     loc_01BA
+loc_01A9:
+ c []   0001A9 [1830] 5D0402          ORPI    4, 2               ; PORTE |= 0x2;
+ c []   0001AC [1833] 4E0204          IN      R2, 4              ; R2 = PORTE;
+ c []   0001AF [1836] 61020301B7      JBRC    R2, 3, loc_01B7    ; if (R2 & 0x08) {
+ c []   0001B4 [183B] 260101          ORB     R1, 1
+loc_01B7:
+ c []   0001B7 [183E] 5E04FD          ANDPI   4, 253             ; PORTE &= 0x2 ^ 255;
+loc_01BA:
+ c []   0001BA [1841] 110001          ADDB    R0, 1              ; _incr_
+ c []   0001BD [1844] 560182          JMP     loc_0182           ; }  // for
+loc_01C0:
+ c []   0001C0 [1847] 001F            MOV     R15, R1            ; return(R1);
+ c []   0001C2 [1849] 5B03            POPR    3
+ c []   0001C4 [184B] 5800            RET     0
+
+
+prc_id9:
+pc []   0001C6 [184D] 5A01            PUSHR   1                  ; proc prc_id9() {
+ c []   0001C8 [184F] 5F10            ENTER   0, 1               ; 
+
+ c []   0001CA [1851] 040006A0        LDMB    R0, b_06A0         ; R0 = b_06A0;
+ c []   0001CE [1855] 6500000229      CPIJE   R0, 0, loc_0229    ; if (R0 != 0) {
+ c []   0001D3 [185A] 0400069E        LDMB    R0, b_069E         ; R0 = b_069E;
+ c []   0001D7 [185E] 65000001E8      CPIJE   R0, 0, loc_01E8    ; if (R0 != 0) {
+ c []   0001DC [1863] 010033          LDB     R0, 51
+ c []   0001DF [1866] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   0001E2 [1869] 5D0480          ORPI    4, 128             ; PORTE |= 0x80;
+ c []   0001E5 [186C] 5601F1          JMP     loc_01F1
+loc_01E8:
+ c []   0001E8 [186F] 010032          LDB     R0, 50
+ c []   0001EB [1872] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   0001EE [1875] 5D0480          ORPI    4, 128             ; PORTE |= 0x80;
+loc_01F1:
+ c []   0001F1 [1878] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   0001F4 [187B] 02000130        LDW     R0, 304
+ c []   0001F8 [187F] 5900            PUSH    R0
+ c []   0001FA [1881] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   0001FD [1884] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   000200 [1887] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   000203 [188A] 02000120        LDW     R0, 288
+ c []   000207 [188E] 5900            PUSH    R0
+ c []   000209 [1890] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   00020C [1893] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   00020F [1896] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   000212 [1899] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   000215 [189C] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+loc_0218:
+ c []   000218 [189F] 4E0004          IN      R0, 4              ; R0 = PORTE;
+ c []   00021B [18A2] 6000050223      JBRS    R0, 5, loc_0223    ; if ((R0 & 0x20) = 0) {
+ c []   000220 [18A7] 560218          JMP     loc_0218
+loc_0223:
+ c []   000223 [18AA] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   000226 [18AD] 56027C          JMP     loc_027C
+loc_0229:
+ c []   000229 [18B0] 0400069E        LDMB    R0, b_069E         ; R0 = b_069E;
+ c []   00022D [18B4] 650000023E      CPIJE   R0, 0, loc_023E    ; if (R0 != 0) {
+ c []   000232 [18B9] 0100CC          LDB     R0, 204
+ c []   000235 [18BC] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000238 [18BF] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   00023B [18C2] 560247          JMP     loc_0247
+loc_023E:
+ c []   00023E [18C5] 01008C          LDB     R0, 140
+ c []   000241 [18C8] 4F0400          OUT     4, R0              ; PORTE = R0;
+
+ c []   000244 [18CB] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+loc_0247:
+ c []   000247 [18CE] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+ c []   00024A [18D1] 02000130        LDW     R0, 304
+ c []   00024E [18D5] 5900            PUSH    R0
+ c []   000250 [18D7] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   000253 [18DA] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   000256 [18DD] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+ c []   000259 [18E0] 02000120        LDW     R0, 288
+ c []   00025D [18E4] 5900            PUSH    R0
+ c []   00025F [18E6] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   000262 [18E9] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   000265 [18EC] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   000268 [18EF] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   00026B [18F2] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+loc_026E:
+ c []   00026E [18F5] 4E0004          IN      R0, 4              ; R0 = PORTE;
+ c []   000271 [18F8] 6000030279      JBRS    R0, 3, loc_0279    ; if ((R0 & 0x08) = 0) {
+ c []   000276 [18FD] 56026E          JMP     loc_026E
+loc_0279:
+ c []   000279 [1900] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+loc_027C:
+ c []   00027C [1903] 010F00          LDB     R15, 0             ; return(0);
+ c []   00027F [1906] 5B01            POPR    1
+ c []   000281 [1908] 5800            RET     0
+
+
+prc_id6:
+pc []   000283 [190A] 5A05            PUSHR   5                  ; proc prc_id6(R0) {
+ c []   000285 [190C] 5F51            ENTER   1, 5               ; var R1, R2, R3;
+
+ c []   000287 [190E] 570000          CALL    prc_0000           ; prc_0000();
+
+ c []   00028A [1911] 02040180        LDW     R4, 384
+ c []   00028E [1915] 2504            OR      R4, R0
+ c []   000290 [1917] 5904            PUSH    R4
+ c []   000292 [1919] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   000295 [191C] 040406A0        LDMB    R4, b_06A0         ; R4 = b_06A0;
+ c []   000299 [1920] 65040002C0      CPIJE   R4, 0, loc_02C0    ; if (R4 != 0) {
+ c []   00029E [1925] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   0002A1 [1928] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   0002A4 [192B] 4E0404          IN      R4, 4              ; R4 = PORTE;
+ c []   0002A7 [192E] 60040502B4      JBRS    R4, 5, loc_02B4    ; if ((R4 & 0x20) = 0) {
+ c []   0002AC [1933] 57012A          CALL    prc_012A           ; 
+ c []   0002AF [1936] 00F1            MOV     R1, R15            ; R1 = prc_012A();
+
+ c []   0002B1 [1938] 5602BA          JMP     loc_02BA
+loc_02B4:
+ c []   0002B4 [193B] 0301FFFFFFFF    LDD     R1, 4294967295
+loc_02BA:
+ c []   0002BA [1941] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   0002BD [1944] 5602DF          JMP     loc_02DF
+loc_02C0:
+ c []   0002C0 [1947] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   0002C3 [194A] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   0002C6 [194D] 4E0404          IN      R4, 4              ; R4 = PORTE;
+ c []   0002C9 [1950] 60040302D6      JBRS    R4, 3, loc_02D6    ; if ((R4 & 0x08) = 0) {
+ c []   0002CE [1955] 57012A          CALL    prc_012A           ; 
+ c []   0002D1 [1958] 00F1            MOV     R1, R15            ; R1 = prc_012A();
+
+ c []   0002D3 [195A] 5602DC          JMP     loc_02DC
+loc_02D6:
+ c []   0002D6 [195D] 0301FFFFFFFF    LDD     R1, 4294967295
+loc_02DC:
+ c []   0002DC [1963] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+loc_02DF:
+ c []   0002DF [1966] 001F            MOV     R15, R1            ; return(R1);
+ c []   0002E1 [1968] 5B05            POPR    5
+ c []   0002E3 [196A] 5801            RET     1
+
+
+prc_id8:
+pc []   0002E5 [196C] 5A04            PUSHR   4                  ; proc prc_id8(R0) {
+ c []   0002E7 [196E] 5F41            ENTER   1, 4               ; var R1, R2;
+
+ c []   0002E9 [1970] 570000          CALL    prc_0000           ; prc_0000();
+
+ c []   0002EC [1973] 02030300        LDW     R3, 768
+ c []   0002F0 [1977] 2503            OR      R3, R0
+ c []   0002F2 [1979] 5903            PUSH    R3
+ c []   0002F4 [197B] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   0002F7 [197E] 040306A0        LDMB    R3, b_06A0         ; R3 = b_06A0;
+ c []   0002FB [1982] 6503000322      CPIJE   R3, 0, loc_0322    ; if (R3 != 0) {
+ c []   000300 [1987] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   000303 [198A] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   000306 [198D] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   000309 [1990] 6003050316      JBRS    R3, 5, loc_0316    ; if ((R3 & 0x20) = 0) {
+ c []   00030E [1995] 570178          CALL    prc_0178           ; 
+ c []   000311 [1998] 00F1            MOV     R1, R15            ; R1 = prc_0178();
+
+ c []   000313 [199A] 56031C          JMP     loc_031C
+loc_0316:
+ c []   000316 [199D] 0301FFFFFFFF    LDD     R1, 4294967295
+loc_031C:
+ c []   00031C [19A3] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   00031F [19A6] 560341          JMP     loc_0341
+loc_0322:
+ c []   000322 [19A9] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   000325 [19AC] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   000328 [19AF] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   00032B [19B2] 6003030338      JBRS    R3, 3, loc_0338    ; if ((R3 & 0x08) = 0) {
+ c []   000330 [19B7] 570178          CALL    prc_0178           ; 
+ c []   000333 [19BA] 00F1            MOV     R1, R15            ; R1 = prc_0178();
+
+ c []   000335 [19BC] 56033E          JMP     loc_033E
+loc_0338:
+ c []   000338 [19BF] 0301FFFFFFFF    LDD     R1, 4294967295
+loc_033E:
+ c []   00033E [19C5] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+loc_0341:
+ c []   000341 [19C8] 001F            MOV     R15, R1            ; return(R1);
+ c []   000343 [19CA] 5B04            POPR    4
+ c []   000345 [19CC] 5801            RET     1
+
+
+prc_id7:
+pc []   000347 [19CE] 5A04            PUSHR   4                  ; proc prc_id7(R0, R1) {
+ c []   000349 [19D0] 5F42            ENTER   2, 4               ; var R2;
+
+ c []   00034B [19D2] 570000          CALL    prc_0000           ; prc_0000();
+
+ c []   00034E [19D5] 02030260        LDW     R3, 608
+ c []   000352 [19D9] 5903            PUSH    R3
+ c []   000354 [19DB] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   000357 [19DE] 040306A0        LDMB    R3, b_06A0         ; R3 = b_06A0;
+ c []   00035B [19E2] 6503000369      CPIJE   R3, 0, loc_0369    ; if (R3 != 0) {
+ c []   000360 [19E7] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   000363 [19EA] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   000366 [19ED] 56036F          JMP     loc_036F
+loc_0369:
+ c []   000369 [19F0] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   00036C [19F3] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+loc_036F:
+ c []   00036F [19F6] 02030280        LDW     R3, 640
+ c []   000373 [19FA] 2503            OR      R3, R0
+ c []   000375 [19FC] 5903            PUSH    R3
+ c []   000377 [19FE] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   00037A [1A01] 5901            PUSH    R1
+ c []   00037C [1A03] 5700DB          CALL    prc_00DB           ; prc_00DB();
+
+ c []   00037F [1A06] 040306A0        LDMB    R3, b_06A0         ; R3 = b_06A0;
+ c []   000383 [1A0A] 65030003A5      CPIJE   R3, 0, loc_03A5    ; if (R3 != 0) {
+ c []   000388 [1A0F] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   00038B [1A12] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   00038E [1A15] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   000391 [1A18] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+loc_0394:
+ c []   000394 [1A1B] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   000397 [1A1E] 600305039F      JBRS    R3, 5, loc_039F    ; if ((R3 & 0x20) = 0) {
+ c []   00039C [1A23] 560394          JMP     loc_0394
+loc_039F:
+ c []   00039F [1A26] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   0003A2 [1A29] 5603BF          JMP     loc_03BF
+loc_03A5:
+ c []   0003A5 [1A2C] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   0003A8 [1A2F] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   0003AB [1A32] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   0003AE [1A35] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+loc_03B1:
+ c []   0003B1 [1A38] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   0003B4 [1A3B] 60030303BC      JBRS    R3, 3, loc_03BC    ; if ((R3 & 0x08) = 0) {
+ c []   0003B9 [1A40] 5603B1          JMP     loc_03B1
+loc_03BC:
+ c []   0003BC [1A43] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+loc_03BF:
+ c []   0003BF [1A46] 010F00          LDB     R15, 0             ; return(0);
+ c []   0003C2 [1A49] 5B04            POPR    4
+ c []   0003C4 [1A4B] 5802            RET     2
+
+
+prc_id5:
+pc []   0003C6 [1A4D] 5A04            PUSHR   4                  ; proc prc_id5(R0, R1) {
+ c []   0003C8 [1A4F] 5F42            ENTER   2, 4               ; var R2;
+
+ c []   0003CA [1A51] 570000          CALL    prc_0000           ; prc_0000();
+
+ c []   0003CD [1A54] 02030130        LDW     R3, 304
+ c []   0003D1 [1A58] 5903            PUSH    R3
+ c []   0003D3 [1A5A] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   0003D6 [1A5D] 040306A0        LDMB    R3, b_06A0         ; R3 = b_06A0;
+ c []   0003DA [1A61] 65030003E8      CPIJE   R3, 0, loc_03E8    ; if (R3 != 0) {
+ c []   0003DF [1A66] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   0003E2 [1A69] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   0003E5 [1A6C] 5603EE          JMP     loc_03EE
+loc_03E8:
+ c []   0003E8 [1A6F] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   0003EB [1A72] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+loc_03EE:
+ c []   0003EE [1A75] 02030140        LDW     R3, 320
+ c []   0003F2 [1A79] 2503            OR      R3, R0
+ c []   0003F4 [1A7B] 5903            PUSH    R3
+ c []   0003F6 [1A7D] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   0003F9 [1A80] 5901            PUSH    R1
+ c []   0003FB [1A82] 57008C          CALL    prc_008C           ; prc_008C();
+
+ c []   0003FE [1A85] 040306A0        LDMB    R3, b_06A0         ; R3 = b_06A0;
+ c []   000402 [1A89] 6503000424      CPIJE   R3, 0, loc_0424    ; if (R3 != 0) {
+ c []   000407 [1A8E] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   00040A [1A91] 5D0420          ORPI    4, 32              ; PORTE |= 0x20;
+ c []   00040D [1A94] 5D0410          ORPI    4, 16              ; PORTE |= 0x10;
+ c []   000410 [1A97] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+loc_0413:
+ c []   000413 [1A9A] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   000416 [1A9D] 600305041E      JBRS    R3, 5, loc_041E    ; if ((R3 & 0x20) = 0) {
+ c []   00041B [1AA2] 560413          JMP     loc_0413
+loc_041E:
+ c []   00041E [1AA5] 5E04FB          ANDPI   4, 251             ; PORTE &= 0x4 ^ 255;
+ c []   000421 [1AA8] 56043E          JMP     loc_043E
+loc_0424:
+ c []   000424 [1AAB] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+ c []   000427 [1AAE] 5D0408          ORPI    4, 8               ; PORTE |= 0x8;
+ c []   00042A [1AB1] 5D0404          ORPI    4, 4               ; PORTE |= 0x4;
+ c []   00042D [1AB4] 5D0401          ORPI    4, 1               ; PORTE |= 0x1;
+loc_0430:
+ c []   000430 [1AB7] 4E0304          IN      R3, 4              ; R3 = PORTE;
+ c []   000433 [1ABA] 600303043B      JBRS    R3, 3, loc_043B    ; if ((R3 & 0x08) = 0) {
+ c []   000438 [1ABF] 560430          JMP     loc_0430
+loc_043B:
+ c []   00043B [1AC2] 5E04FE          ANDPI   4, 254             ; PORTE &= 0x1 ^ 255;
+loc_043E:
+ c []   00043E [1AC5] 010F00          LDB     R15, 0             ; return(0);
+ c []   000441 [1AC8] 5B04            POPR    4
+ c []   000443 [1ACA] 5802            RET     2
+
+
+prc_id0:
+pc []   000445 [1ACC] 5A07            PUSHR   7                  ; proc prc_id0(R0) {
+ c []   000447 [1ACE] 5F71            ENTER   1, 7               ; var R1, R2, R3, R4, R5;
+
+ c []   000449 [1AD0] 0005            MOV     R5, R0
+ c []   00044B [1AD2] 1F0501          SUBB    R5, 1
+ c []   00044E [1AD5] 010601          LDB     R6, 1
+ c []   000451 [1AD8] 4856            RL      R6, R5
+ c []   000453 [1ADA] 0062            MOV     R2, R6
+ c []   000455 [1ADC] 0025            MOV     R5, R2
+ c []   000457 [1ADE] 1805FF          ANDB    R5, 255
+ c []   00045A [1AE1] 4F0405          OUT     4, R5              ; PORTE = R5;
+
+ c []   00045D [1AE4] 4E0404          IN      R4, 4              ; R4 = PORTE;
+ c []   000460 [1AE7] 1804FF          ANDB    R4, 255
+ c []   000463 [1AEA] 0045            MOV     R5, R4
+ c []   000465 [1AEC] 490508          RL      R5, 8
+ c []   000468 [1AEF] 2554            OR      R4, R5
+ c []   00046A [1AF1] 0105FF          LDB     R5, 255
+ c []   00046D [1AF4] 4F0405          OUT     4, R5              ; PORTE = R5;
+
+ c []   000470 [1AF7] 0101FE          LDB     R1, 254
+ c []   000473 [1AFA] 010300          LDB     R3, 0              ; _init_
+loc_0476:
+ c []   000476 [1AFD] 010F08          LDB     R15, 8             ; _cond_
+ c []   000479 [1B00] 52F304A8        CMPJGE  R3, R15, loc_04A8  ; for (R3 = 0; R3 < 8; _incr_) {
+ c []   00047D [1B04] 4F0401          OUT     4, R1              ; PORTE = R1;
+
+ c []   000480 [1B07] 4E0504          IN      R5, 4              ; R5 = PORTE;
+ c []   000483 [1B0A] 1725            AND     R5, R2
+ c []   000485 [1B0C] 005E            MOV     R14, R5
+ c []   000487 [1B0E] 010F00          LDB     R15, 0
+ c []   00048A [1B11] 50FE0495        CMPJE   R14, R15, loc_0495 ; if (R14 != R15) {
+ c []   00048E [1B15] 0015            MOV     R5, R1
+ c []   000490 [1B17] 2D05FF          XORB    R5, 255
+ c []   000493 [1B1A] 2554            OR      R4, R5
+loc_0495:
+ c []   000495 [1B1C] 0015            MOV     R5, R1
+ c []   000497 [1B1E] 490501          RL      R5, 1
+ c []   00049A [1B21] 260501          ORB     R5, 1
+ c []   00049D [1B24] 1805FF          ANDB    R5, 255
+ c []   0004A0 [1B27] 0051            MOV     R1, R5
+ c []   0004A2 [1B29] 110301          ADDB    R3, 1              ; _incr_
+ c []   0004A5 [1B2C] 560476          JMP     loc_0476           ; }  // for
+loc_04A8:
+ c []   0004A8 [1B2F] 0045            MOV     R5, R4
+ c []   0004AA [1B31] 4B0508          RR      R5, 8
+ c []   0004AD [1B34] 2554            OR      R4, R5
+ c []   0004AF [1B36] 004F            MOV     R15, R4            ; return(R4);
+ c []   0004B1 [1B38] 5B07            POPR    7
+ c []   0004B3 [1B3A] 5801            RET     1
+
+
+prc_id1:
+pc []   0004B5 [1B3C] 5A03            PUSHR   3                  ; proc prc_id1(R0) {
+ c []   0004B7 [1B3E] 5F31            ENTER   1, 3               ; var R1;
+
+ c []   0004B9 [1B40] 010200          LDB     R2, 0
+ c []   0004BC [1B43] 4F1002          OUT     16, R2             ; POWER = R2;
+
+ c []   0004BF [1B46] 010201          LDB     R2, 1
+ c []   0004C2 [1B49] 4F1002          OUT     16, R2             ; POWER = R2;
+
+ c []   0004C5 [1B4C] 020F3A98        LDW     R15, 15000         ; 
+ c []   0004C9 [1B50] 5C0E            SYS     14                 ; Delay(15000);
+
+ c []   0004CB [1B52] 5D0108          ORPI    1, 8               ; PORTB |= 0x8;
+ c []   0004CE [1B55] 020F3A98        LDW     R15, 15000         ; 
+ c []   0004D2 [1B59] 5C0E            SYS     14                 ; Delay(15000);
+
+ c []   0004D4 [1B5B] 0102FF          LDB     R2, 255
+ c []   0004D7 [1B5E] 4F0402          OUT     4, R2              ; PORTE = R2;
+
+ c []   0004DA [1B61] 010F04          LDB     R15, 4
+ c []   0004DD [1B64] 52F004E7        CMPJGE  R0, R15, loc_04E7  ; if (R0 < R15) {
+ c []   0004E1 [1B68] 5D1002          ORPI    16, 2              ; POWER |= 0x2;
+ c []   0004E4 [1B6B] 5604EA          JMP     loc_04EA
+loc_04E7:
+ c []   0004E7 [1B6E] 5E10FD          ANDPI   16, 253            ; POWER &= 0x2 ^ 255;
+loc_04EA:
+ c []   0004EA [1B71] 61000004F5      JBRC    R0, 0, loc_04F5    ; if (R0 & 0x01) {
+ c []   0004EF [1B76] 5D0001          ORPI    0, 1               ; PORTA |= 0x1;
+ c []   0004F2 [1B79] 5604F8          JMP     loc_04F8
+loc_04F5:
+ c []   0004F5 [1B7C] 5E00FE          ANDPI   0, 254             ; PORTA &= 0x1 ^ 255;
+loc_04F8:
+ c []   0004F8 [1B7F] 6100010503      JBRC    R0, 1, loc_0503    ; if (R0 & 0x02) {
+ c []   0004FD [1B84] 5D0002          ORPI    0, 2               ; PORTA |= 0x2;
+ c []   000500 [1B87] 560506          JMP     loc_0506
+loc_0503:
+ c []   000503 [1B8A] 5E00FD          ANDPI   0, 253             ; PORTA &= 0x2 ^ 255;
+loc_0506:
+ c []   000506 [1B8D] 6100020511      JBRC    R0, 2, loc_0511    ; if (R0 & 0x04) {
+ c []   00050B [1B92] 5D0004          ORPI    0, 4               ; PORTA |= 0x4;
+ c []   00050E [1B95] 560514          JMP     loc_0514
+loc_0511:
+ c []   000511 [1B98] 5E00FB          ANDPI   0, 251             ; PORTA &= 0x4 ^ 255;
+loc_0514:
+ c []   000514 [1B9B] 5D1004          ORPI    16, 4              ; POWER |= 0x4;
+ c []   000517 [1B9E] 030F00013880    LDD     R15, 80000         ; 
+ c []   00051D [1BA4] 5C0E            SYS     14                 ; Delay(80000);
+
+ c []   00051F [1BA6] 010F00          LDB     R15, 0             ; return(0);
+ c []   000522 [1BA9] 5B03            POPR    3
+ c []   000524 [1BAB] 5801            RET     1
+
+
+prc_id2:
+pc []   000526 [1BAD] 5A01            PUSHR   1                  ; proc prc_id2() {
+ c []   000528 [1BAF] 5F10            ENTER   0, 1               ; 
+
+ c []   00052A [1BB1] 5D0108          ORPI    1, 8               ; PORTB |= 0x8;
+ c []   00052D [1BB4] 010000          LDB     R0, 0
+ c []   000530 [1BB7] 4F1000          OUT     16, R0             ; POWER = R0;
+
+ c []   000533 [1BBA] 5B01            POPR    1
+ c []   000535 [1BBC] 5800            RET     0
+
+
+prc_id3:
+pc []   000537 [1BBE] 5A07            PUSHR   7                  ; proc prc_id3(R0, R1) {
+ c []   000539 [1BC0] 5F72            ENTER   2, 7               ; var R2, R3, R4, R5;
+
+ c []   00053B [1BC2] 010F00          LDB     R15, 0
+ c []   00053E [1BC5] 53F0054C        CMPJLE  R0, R15, loc_054C  ; if (R0 > R15) {
+ c []   000542 [1BC9] 1F0001          SUBB    R0, 1
+ c []   000545 [1BCC] 010501          LDB     R5, 1
+ c []   000548 [1BCF] 4805            RL      R5, R0
+ c []   00054A [1BD1] 0050            MOV     R0, R5
+loc_054C:
+ c []   00054C [1BD3] 010F00          LDB     R15, 0
+ c []   00054F [1BD6] 53F1055D        CMPJLE  R1, R15, loc_055D  ; if (R1 > R15) {
+ c []   000553 [1BDA] 1F0101          SUBB    R1, 1
+ c []   000556 [1BDD] 010501          LDB     R5, 1
+ c []   000559 [1BE0] 4815            RL      R5, R1
+ c []   00055B [1BE2] 0051            MOV     R1, R5
+loc_055D:
+ c []   00055D [1BE4] 0005            MOV     R5, R0
+ c []   00055F [1BE6] 2C15            XOR     R5, R1
+ c []   000561 [1BE8] 0052            MOV     R2, R5
+ c []   000563 [1BEA] 6402056D        JNZ     R2, loc_056D       ; if (R2 = 0) {
+ c []   000567 [1BEE] 010F00          LDB     R15, 0             ; 
+ c []   00056A [1BF1] 560600          JMP     end_prc_id3        ; return(0);
+loc_056D:
+ c []   00056D [1BF4] 4E0510          IN      R5, 16             ; R5 = POWER;
+ c []   000570 [1BF7] 600500057B      JBRS    R5, 0, loc_057B    ; if ((R5 & 0x01) = 0) {
+ c []   000575 [1BFC] 010F00          LDB     R15, 0             ; 
+ c []   000578 [1BFF] 560600          JMP     end_prc_id3        ; return(0);
+loc_057B:
+ c []   00057B [1C02] 5D0140          ORPI    1, 64              ; PORTB |= 0x40;
+ c []   00057E [1C05] 0015            MOV     R5, R1
+ c []   000580 [1C07] 490508          RL      R5, 8
+ c []   000583 [1C0A] 0006            MOV     R6, R0
+ c []   000585 [1C0C] 2D06FF          XORB    R6, 255
+ c []   000588 [1C0F] 2565            OR      R5, R6
+ c []   00058A [1C11] 0052            MOV     R2, R5
+ c []   00058C [1C13] 0024            MOV     R4, R2
+ c []   00058E [1C15] 010300          LDB     R3, 0              ; _init_
+loc_0591:
+ c []   000591 [1C18] 010F10          LDB     R15, 16            ; _cond_
+ c []   000594 [1C1B] 52F305B5        CMPJGE  R3, R15, loc_05B5  ; for (R3 = 0; R3 < 16; _incr_) {
+ c []   000598 [1C1F] 61020F05A3      JBRC    R2, 15, loc_05A3   ; if (R2 & 0x8000) {
+ c []   00059D [1C24] 5D0120          ORPI    1, 32              ; PORTB |= 0x20;
+ c []   0005A0 [1C27] 5605A6          JMP     loc_05A6
+loc_05A3:
+ c []   0005A3 [1C2A] 5E01DF          ANDPI   1, 223             ; PORTB &= 0x20 ^ 255;
+loc_05A6:
+ c []   0005A6 [1C2D] 5E01BF          ANDPI   1, 191             ; PORTB &= 0x40 ^ 255;
+ c []   0005A9 [1C30] 5D0140          ORPI    1, 64              ; PORTB |= 0x40;
+ c []   0005AC [1C33] 490201          RL      R2, 1
+ c []   0005AF [1C36] 110301          ADDB    R3, 1              ; _incr_
+ c []   0005B2 [1C39] 560591          JMP     loc_0591           ; }  // for
+loc_05B5:
+ c []   0005B5 [1C3C] 5D0080          ORPI    0, 128             ; PORTA |= 0x80;
+ c []   0005B8 [1C3F] 5E007F          ANDPI   0, 127             ; PORTA &= 0x80 ^ 255;
+ c []   0005BB [1C42] 5E01F7          ANDPI   1, 247             ; PORTB &= 0x8 ^ 255;
+ c []   0005BE [1C45] 0105FF          LDB     R5, 255
+ c []   0005C1 [1C48] 4F0405          OUT     4, R5              ; PORTE = R5;
+
+ c []   0005C4 [1C4B] 5D1004          ORPI    16, 4              ; POWER |= 0x4;
+ c []   0005C7 [1C4E] 030F000186A0    LDD     R15, 100000        ; 
+ c []   0005CD [1C54] 5C0E            SYS     14                 ; Delay(100000);
+
+ c []   0005CF [1C56] 4E0516          IN      R5, 22             ; R5 = ADC_DATA0;
+ c []   0005D2 [1C59] 3505014A        MULW    R5, 330
+ c []   0005D6 [1C5D] 3C0503FF        DIVW    R5, 1023
+ c []   0005DA [1C61] 34053D          MULB    R5, 61
+ c []   0005DD [1C64] 3B050A          DIVB    R5, 10
+ c []   0005E0 [1C67] 0050            MOV     R0, R5
+ c []   0005E2 [1C69] 4E0517          IN      R5, 23             ; R5 = ADC_DATA1;
+ c []   0005E5 [1C6C] 3505014A        MULW    R5, 330
+ c []   0005E9 [1C70] 3C0503FF        DIVW    R5, 1023
+ c []   0005ED [1C74] 34053D          MULB    R5, 61
+ c []   0005F0 [1C77] 3B050A          DIVB    R5, 10
+ c []   0005F3 [1C7A] 0051            MOV     R1, R5
+ c []   0005F5 [1C7C] 0005            MOV     R5, R0
+ c []   0005F7 [1C7E] 490510          RL      R5, 16
+ c []   0005FA [1C81] 2515            OR      R5, R1
+ c []   0005FC [1C83] 0050            MOV     R0, R5
+ c []   0005FE [1C85] 000F            MOV     R15, R0            ; return(R0);
+end_prc_id3:
+ c []   000600 [1C87] 5B07            POPR    7
+ c []   000602 [1C89] 5802            RET     2
+
+
+prc_id4:
+pc []   000604 [1C8B] 5A06            PUSHR   6                  ; proc prc_id4(R0, R1) {
+ c []   000606 [1C8D] 5F62            ENTER   2, 6               ; var R2, R3, R4;
+
+ c []   000608 [1C8F] 0404069F        LDMB    R4, b_069F         ; R4 = b_069F;
+ c []   00060C [1C93] 650400066B      CPIJE   R4, 0, loc_066B    ; if (R4 != 0) {
+ c []   000611 [1C98] 010200          LDB     R2, 0
+loc_0614:
+ c []   000614 [1C9B] 0014            MOV     R4, R1
+ c []   000616 [1C9D] 3B0402          DIVB    R4, 2
+ c []   000619 [1CA0] 004F            MOV     R15, R4
+ c []   00061B [1CA2] 52F2065E        CMPJGE  R2, R15, loc_065E  ; if (R2 < R15) {
+ c []   00061F [1CA6] 5900            PUSH    R0
+ c []   000621 [1CA8] 570283          CALL    prc_id6            ; 
+ c []   000624 [1CAB] 00F3            MOV     R3, R15            ; R3 = prc_id6();
+
+ c []   000626 [1CAD] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   00062C [1CB3] 51F30633        CMPJNE  R3, R15, loc_0633  ; if (R3 = R15) {
+ c []   000630 [1CB7] 56065E          JMP     loc_065E
+loc_0633:
+ c []   000633 [1CBA] 0034            MOV     R4, R3
+ c []   000635 [1CBC] 1804FF          ANDB    R4, 255
+ c []   000638 [1CBF] 0025            MOV     R5, R2
+ c []   00063A [1CC1] 340502          MULB    R5, 2
+ c []   00063D [1CC4] 6A4506A1        AWRB    b_06A1 + R5, R4    ; b_06A1[R5] = R4;
+
+ c []   000641 [1CC8] 0034            MOV     R4, R3
+ c []   000643 [1CCA] 4B0408          RR      R4, 8
+ c []   000646 [1CCD] 1804FF          ANDB    R4, 255
+ c []   000649 [1CD0] 0025            MOV     R5, R2
+ c []   00064B [1CD2] 340502          MULB    R5, 2
+ c []   00064E [1CD5] 110501          ADDB    R5, 1
+ c []   000651 [1CD8] 6A4506A1        AWRB    b_06A1 + R5, R4    ; b_06A1[R5] = R4;
+
+ c []   000655 [1CDC] 110001          ADDB    R0, 1
+ c []   000658 [1CDF] 110201          ADDB    R2, 1
+ c []   00065B [1CE2] 560614          JMP     loc_0614
+loc_065E:
+ c []   00065E [1CE5] 0024            MOV     R4, R2
+ c []   000660 [1CE7] 340402          MULB    R4, 2
+ c []   000663 [1CEA] 004F            MOV     R15, R4            ; 
+ c []   000665 [1CEC] 56069A          JMP     end_prc_id4        ; return(R4);
+ c ['#']000668 [1CEF] 560698          JMP     loc_0698
+loc_066B:
+ c []   00066B [1CF2] 010200          LDB     R2, 0              ; _init_
+loc_066E:
+ c []   00066E [1CF5] 52120698        CMPJGE  R2, R1, loc_0698   ; for (R2 = 0; R2 < R1; _incr_) {
+ c []   000672 [1CF9] 5900            PUSH    R0
+ c []   000674 [1CFB] 5702E5          CALL    prc_id8            ; 
+ c []   000677 [1CFE] 00F3            MOV     R3, R15            ; R3 = prc_id8();
+
+ c []   000679 [1D00] 030FFFFFFFFF    LDD     R15, 4294967295
+ c []   00067F [1D06] 51F30686        CMPJNE  R3, R15, loc_0686  ; if (R3 = R15) {
+ c []   000683 [1D0A] 560698          JMP     loc_0698           ;   break;
+loc_0686:
+ c []   000686 [1D0D] 0034            MOV     R4, R3
+ c []   000688 [1D0F] 1804FF          ANDB    R4, 255
+ c []   00068B [1D12] 6A4206A1        AWRB    b_06A1 + R2, R4    ; b_06A1[R2] = R4;
+
+ c []   00068F [1D16] 110001          ADDB    R0, 1
+ c []   000692 [1D19] 110201          ADDB    R2, 1              ; _incr_
+ c []   000695 [1D1C] 56066E          JMP     loc_066E           ; }  // for
+loc_0698:
+ c []   000698 [1D1F] 002F            MOV     R15, R2            ; return(R2);
+end_prc_id4:
+ c []   00069A [1D21] 5B06            POPR    6
+ c []   00069C [1D23] 5802            RET     2
+
+
+b_069E:
+  u[]   00069E [1D25] 00              
+b_069F:
+  u[]   00069F [1D26] 00              
+b_06A0:
+  u[]   0006A0 [1D27] 00              
+b_06A1:
+  u[]   0006A1 [1D28] 00                                         ; b_06A1[64]
+  u[]   0006A2 [1D29] 00              
+  u[]   0006A3 [1D2A] 00              
+  u[]   0006A4 [1D2B] 00              
+  u[]   0006A5 [1D2C] 00              
+  u[]   0006A6 [1D2D] 00              
+  u[]   0006A7 [1D2E] 00              
+  u[]   0006A8 [1D2F] 00              
+  u[]   0006A9 [1D30] 00              
+  u[]   0006AA [1D31] 00              
+  u[]   0006AB [1D32] 00              
+  u[]   0006AC [1D33] 00              
+  u[]   0006AD [1D34] 00              
+  u[]   0006AE [1D35] 00              
+  u[]   0006AF [1D36] 00              
+  u[]   0006B0 [1D37] 00              
+  u[]   0006B1 [1D38] 00              
+  u[]   0006B2 [1D39] 00              
+  u[]   0006B3 [1D3A] 00              
+  u[]   0006B4 [1D3B] 00              
+  u[]   0006B5 [1D3C] 00              
+  u[]   0006B6 [1D3D] 00              
+  u[]   0006B7 [1D3E] 00              
+  u[]   0006B8 [1D3F] 00              
+  u[]   0006B9 [1D40] 00              
+  u[]   0006BA [1D41] 00              
+  u[]   0006BB [1D42] 00              
+  u[]   0006BC [1D43] 00              
+  u[]   0006BD [1D44] 00              
+  u[]   0006BE [1D45] 00              
+  u[]   0006BF [1D46] 00              
+  u[]   0006C0 [1D47] 00              
+  u[]   0006C1 [1D48] 00              
+  u[]   0006C2 [1D49] 00              
+  u[]   0006C3 [1D4A] 00              
+  u[]   0006C4 [1D4B] 00              
+  u[]   0006C5 [1D4C] 00              
+  u[]   0006C6 [1D4D] 00              
+  u[]   0006C7 [1D4E] 00              
+  u[]   0006C8 [1D4F] 00              
+  u[]   0006C9 [1D50] 00              
+  u[]   0006CA [1D51] 00              
+  u[]   0006CB [1D52] 00              
+  u[]   0006CC [1D53] 00              
+  u[]   0006CD [1D54] 00              
+  u[]   0006CE [1D55] 00              
+  u[]   0006CF [1D56] 00              
+  u[]   0006D0 [1D57] 00              
+  u[]   0006D1 [1D58] 00              
+  u[]   0006D2 [1D59] 00              
+  u[]   0006D3 [1D5A] 00              
+  u[]   0006D4 [1D5B] 00              
+  u[]   0006D5 [1D5C] 00              
+  u[]   0006D6 [1D5D] 00              
+  u[]   0006D7 [1D5E] 00              
+  u[]   0006D8 [1D5F] 00              
+  u[]   0006D9 [1D60] 00              
+  u[]   0006DA [1D61] 00              
+  u[]   0006DB [1D62] 00              
+  u[]   0006DC [1D63] 00              
+  u[]   0006DD [1D64] 00              
+  u[]   0006DE [1D65] 00              
+  u[]   0006DF [1D66] 00              
+  u[]   0006E0 [1D67] 00              
+  u[]   0006E1 [1D68] 00              
+  u[]   0006E2 [1D69] 00              
+  u[]   0006E3 [1D6A] 00              
+  u[]   0006E4 [1D6B] 00              
+  u[]   0006E5 [1D6C] 00              
+  u[]   0006E6 [1D6D] 00              
+  u[]   0006E7 [1D6E] 00              
+  u[]   0006E8 [1D6F] 00              
+  u[]   0006E9 [1D70] 00              
+  u[]   0006EA [1D71] 00              
+  u[]   0006EB [1D72] 00              
+  u[]   0006EC [1D73] 00              
+  u[]   0006ED [1D74] 00              
+  u[]   0006EE [1D75] 00              
+  u[]   0006EF [1D76] 00              
+  u[]   0006F0 [1D77] 00              
+  u[]   0006F1 [1D78] 00              
+  u[]   0006F2 [1D79] 00              
+  u[]   0006F3 [1D7A] 00              
+  u[]   0006F4 [1D7B] 00              
+  u[]   0006F5 [1D7C] 00              
+  u[]   0006F6 [1D7D] 00              
+  u[]   0006F7 [1D7E] 00              
+  u[]   0006F8 [1D7F] 00              
+  u[]   0006F9 [1D80] 00              
+  u[]   0006FA [1D81] 00              
+  u[]   0006FB [1D82] 00              
+  u[]   0006FC [1D83] 00              
+  u[]   0006FD [1D84] 00              
+  u[]   0006FE [1D85] 00              
+  u[]   0006FF [1D86] 00              

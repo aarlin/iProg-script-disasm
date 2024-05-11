@@ -13,3 +13,7 @@ Also supports disassembly of calculators - .cal files
 
 The [examples/compiled](examples/compiled) folder contains several examples of compiled scripts.
 Decompiled and restored result in [examples/decompiled](examples/decompiled)
+
+# Commands
+
+`python iProgDecompiler.py filename [--bruteforce] | [-sn серийник [серийник ...]]`
