@@ -1,15 +1,15 @@
 [![en](https://img.shields.io/badge/lang-en-green.svg)](README.md)
 [![ru](https://img.shields.io/badge/язык-ru-blue.svg)](README.ru.md)
 
-# Дизассемблер скриптов и калькуляторов iProg
+# iProg script and calculator disassembler
 
-iProgDecompiler.py расшифровывает и создаёт листинг скрипта .ipr с комментариями примерного исходного кода.
-Т.к. компилятор iProg не имеет оптимизации, то из листинга довольно легко получить исходный код скрипта.
-Кончено же без сохранения имён функций и переменных.
+iProgDecompiler.py decrypts .ipr and produces an assembly code listing and approximate source code.
+Since there is no optimization in the iProg compiler, obtaining the script's source code is quite easy.
+Of course, without saving the names of functions and variables.
 
-В качестве бонуса позволяет отвязать скрипт от серийника.
+As a bonus, it allows you to unbind the script from the serial number.
 
-Также поддерживает дизассемблирование калькуляторов - файлы .cal
+Also supports disassembly of calculators - .cal files
 
-В папке [examples/compiled](examples/compiled) лежат несколько примеров скомпилированных скриптов.
-Декомпилированный и восстановленный результат в [examples/decompiled](examples/decompiled)
+The [examples/compiled](examples/compiled) folder contains several examples of compiled scripts.
+Decompiled and restored result in [examples/decompiled](examples/decompiled)
