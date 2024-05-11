@@ -1,5 +1,5 @@
-[![en](https://img.shields.io/badge/lang-en-green.svg)](README.en.md)
-[![ru](https://img.shields.io/badge/язык-ru-blue.svg)](README.md)
+[![en](https://img.shields.io/badge/lang-en-green.svg)](README.md)
+[![ru](https://img.shields.io/badge/язык-ru-blue.svg)](README.ru.md)
 
 # iProg script and calculator disassembler
 
