@@ -1,0 +1,488 @@
+Size(260, 280);
+Form
+{
+    Group("Пробег", 5, 5, 110, 50)
+    {
+        Digit(digit_0, " ", 5, 18, 70);
+        Label(label_1, "КМ", 80, 20);
+    }
+    Label(label_2, "25", 57, 54);
+    Label(label_3, "Constant -", 7, 54);
+    Group("Информация", 5, 65, 250, 45)
+    {
+        Label(label_4, " ", 0, 18);
+    }
+    Group("Описание", 5, 115, 250, 90)
+    {
+        Label(label_5, "Калькулятор пробега Honda Pilot.", 0, 20);
+        Label(label_6, "Eeprom 24c16.", 0, 35);
+        Label(label_7, "Введите нужное значение в окне <Пробег>.", 0, 50);
+        Label(label_8, "Нажмите кнопку <Применить>.", 0, 65);
+    }
+    Picture(pict_9, "Honda.bmp", 158, 8, 0, 0);
+}
+
+OnShow:
+pc []   000111 [0111] 290019          var0 = 25
+ c []   000114 [0114] 2A011007        var1 = 1808
+ c []   000118 [0118] 290500          var5 = 0
+ c []   00011B [011B] 290D00          var13 = 0
+ c []   00011E [011E] 292B00          var43 = 0
+label_000121:
+ c []   000121 [0121] 00800D          var128 = var13
+ c []   000124 [0124] 297F11          var127 = 17
+ c []   000127 [0127] 1C807FD502      if var128 >= var127 goto label_0002d5
+ c []   00012C [012C] 291700          var23 = 0
+ c []   00012F [012F] 22FF01          var255 = @var1
+ c []   000132 [0132] 00FEFF          var254 = var255
+ c []   000135 [0135] 17FE04          var254 = var254 << 4
+ c []   000138 [0138] 0002FE          var2 = var254
+ c []   00013B [013B] 00FF01          var255 = var1
+ c []   00013E [013E] 2BFF01          var255 = var255 + 1
+ c []   000141 [0141] 22FEFF          var254 = @var255
+ c []   000144 [0144] 00FDFE          var253 = var254
+ c []   000147 [0147] 15FD04          var253 = var253 >> 4
+ c []   00014A [014A] 00FCFD          var252 = var253
+ c []   00014D [014D] 45FC0F          var252 = var252 & 0x0f
+ c []   000150 [0150] 0003FC          var3 = var252
+ c []   000153 [0153] 100302          var3 = var3 | var2
+ c []   000156 [0156] 00FF01          var255 = var1
+ c []   000159 [0159] 2BFF03          var255 = var255 + 3
+ c []   00015C [015C] 22FEFF          var254 = @var255
+ c []   00015F [015F] 00FDFE          var253 = var254
+ c []   000162 [0162] 45FD7F          var253 = var253 & 0x7f
+ c []   000165 [0165] 0004FD          var4 = var253
+ c []   000168 [0168] 00FF04          var255 = var4
+ c []   00016B [016B] 32FFDD3E        var255 = var255 * 16093
+ c []   00016F [016F] 00FEFF          var254 = var255
+ c []   000172 [0172] 30FE1027        var254 = var254 / 10000
+ c []   000176 [0176] 0004FE          var4 = var254
+ c []   000179 [0179] 00FF03          var255 = var3
+ c []   00017C [017C] 0CFF00          var255 = var255 * var0
+ c []   00017F [017F] 00FEFF          var254 = var255
+ c []   000182 [0182] 04FE04          var254 = var254 + var4
+ c []   000185 [0185] 0021FE          var33 = var254
+ c []   000188 [0188] 00802B          var128 = var43
+ c []   00018B [018B] 007F21          var127 = var33
+ c []   00018E [018E] 1C807F9601      if var128 >= var127 goto label_000196
+ c []   000193 [0193] 002B21          var43 = var33
+label_000196:
+ c []   000196 [0196] 00FF01          var255 = var1
+ c []   000199 [0199] 2BFF01          var255 = var255 + 1
+ c []   00019C [019C] 22FEFF          var254 = @var255
+ c []   00019F [019F] 00FDFE          var253 = var254
+ c []   0001A2 [01A2] 45FD0F          var253 = var253 & 0x0f
+ c []   0001A5 [01A5] 000CFD          var12 = var253
+ c []   0001A8 [01A8] 000E03          var14 = var3
+ c []   0001AB [01AB] 290A00          var10 = 0
+ c []   0001AE [01AE] 00FF0E          var255 = var14
+ c []   0001B1 [01B1] 45FF0F          var255 = var255 & 0x0f
+ c []   0001B4 [01B4] 00FEFF          var254 = var255
+ c []   0001B7 [01B7] 49FE05          var254 = var254 ^ 0x05
+ c []   0001BA [01BA] 000AFE          var10 = var254
+label_0001bd:
+ c []   0001BD [01BD] 008017          var128 = var23
+ c []   0001C0 [01C0] 297F03          var127 = 3
+ c []   0001C3 [01C3] 1C807FBB02      if var128 >= var127 goto label_0002bb
+ c []   0001C8 [01C8] 00800A          var128 = var10
+ c []   0001CB [01CB] 297F01          var127 = 1
+ c []   0001CE [01CE] 19807FD601      if var128 != var127 goto label_0001d6
+ c []   0001D3 [01D3] 290A1D          var10 = 29
+label_0001d6:
+ c []   0001D6 [01D6] 00800A          var128 = var10
+ c []   0001D9 [01D9] 297F02          var127 = 2
+ c []   0001DC [01DC] 19807FE401      if var128 != var127 goto label_0001e4
+ c []   0001E1 [01E1] 290A17          var10 = 23
+label_0001e4:
+ c []   0001E4 [01E4] 00800A          var128 = var10
+ c []   0001E7 [01E7] 297F03          var127 = 3
+ c []   0001EA [01EA] 19807FF201      if var128 != var127 goto label_0001f2
+ c []   0001EF [01EF] 290A1A          var10 = 26
+label_0001f2:
+ c []   0001F2 [01F2] 00800A          var128 = var10
+ c []   0001F5 [01F5] 297F04          var127 = 4
+ c []   0001F8 [01F8] 19807F0002      if var128 != var127 goto label_000200
+ c []   0001FD [01FD] 290A1E          var10 = 30
+label_000200:
+ c []   000200 [0200] 00800A          var128 = var10
+ c []   000203 [0203] 297F05          var127 = 5
+ c []   000206 [0206] 19807F0E02      if var128 != var127 goto label_00020e
+ c []   00020B [020B] 290A13          var10 = 19
+label_00020e:
+ c []   00020E [020E] 00800A          var128 = var10
+ c []   000211 [0211] 297F06          var127 = 6
+ c []   000214 [0214] 19807F1C02      if var128 != var127 goto label_00021c
+ c []   000219 [0219] 290A19          var10 = 25
+label_00021c:
+ c []   00021C [021C] 00800A          var128 = var10
+ c []   00021F [021F] 297F07          var127 = 7
+ c []   000222 [0222] 19807F2A02      if var128 != var127 goto label_00022a
+ c []   000227 [0227] 290A14          var10 = 20
+label_00022a:
+ c []   00022A [022A] 00800A          var128 = var10
+ c []   00022D [022D] 297F08          var127 = 8
+ c []   000230 [0230] 19807F3802      if var128 != var127 goto label_000238
+ c []   000235 [0235] 290A11          var10 = 17
+label_000238:
+ c []   000238 [0238] 00800A          var128 = var10
+ c []   00023B [023B] 297F09          var127 = 9
+ c []   00023E [023E] 19807F4602      if var128 != var127 goto label_000246
+ c []   000243 [0243] 290A1C          var10 = 28
+label_000246:
+ c []   000246 [0246] 00800A          var128 = var10
+ c []   000249 [0249] 297F0A          var127 = 10
+ c []   00024C [024C] 19807F5402      if var128 != var127 goto label_000254
+ c []   000251 [0251] 290A16          var10 = 22
+label_000254:
+ c []   000254 [0254] 00800A          var128 = var10
+ c []   000257 [0257] 297F0B          var127 = 11
+ c []   00025A [025A] 19807F6202      if var128 != var127 goto label_000262
+ c []   00025F [025F] 290A1B          var10 = 27
+label_000262:
+ c []   000262 [0262] 00800A          var128 = var10
+ c []   000265 [0265] 297F0C          var127 = 12
+ c []   000268 [0268] 19807F7002      if var128 != var127 goto label_000270
+ c []   00026D [026D] 290A1F          var10 = 31
+label_000270:
+ c []   000270 [0270] 00800A          var128 = var10
+ c []   000273 [0273] 297F0D          var127 = 13
+ c []   000276 [0276] 19807F7E02      if var128 != var127 goto label_00027e
+ c []   00027B [027B] 290A12          var10 = 18
+label_00027e:
+ c []   00027E [027E] 00800A          var128 = var10
+ c []   000281 [0281] 297F0E          var127 = 14
+ c []   000284 [0284] 19807F8C02      if var128 != var127 goto label_00028c
+ c []   000289 [0289] 290A18          var10 = 24
+label_00028c:
+ c []   00028C [028C] 00800A          var128 = var10
+ c []   00028F [028F] 297F0F          var127 = 15
+ c []   000292 [0292] 19807F9A02      if var128 != var127 goto label_00029a
+ c []   000297 [0297] 290A15          var10 = 21
+label_00029a:
+ c []   00029A [029A] 450A0F          var10 = var10 & 0x0f
+ c []   00029D [029D] 00FF0E          var255 = var14
+ c []   0002A0 [02A0] 15FF04          var255 = var255 >> 4
+ c []   0002A3 [02A3] 00FEFF          var254 = var255
+ c []   0002A6 [02A6] 45FE0F          var254 = var254 & 0x0f
+ c []   0002A9 [02A9] 00FDFE          var253 = var254
+ c []   0002AC [02AC] 12FD0A          var253 = var253 ^ var10
+ c []   0002AF [02AF] 000AFD          var10 = var253
+ c []   0002B2 [02B2] 150E04          var14 = var14 >> 4
+ c []   0002B5 [02B5] 2B1701          var23 = var23 + 1
+ c []   0002B8 [02B8] 1EBD01          jmp label_0001bd
+label_0002bb:
+ c []   0002BB [02BB] 2B0104          var1 = var1 + 4
+ c []   0002BE [02BE] 2B0D01          var13 = var13 + 1
+ c []   0002C1 [02C1] 450A0F          var10 = var10 & 0x0f
+ c []   0002C4 [02C4] 00800A          var128 = var10
+ c []   0002C7 [02C7] 007F0C          var127 = var12
+ c []   0002CA [02CA] 18807FD202      if var128 == var127 goto label_0002d2
+ c []   0002CF [02CF] 290501          var5 = 1
+label_0002d2:
+ c []   0002D2 [02D2] 1E2101          jmp label_000121
+label_0002d5:
+ c []   0002D5 [02D5] 008005          var128 = var5
+ c []   0002D8 [02D8] 297F00          var127 = 0
+ c []   0002DB [02DB] 18807FFE02      if var128 == var127 goto label_0002fe
+ c []   0002E0 [02E0] 2504FF000001    label_4.Color = 0x000000ff
+ c []   0002E6 [02E6] 250401000002    label_4.Bold = 1
+ c []   0002EC [02EC] 3520            str32 = ""
+ c []   0002EE [02EE] 36201006        str32 = str32 + "Неверный дамп!"
+ c []   0002F2 [02F2] 420420          label_4 = str32
+ c []   0002F5 [02F5] 240000000000    digit_0 = 0
+ c []   0002FB [02FB] 1E1C03          jmp label_00031c
+label_0002fe:
+ c []   0002FE [02FE] 250201000002    label_2.Bold = 1
+ c []   000304 [0304] 25040000FF01    label_4.Color = 0x00ff0000
+ c []   00030A [030A] 250401000002    label_4.Bold = 1
+ c []   000310 [0310] 3520            str32 = ""
+ c []   000312 [0312] 36201F06        str32 = str32 + "Введите пробег"
+ c []   000316 [0316] 420420          label_4 = str32
+ c []   000319 [0319] 03002B          digit_0 = var43
+label_00031c:
+ c []   00031C [031C] 1F              return
+
+
+OnApply:
+pc []   00031D [031D] 02FF00          var255 = digit_0
+ c []   000320 [0320] 0000FF          var0 = var255
+ c []   000323 [0323] 290119          var1 = 25
+ c []   000326 [0326] 290200          var2 = 0
+ c []   000329 [0329] 290300          var3 = 0
+ c []   00032C [032C] 290400          var4 = 0
+ c []   00032F [032F] 2A051007        var5 = 1808
+ c []   000333 [0333] 290C00          var12 = 0
+ c []   000336 [0336] 008000          var128 = var0
+ c []   000339 [0339] 017FFFFF0700    var127 = 524287
+ c []   00033F [033F] 1D807F5C03      if var128 <= var127 goto label_00035c
+ c []   000344 [0344] 2504FF000001    label_4.Color = 0x000000ff
+ c []   00034A [034A] 250401000002    label_4.Bold = 1
+ c []   000350 [0350] 3520            str32 = ""
+ c []   000352 [0352] 36202E06        str32 = str32 + "Пробег должен быть от 1 до 524160 км"
+ c []   000356 [0356] 420420          label_4 = str32
+ c []   000359 [0359] 1E0F06          jmp label_00060f
+label_00035c:
+ c []   00035C [035C] 290300          var3 = 0
+ c []   00035F [035F] 080001          var0 = var0 / var1
+ c []   000362 [0362] 000400          var4 = var0
+ c []   000365 [0365] 290A00          var10 = 0
+ c []   000368 [0368] 00FF04          var255 = var4
+ c []   00036B [036B] 45FF0F          var255 = var255 & 0x0f
+ c []   00036E [036E] 00FEFF          var254 = var255
+ c []   000371 [0371] 49FE05          var254 = var254 ^ 0x05
+ c []   000374 [0374] 000AFE          var10 = var254
+label_000377:
+ c []   000377 [0377] 008003          var128 = var3
+ c []   00037A [037A] 297F03          var127 = 3
+ c []   00037D [037D] 1C807F7504      if var128 >= var127 goto label_000475
+ c []   000382 [0382] 00800A          var128 = var10
+ c []   000385 [0385] 297F01          var127 = 1
+ c []   000388 [0388] 19807F9003      if var128 != var127 goto label_000390
+ c []   00038D [038D] 290A1D          var10 = 29
+label_000390:
+ c []   000390 [0390] 00800A          var128 = var10
+ c []   000393 [0393] 297F02          var127 = 2
+ c []   000396 [0396] 19807F9E03      if var128 != var127 goto label_00039e
+ c []   00039B [039B] 290A17          var10 = 23
+label_00039e:
+ c []   00039E [039E] 00800A          var128 = var10
+ c []   0003A1 [03A1] 297F03          var127 = 3
+ c []   0003A4 [03A4] 19807FAC03      if var128 != var127 goto label_0003ac
+ c []   0003A9 [03A9] 290A1A          var10 = 26
+label_0003ac:
+ c []   0003AC [03AC] 00800A          var128 = var10
+ c []   0003AF [03AF] 297F04          var127 = 4
+ c []   0003B2 [03B2] 19807FBA03      if var128 != var127 goto label_0003ba
+ c []   0003B7 [03B7] 290A1E          var10 = 30
+label_0003ba:
+ c []   0003BA [03BA] 00800A          var128 = var10
+ c []   0003BD [03BD] 297F05          var127 = 5
+ c []   0003C0 [03C0] 19807FC803      if var128 != var127 goto label_0003c8
+ c []   0003C5 [03C5] 290A13          var10 = 19
+label_0003c8:
+ c []   0003C8 [03C8] 00800A          var128 = var10
+ c []   0003CB [03CB] 297F06          var127 = 6
+ c []   0003CE [03CE] 19807FD603      if var128 != var127 goto label_0003d6
+ c []   0003D3 [03D3] 290A19          var10 = 25
+label_0003d6:
+ c []   0003D6 [03D6] 00800A          var128 = var10
+ c []   0003D9 [03D9] 297F07          var127 = 7
+ c []   0003DC [03DC] 19807FE403      if var128 != var127 goto label_0003e4
+ c []   0003E1 [03E1] 290A14          var10 = 20
+label_0003e4:
+ c []   0003E4 [03E4] 00800A          var128 = var10
+ c []   0003E7 [03E7] 297F08          var127 = 8
+ c []   0003EA [03EA] 19807FF203      if var128 != var127 goto label_0003f2
+ c []   0003EF [03EF] 290A11          var10 = 17
+label_0003f2:
+ c []   0003F2 [03F2] 00800A          var128 = var10
+ c []   0003F5 [03F5] 297F09          var127 = 9
+ c []   0003F8 [03F8] 19807F0004      if var128 != var127 goto label_000400
+ c []   0003FD [03FD] 290A1C          var10 = 28
+label_000400:
+ c []   000400 [0400] 00800A          var128 = var10
+ c []   000403 [0403] 297F0A          var127 = 10
+ c []   000406 [0406] 19807F0E04      if var128 != var127 goto label_00040e
+ c []   00040B [040B] 290A16          var10 = 22
+label_00040e:
+ c []   00040E [040E] 00800A          var128 = var10
+ c []   000411 [0411] 297F0B          var127 = 11
+ c []   000414 [0414] 19807F1C04      if var128 != var127 goto label_00041c
+ c []   000419 [0419] 290A1B          var10 = 27
+label_00041c:
+ c []   00041C [041C] 00800A          var128 = var10
+ c []   00041F [041F] 297F0C          var127 = 12
+ c []   000422 [0422] 19807F2A04      if var128 != var127 goto label_00042a
+ c []   000427 [0427] 290A1F          var10 = 31
+label_00042a:
+ c []   00042A [042A] 00800A          var128 = var10
+ c []   00042D [042D] 297F0D          var127 = 13
+ c []   000430 [0430] 19807F3804      if var128 != var127 goto label_000438
+ c []   000435 [0435] 290A12          var10 = 18
+label_000438:
+ c []   000438 [0438] 00800A          var128 = var10
+ c []   00043B [043B] 297F0E          var127 = 14
+ c []   00043E [043E] 19807F4604      if var128 != var127 goto label_000446
+ c []   000443 [0443] 290A18          var10 = 24
+label_000446:
+ c []   000446 [0446] 00800A          var128 = var10
+ c []   000449 [0449] 297F0F          var127 = 15
+ c []   00044C [044C] 19807F5404      if var128 != var127 goto label_000454
+ c []   000451 [0451] 290A15          var10 = 21
+label_000454:
+ c []   000454 [0454] 450A0F          var10 = var10 & 0x0f
+ c []   000457 [0457] 00FF04          var255 = var4
+ c []   00045A [045A] 15FF04          var255 = var255 >> 4
+ c []   00045D [045D] 00FEFF          var254 = var255
+ c []   000460 [0460] 45FE0F          var254 = var254 & 0x0f
+ c []   000463 [0463] 00FDFE          var253 = var254
+ c []   000466 [0466] 12FD0A          var253 = var253 ^ var10
+ c []   000469 [0469] 000AFD          var10 = var253
+ c []   00046C [046C] 150404          var4 = var4 >> 4
+ c []   00046F [046F] 2B0301          var3 = var3 + 1
+ c []   000472 [0472] 1E7703          jmp label_000377
+label_000475:
+ c []   000475 [0475] 00FF00          var255 = var0
+ c []   000478 [0478] 15FF04          var255 = var255 >> 4
+ c []   00047B [047B] 00FEFF          var254 = var255
+ c []   00047E [047E] 45FEFF          var254 = var254 & 0xff
+ c []   000481 [0481] 000EFE          var14 = var254
+ c []   000484 [0484] 00FF00          var255 = var0
+ c []   000487 [0487] 17FF04          var255 = var255 << 4
+ c []   00048A [048A] 00FEFF          var254 = var255
+ c []   00048D [048D] 45FEF0          var254 = var254 & 0xf0
+ c []   000490 [0490] 00FD0A          var253 = var10
+ c []   000493 [0493] 45FD0F          var253 = var253 & 0x0f
+ c []   000496 [0496] 00FCFE          var252 = var254
+ c []   000499 [0499] 10FCFD          var252 = var252 | var253
+ c []   00049C [049C] 000FFC          var15 = var252
+ c []   00049F [049F] 02FF00          var255 = digit_0
+ c []   0004A2 [04A2] 0AFF01          var255 = var255 % var1
+ c []   0004A5 [04A5] 000DFF          var13 = var255
+ c []   0004A8 [04A8] 00FF0D          var255 = var13
+ c []   0004AB [04AB] 32FF1027        var255 = var255 * 10000
+ c []   0004AF [04AF] 00FEFF          var254 = var255
+ c []   0004B2 [04B2] 30FEDD3E        var254 = var254 / 16093
+ c []   0004B6 [04B6] 00FDFE          var253 = var254
+ c []   0004B9 [04B9] 2BFD01          var253 = var253 + 1
+ c []   0004BC [04BC] 000DFD          var13 = var253
+ c []   0004BF [04BF] 290100          var1 = 0
+ c []   0004C2 [04C2] 00800D          var128 = var13
+ c []   0004C5 [04C5] 297F11          var127 = 17
+ c []   0004C8 [04C8] 1C807FD004      if var128 >= var127 goto label_0004d0
+ c []   0004CD [04CD] 290101          var1 = 1
+label_0004d0:
+ c []   0004D0 [04D0] 028000          var128 = digit_0
+ c []   0004D3 [04D3] 297F11          var127 = 17
+ c []   0004D6 [04D6] 1C807FDE04      if var128 >= var127 goto label_0004de
+ c []   0004DB [04DB] 290101          var1 = 1
+label_0004de:
+ c []   0004DE [04DE] 02FF00          var255 = digit_0
+ c []   0004E1 [04E1] 33FF11          var255 = var255 % 17
+ c []   0004E4 [04E4] 00FEFF          var254 = var255
+ c []   0004E7 [04E7] 2BFE01          var254 = var254 + 1
+ c []   0004EA [04EA] 0017FE          var23 = var254
+ c []   0004ED [04ED] 008001          var128 = var1
+ c []   0004F0 [04F0] 297F01          var127 = 1
+ c []   0004F3 [04F3] 19807F8205      if var128 != var127 goto label_000582
+ c []   0004F8 [04F8] 290D00          var13 = 0
+label_0004fb:
+ c []   0004FB [04FB] 00800C          var128 = var12
+ c []   0004FE [04FE] 007F17          var127 = var23
+ c []   000501 [0501] 1C807F5C05      if var128 >= var127 goto label_00055c
+ c []   000506 [0506] 00000D          var0 = var13
+ c []   000509 [0509] 290200          var2 = 0
+ c []   00050C [050C] 290300          var3 = 0
+ c []   00050F [050F] 20050E          @var5 = var14
+ c []   000512 [0512] 2B0501          var5 = var5 + 1
+ c []   000515 [0515] 20050F          @var5 = var15
+ c []   000518 [0518] 2B0502          var5 = var5 + 2
+label_00051b:
+ c []   00051B [051B] 008002          var128 = var2
+ c []   00051E [051E] 297F07          var127 = 7
+ c []   000521 [0521] 1C807F3B05      if var128 >= var127 goto label_00053b
+ c []   000526 [0526] 00FF00          var255 = var0
+ c []   000529 [0529] 45FF01          var255 = var255 & 0x01
+ c []   00052C [052C] 0004FF          var4 = var255
+ c []   00052F [052F] 120304          var3 = var3 ^ var4
+ c []   000532 [0532] 150001          var0 = var0 >> 1
+ c []   000535 [0535] 2B0201          var2 = var2 + 1
+ c []   000538 [0538] 1E1B05          jmp label_00051b
+label_00053b:
+ c []   00053B [053B] 00FF03          var255 = var3
+ c []   00053E [053E] 49FF01          var255 = var255 ^ 0x01
+ c []   000541 [0541] 00FEFF          var254 = var255
+ c []   000544 [0544] 17FE07          var254 = var254 << 7
+ c []   000547 [0547] 00FDFE          var253 = var254
+ c []   00054A [054A] 10FD0D          var253 = var253 | var13
+ c []   00054D [054D] 2005FD          @var5 = var253
+ c []   000550 [0550] 2B0501          var5 = var5 + 1
+ c []   000553 [0553] 2B0D01          var13 = var13 + 1
+ c []   000556 [0556] 2B0C01          var12 = var12 + 1
+ c []   000559 [0559] 1EFB04          jmp label_0004fb
+label_00055c:
+ c []   00055C [055C] 008017          var128 = var23
+ c []   00055F [055F] 297F11          var127 = 17
+ c []   000562 [0562] 1C807F7F05      if var128 >= var127 goto label_00057f
+ c []   000567 [0567] 20050E          @var5 = var14
+ c []   00056A [056A] 2B0501          var5 = var5 + 1
+ c []   00056D [056D] 20050F          @var5 = var15
+ c []   000570 [0570] 2B0502          var5 = var5 + 2
+ c []   000573 [0573] 210580          @var5 = 0x80
+ c []   000576 [0576] 2B0501          var5 = var5 + 1
+ c []   000579 [0579] 2B1701          var23 = var23 + 1
+ c []   00057C [057C] 1E5C05          jmp label_00055c
+label_00057f:
+ c []   00057F [057F] 1E0006          jmp label_000600
+label_000582:
+ c []   000582 [0582] 00FF0D          var255 = var13
+ c []   000585 [0585] 2FFF11          var255 = var255 / 17
+ c []   000588 [0588] 00FEFF          var254 = var255
+ c []   00058B [058B] 31FE11          var254 = var254 * 17
+ c []   00058E [058E] 000DFE          var13 = var254
+label_000591:
+ c []   000591 [0591] 00800C          var128 = var12
+ c []   000594 [0594] 297F11          var127 = 17
+ c []   000597 [0597] 1C807F0006      if var128 >= var127 goto label_000600
+ c []   00059C [059C] 00000D          var0 = var13
+ c []   00059F [059F] 290200          var2 = 0
+ c []   0005A2 [05A2] 290300          var3 = 0
+label_0005a5:
+ c []   0005A5 [05A5] 008002          var128 = var2
+ c []   0005A8 [05A8] 297F07          var127 = 7
+ c []   0005AB [05AB] 1C807FC505      if var128 >= var127 goto label_0005c5
+ c []   0005B0 [05B0] 00FF00          var255 = var0
+ c []   0005B3 [05B3] 45FF01          var255 = var255 & 0x01
+ c []   0005B6 [05B6] 0004FF          var4 = var255
+ c []   0005B9 [05B9] 120304          var3 = var3 ^ var4
+ c []   0005BC [05BC] 150001          var0 = var0 >> 1
+ c []   0005BF [05BF] 2B0201          var2 = var2 + 1
+ c []   0005C2 [05C2] 1EA505          jmp label_0005a5
+label_0005c5:
+ c []   0005C5 [05C5] 20050E          @var5 = var14
+ c []   0005C8 [05C8] 2B0501          var5 = var5 + 1
+ c []   0005CB [05CB] 20050F          @var5 = var15
+ c []   0005CE [05CE] 2B0502          var5 = var5 + 2
+ c []   0005D1 [05D1] 00FF03          var255 = var3
+ c []   0005D4 [05D4] 49FF01          var255 = var255 ^ 0x01
+ c []   0005D7 [05D7] 00FEFF          var254 = var255
+ c []   0005DA [05DA] 17FE07          var254 = var254 << 7
+ c []   0005DD [05DD] 00FDFE          var253 = var254
+ c []   0005E0 [05E0] 10FD0D          var253 = var253 | var13
+ c []   0005E3 [05E3] 2005FD          @var5 = var253
+ c []   0005E6 [05E6] 2B0501          var5 = var5 + 1
+ c []   0005E9 [05E9] 2B0D01          var13 = var13 + 1
+ c []   0005EC [05EC] 2B0C01          var12 = var12 + 1
+ c []   0005EF [05EF] 00800C          var128 = var12
+ c []   0005F2 [05F2] 007F17          var127 = var23
+ c []   0005F5 [05F5] 19807FFD05      if var128 != var127 goto label_0005fd
+ c []   0005FA [05FA] 2D0D11          var13 = var13 - 17
+label_0005fd:
+ c []   0005FD [05FD] 1E9105          jmp label_000591
+label_000600:
+ c []   000600 [0600] 25040000FF01    label_4.Color = 0x00ff0000
+ c []   000606 [0606] 3520            str32 = ""
+ c []   000608 [0608] 36205306        str32 = str32 + "Дамп OK. Новый пробег записан."
+ c []   00060C [060C] 420420          label_4 = str32
+label_00060f:
+ c []   00060F [060F] 1F              return
+
+
+ c []   000610 [0610] 4D282F283D20... "Неверный дамп!"
+ c []   00061F [061F] 422027262A30... "Введите пробег"
+ c []   00062E [062E] 4F3F212E2A2C... "Пробег должен быть от 1 до 524160 км"
+ c []   000653 [0653] 4424282BE48B... "Дамп OK. Новый пробег записан."
+  u[]   000672 [0672] 4D              
+  u[]   000673 [0673] 14              
+  u[]   000674 [0674] 23              
+  u[]   000675 [0675] 98              
+  u[]   000676 [0676] 3E              
+  u[]   000677 [0677] 01              
+  u[]   000678 [0678] 62              
+  u[]   000679 [0679] AA              
+  u[]   00067A [067A] 28              
+  u[]   00067B [067B] 9D              
+  u[]   00067C [067C] F4              
+  u[]   00067D [067D] 94              
+  u[]   00067E [067E] A4              
+  u[]   00067F [067F] 91              

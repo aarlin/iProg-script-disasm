@@ -17,3 +17,10 @@ Decompiled and restored result in [examples/decompiled](examples/decompiled)
 # Commands
 
 `python iProgDecompiler.py filename [--bruteforce] | [-sn серийник [серийник ...]]`
+
+> [!TIP]
+> If you encounter `SyntaxError: Non-ASCII character '\xd0' in file iProgDecompiler.py on line 48, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details`  
+> Use the following command instead  
+
+
+`python3 iProgDecompiler.py filename [--bruteforce] | [-sn серийник [серийник ...]]`
